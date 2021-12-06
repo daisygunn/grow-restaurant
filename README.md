@@ -8,15 +8,24 @@ This is a full-stack frameworks project built using Django, Python, HTML, CSS an
 
 ---
 ## UX
-[Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
 
 ### Strategy
-User Stories:
+Using the core UX principles I first started with Strategy, thinking about the target audience for this quiz & the features they would want.
 
+The target audience for 'Grow' are:
+- 25-35 year olds
+- People that live a healthy, balanced lifestyle
+- People that enjoy eating out
+
+### Scope
 
 ### Structure
 ![]()
 
+### Skeleton
+[Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
+
+### Surface
 
 ---
 ## Features
