@@ -37,8 +37,9 @@ In order to acheuve the desired user & business goals the following features wil
 - Contact form
 
 ### Structure
-![]()
 This website has been designed with simplicity in mind, each page only have entirely relevant information on it so that the user is able to find what they want quickly without having to read through unnessecary things. I have seperated out each key feature to really highlight their functionality to the user.
+
+![Database Schema can be found here](assets/images/menus-schema.png)
 
 ### Skeleton
 [Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
@@ -52,9 +53,7 @@ I chose the fonts 'Abril Fatface' & 'Raleway', I wanted a bold/statement font to
 
 ---
 ## Features
-The features included in this programme are listed in the main menu and they can be seen below:
 
-![]()
 
 ---
 ## Technologies Used
