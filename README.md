@@ -17,15 +17,38 @@ The target audience for 'Grow' are:
 - People that live a healthy, balanced lifestyle
 - People that enjoy eating out
 
+These user will be looking for:
+- Informative website, with information that is easy-to-find & concise
+- Current, up-to-date menus
+- A booking form to make reservation enquiries with the restaurant
+
+This website will offer all of these things whilst also allowing for intuitive navigation and comfortability of use. 
+
+Due to the age group of the users, it is assumed that most users will be viewing the site on their mobile phones and therefore creating something responsive is integral to the design, I have used Bootstrap elements & custom CSS to allow for this.
+
 ### Scope
+In order to acheuve the desired user & business goals the following features will be included in this release:
+
+- Responsive navbar that will navigate to the various pages throughout the site
+- Landing page with brief information about the restaurant and links to the menu and reservations page
+- Menus page, with links to food & drinks menu respectively
+- Reservations page, with booking form to enquire with the restaurant
+- Register/login feature
+- Contact form
 
 ### Structure
 ![]()
+This website has been designed with simplicity in mind, each page only have entirely relevant information on it so that the user is able to find what they want quickly without having to read through unnessecary things. I have seperated out each key feature to really highlight their functionality to the user.
 
 ### Skeleton
 [Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
 
+The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
+
 ### Surface
+The colour pallete I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. 
+
+I chose the fonts 'Abril Fatface' & 'Raleway', I wanted a bold/statement font to use for headings which is why I chose 'Abril' and then 'Raleway' for the general content as it's easier to read for the user. 
 
 ---
 ## Features
@@ -75,7 +98,7 @@ The master branch of this repository has been used for the deployed version of t
 
 ### Using Github & Gitpod
 
-To deploy my command-line interface application, I had to use the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template), as this enables the application to be properly viewed on Heroku using a mock terminal. 
+To deploy my django application, I had to use the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template).
 
 - Click the `Use This Template` button.
 - Add a repository name and brief description.
@@ -108,7 +131,7 @@ Cloning your repository will allow you to download a local version of the reposi
 
 ### Creating an Application with Heroku
 
-I followed the below steps using the Code Institute tutorial:
+I followed the below steps using the Code Institute tutorial and ![Django Blog cheatsheat](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
 
 - The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being committed.
 
@@ -120,10 +143,9 @@ I followed the below steps using the Code Institute tutorial:
 *Heroku Settings*
 You will need to set your Environment Variables - this is a key step to ensuring your application is deployed properly.
 - In the Settings tab, click on `Reveal Config Vars` and set the following variables:
-    - If using credentials you will need to add the credentials as a variable, the key is the name 'CREDS' and the value is the contents of your creds JSON
-    - Add key: `PORT` & value `8000`
-- Buildpacks are also required for proper deployment, simply click `Add buildpack` and search for the ones that you require.
-    - For this project, I needed to add `Python` and `Node.js`, in this order.
+    - SECRET_KEY - to be set to your chosen key
+    - CLOUDINARY_URL - to be set to your cloudinary API environment varible
+- In the resources tab you must install 'Heroku Postgres'
 
 *Heroku Deployment*
 In the Deploy tab:
