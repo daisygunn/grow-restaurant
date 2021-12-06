@@ -4,18 +4,18 @@
 
 [Live application can be found here]()
 
-This is a command-line-interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete existing contacts & add new contact information. This project has been designed for educational purposes and uses the Code Institutes mock terminal to run.
+This is a full-stack frameworks project built using Django, Python, HTML, CSS and JavaScript. This is a restaurant website designed to display menus to customers & allow them to make reservations. This project has been built for educational purpose.
 
 ---
 ## UX
-
+[Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
 
 ### Strategy
 User Stories:
 
 
 ### Structure
-![Flowchart of Python logic]()
+![]()
 
 
 ---
@@ -29,8 +29,12 @@ The features included in this programme are listed in the main menu and they can
 
 I have used several technologies that have enabled this design to work:
 
+- [Django](https://www.djangoproject.com/)
+    - Django is the framework that has been used to build the over project and it's apps.
 - [Python](https://www.python.org/)
     - Python is the core programming language used to write all of the code in this application to make it fully functional.
+- [Bootstrap]()
+
 - [GitHub](https://github.com/)
     - Used to store code for the project after being pushed.
 - [Git](https://git-scm.com/)
