@@ -73,9 +73,22 @@ a.ic::after {
     border: none;
 }
 
+.page-link:hover {
+    text-shadow: 2px 2px 4px #7AE7C7;
+    text-decoration: none;
+    border: none;
+    color: rgba(0, 120, 66, 1);
+    background-color: none;
+}
+
 /* Index.html */
 
 .img-thumbnail {
     height: 400px;
 }
 
+.principles-list {
+width: 400px;
+margin: auto;
+text-align: center;
+}
