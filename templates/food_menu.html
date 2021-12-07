@@ -1,14 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>FOOD MENU</h2>
 
-    {% for fooditem in fooditems_list %}
+<div class="continaer">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <h2 class="text-center mt-2">FOOD MENU</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {% for fooditem in fooditems_list %}
 
-    <h5> {{ fooditem.dish_name }} </h5> 
-    <p> {{ fooditem.description }} | £{{ fooditem.price}}</p>
-    <p> {{ fooditem.dietary }} | {{ fooditem.allergens }}</p>
+            <h5> {{ fooditem.dish_name }} </h5>
+            <em> <p> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
+            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p>
 
-    {% endfor %}
-
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
