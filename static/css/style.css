@@ -11,7 +11,7 @@ font-family: 'Raleway', sans-serif; */
 
 body {
     font-family: 'Raleway', sans-serif;
-    padding-bottom: 70px;
+    
 }
 /* Navbar */
 
@@ -27,9 +27,10 @@ body {
     color: #Effbed;
 }
 
-.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link,  .navbar-light .navbar-nav .nav-link:hover  {
+.navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link,  .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-toggler-icon  {
     color: #Effbed;
 }
+
 
 /* Header */
 
@@ -63,3 +64,18 @@ a.ic:hover {
 a.ic::after {
     color: #effbed;
 }
+
+/* General */
+
+.page-link {
+    text-decoration: none;
+    color:rgba(0, 120, 66, 1);
+    border: none;
+}
+
+/* Index.html */
+
+.img-thumbnail {
+    height: 400px;
+}
+
