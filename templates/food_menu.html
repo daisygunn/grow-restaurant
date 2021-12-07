@@ -2,4 +2,13 @@
 
 {% block content %}
     <h2>FOOD MENU</h2>
+
+    {% for fooditem in fooditems_list %}
+
+    <h5> {{ fooditem.dish_name }} </h5> 
+    <p> {{ fooditem.description }} | £{{ fooditem.price}}</p>
+    <p> {{ fooditem.dietary }} | {{ fooditem.allergens }}</p>
+
+    {% endfor %}
+
 {% endblock %}

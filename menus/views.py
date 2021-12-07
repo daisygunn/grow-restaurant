@@ -12,5 +12,5 @@ def menus(request):
 
 class FoodMenu(generic.ListView):
     model = FoodItems
-    queryset = FoodItems.objects.filter(on_menu=True).order_by('-food_menu_section')
+    queryset = FoodItems.objects.filter(on_menu=True).order_by('food_menu_section')
     template_name = 'food_menu.html'
