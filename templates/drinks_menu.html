@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="continaer">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <h2 class="text-center mt-2">DRINKS MENU</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {% for drinkitem in drinkitems_list %}
+
+            <h5> {{ drinkitem.dish_name }} </h5>
+            <em> <p> {{ drinkitem.description }} </em> | <strong>£{{ drinkitem.price}}</strong></p>
+            <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
