@@ -7,6 +7,9 @@ from django.contrib import messages
 from .models import FoodItems, DrinkItems
 
 
+def menus(request):
+    return render(request, 'menus_page.html')
+
 class FoodMenu(generic.ListView):
     model = FoodItems
     queryset = FoodItems.objects.filter(on_menu=True).order_by('-food_menu_section')
