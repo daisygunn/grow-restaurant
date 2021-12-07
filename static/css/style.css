@@ -12,18 +12,26 @@ font-family: 'Raleway', sans-serif; */
 body {
     font-family: 'Raleway', sans-serif;
 }
+/* Navbar */
 
 #main-nav {
     background-color: #007842;
     color: #Effbed;
 }
 
-#nav-heading {
+#nav-heading, h1.text-white {
     font-family:'Abril Fatface', cursive;
     font-size: 25px;
+    letter-spacing: 3px;
     color: #Effbed;
 }
 
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link,  .navbar-light .navbar-nav .nav-link:hover  {
     color: #Effbed;
+}
+
+/* Header */
+
+header.bg-image-full {
+    background: url("../images/header-background.jpg")
 }
