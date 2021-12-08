@@ -1,13 +1,13 @@
 from django.db import models
-from phone_field import PhoneField
-
+from phonenumber_field.modelfields import PhoneNumberField
+import datetime
 
 # Create your models here.
 class Customer(models.Model):
     customer_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=50)
     email = models.EmailField()
-    phone_number = PhoneField(blank=True, help_text='Contact phone number', E164_only=False)
+    phone_number = PhoneNumberField()
 
     def __str__(self):
         return self.full_name

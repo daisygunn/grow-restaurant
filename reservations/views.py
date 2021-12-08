@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Tables, Customer, Reservations
 from .forms import CustomerForm, ReservationForm
-
+from bootstrap_datepicker_plus import DateTimePickerInput
 
 # Create your views here.
 class ReservationsEnquiry(View):
