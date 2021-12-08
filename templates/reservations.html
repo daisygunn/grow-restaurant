@@ -4,4 +4,10 @@
 
 <h1>Reservations</h1>
 
+<form action="{% url 'reservations' %}" method="POST">
+    <ul>
+        {{ customer_form.as_ul }}
+        {{ reservation_form.as_ul }}
+    </ul>
+</form>
 {% endblock %}
