@@ -6,19 +6,40 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <h2 class="text-center mt-2">FOOD MENU</h2>
+            <h2 class="text-center mt-2 mb-5">Food at GROW</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-4 ">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
-            {% for fooditem in fooditems_list %}
 
+            <h3 class="mb-4 text-center"> Breakfast & Brunch menu</h3>
+            {% if food_items.breakfast_items %}
+            {% for fooditem in food_items.breakfast_items %}
+    
             <h5> {{ fooditem.dish_name }} </h5>
             <em> <p> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
-            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p>
+            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p> 
 
             {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+
+            <h3 class="mb-4 text-center"> Dinner menu</h3>
+            {% if food_items.dinner_items %}
+            {% for fooditem in food_items.dinner_items %}
+    
+            <h5> {{ fooditem.dish_name }} </h5>
+            <em> <p> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
+            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p> 
+
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
