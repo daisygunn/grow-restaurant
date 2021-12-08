@@ -6,19 +6,58 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <h2 class="text-center mt-2">DRINKS MENU</h2>
+            <h2 class="text-center mt-2 mb-5">Drinks at GROW</h2>
         </div>
     </div>
-    <div class="row">
+    <!-- Hot drinks menu -->
+    <div class="row mb-4">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
-            {% for drinkitem in drinkitems_list %}
-
+            <h3 class="mb-4 text-center">Hot Drinks</h3>
+            {% if drinks_items.hotdrinks_items %}
+            {% for drinkitem in drinks_items.hotdrinks_items %}
+    
             <h5> {{ drinkitem.drink_name }} </h5>
             <em> <p> {{ drinkitem.description }} </em> | <strong>£{{ drinkitem.price}}</strong></p>
-            <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
+            <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p> 
 
             {% endfor %}
+            {% endif %}
+        
+        </div>
+    </div>
+    <!-- Fruit juices & smoothies menu -->
+    <div class="row mb-4">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h3 class="mb-4 text-center">Fruit Juices & Smoothies</h3>
+            {% if drinks_items.fruitjuices_smoothies_items %}
+            {% for drinkitem in drinks_items.fruitjuices_smoothies_items %}
+    
+            <h5> {{ drinkitem.drink_name }} </h5>
+            <em> <p> {{ drinkitem.description }} </em> | <strong>£{{ drinkitem.price}}</strong></p>
+            <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p> 
+
+            {% endfor %}
+            {% endif %}
+        
+        </div>
+    </div>
+    <!-- Alcohol menu -->
+    <div class="row mb-4">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h3 class="mb-4 text-center">Wine/Beer/Cocktails</h3>
+            {% if drinks_items.alcohol_items %}
+            {% for drinkitem in drinks_items.alcohol_items %}
+    
+            <h5> {{ drinkitem.drink_name }} </h5>
+            <em> <p> {{ drinkitem.description }} </em> | <strong>£{{ drinkitem.price}}</strong></p>
+            <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p> 
+
+            {% endfor %}
+            {% endif %}
+        
         </div>
     </div>
 </div>
