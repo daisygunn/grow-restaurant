@@ -29,7 +29,7 @@ class Reservation(models.Model):
     guests_choices = ((1, "1 person"), (2, "2 people"), (3, "3 people"), (4, "4 people"))
     no_of_guests = models.IntegerField(choices=guests_choices, default=1)
     requested_time = models.DateTimeField()
-    table_id = models.ForeignKey(Tables, on_delete=models.CASCADE, related_name="table_booked", null=True)
+    table_id = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="table_booked", null=True)
     status_choices = ((0, "pending"), (0, "confirmed"))
     status = models.CharField(
         max_length=10, choices=status_choices, default=0)

@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.template.context_processors import csrf
-from .models import Tables, Customer, Reservations
+from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
 from bootstrap_datepicker_plus import DateTimePickerInput
 
