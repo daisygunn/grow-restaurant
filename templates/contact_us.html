@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <h2 class="text-center mt-2 mb-3">Contact us at GROW</h2>
+        <h5 class="text-center mt-2 mb-5"></h5>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>   
+        <div class="col-sm-3">
+            <form action="" method="POST" class="contact-form mb-3 uni">
+
+                    {% csrf_token %}
+                    {{ contact_form | crispy }}
+                    
+                    <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send message</button> 
+               
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

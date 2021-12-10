@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
 
 {% block content %}
 <!-- {% load bootstrap4 %} -->
@@ -19,9 +20,9 @@
         <div class="col-sm-6">
             <form action="{% url 'reservations' %}" method="POST">
                 
-                <ul id="full-form">
+                <ul class="full-form">
                     {% csrf_token %}
-                    {{ customer_form.as_ul }}
+                    {{ customer_form.as_ul}}
                     {{ reservation_form.as_ul }}
                     
                     <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send enquiry</button>

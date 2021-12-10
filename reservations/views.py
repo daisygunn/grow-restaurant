@@ -22,11 +22,13 @@ class ReservationsEnquiry(View):
 
     def post(self, request, *args, **kwargs):
         customer_form = CustomerForm(data=request.POST)
-        reservation_form = ReservationForm(request.POST)
-        # context = {}
-        # context.update(csrf(request))
+        reservation_form = ReservationForm(data=request.POST)
 
-        return render(
-            request, 'reservations.html', 
-            {'customer_form': customer_form, 'reservation_form': reservation_form}
-            )
+        if customer_form.is_valid() and reservation_form.is_valid():
+            
+   
+
+            return render(
+                request, 'reservations.html', 
+                {'customer_form': customer_form, 'reservation_form': reservation_form}
+                )
