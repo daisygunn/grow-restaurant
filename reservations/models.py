@@ -3,6 +3,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 import phone_field.models
 import datetime
 
+status_choices = (("pending", "pending"), ("confirmed", "confirmed"))
+
 # Create your models here.
 class Customer(models.Model):
     customer_id = models.AutoField(primary_key=True)
@@ -25,14 +27,14 @@ class Table(models.Model):
 
 class Reservation(models.Model):
     reservation_id = models.AutoField(primary_key=True)
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer")
+    # customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer")
+    # email = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer_email")
     guests_choices = ((1, "1 person"), (2, "2 people"), (3, "3 people"), (4, "4 people"))
     no_of_guests = models.IntegerField(choices=guests_choices, default=1)
     requested_time = models.DateTimeField()
     table_id = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="table_booked", null=True)
-    status_choices = ((0, "pending"), (1, "confirmed"))
     status = models.CharField(
-        max_length=10, choices=status_choices, default=0)
+        max_length=10, choices=status_choices, default="pending")
 
-    def __str__(self):
-        return self.reservation_id
+    # def __str__(self):
+    #     return self.reservation_id
