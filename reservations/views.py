@@ -7,6 +7,7 @@ from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
 from bootstrap_datepicker_plus import DateTimePickerInput
 
+
 # Create your views here.
 class ReservationsEnquiry(View):
     template_name = "reservations.html"
@@ -40,4 +41,4 @@ class ReservationsEnquiry(View):
         return render(
                     request, 'reservations.html', 
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
-                    )       
+                    )
