@@ -18,11 +18,25 @@
     <div class="row">
         <div class="col-sm-3"></div>   
         <div class="col-sm-6">
-            <form action="{% url 'reservations' %}" method="POST">
-                
+            <form method="POST">
+                <!-- action="{% url 'reservations' %}" -->
                 <ul class="full-form">
                     {% csrf_token %}
+                    {% if user.is_authenticated %}
+                    <li>
+                        <label for="full_name">Full name:</label>
+                        <input type="full_name" value="{{ user.name }}"/>
+                    </li>
+                    <li>
+                        <label for="email">Email address:</label>
+                        <input type="email" value="{{ user.email }}"/>
+                    </li>
+                    {% else %}
+
                     {{ customer_form.as_ul}}
+
+                    {% endif %}
+
                     {{ reservation_form.as_ul }}
                     
                     <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send enquiry</button>

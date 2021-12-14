@@ -36,5 +36,5 @@ class Reservation(models.Model):
     status = models.CharField(
         max_length=10, choices=status_choices, default="pending")
 
-    # def __str__(self):
-    #     return self.reservation_id
+    def __str__(self):
+        return str(self.reservation_id)
