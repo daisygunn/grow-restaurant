@@ -22,15 +22,29 @@
                 <!-- action="{% url 'reservations' %}" -->
                 <ul class="full-form">
                     {% csrf_token %}
+
+                    {{ customer_form.errors }}
+                    {{ customer_form.non_field_errors }}
+
+                    {{ reservation_form.errors }}
+                    {{ reservation_form.non_field_errors }}
+                    
                     {% if user.is_authenticated %}
+                    
                     <li>
-                        <label for="full_name">Full name:</label>
-                        <input type="full_name" value="{{ user.name }}"/>
+                        <label for="id_full_name">Full name:</label>
+                        <input type="full_name" name="full_name" id="id_full_name" value="{{ user.name }}"/>
                     </li>
                     <li>
-                        <label for="email">Email address:</label>
-                        <input type="email" value="{{ user.email }}"/>
+                        <label for="id_email">Email address:</label>
+                        <input type="email" name="email" id="id_email "value="{{ user.email }}"/>
                     </li>
+
+                    <li>
+                        <label for="id_phone_number">Phone number:</label>
+                        <input type="tel" name="phone_number" id="id_phone_number "value="{{ user.phone_number }}"/>
+                    </li>
+
                     {% else %}
 
                     {{ customer_form.as_ul}}

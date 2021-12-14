@@ -31,7 +31,8 @@ class Reservation(models.Model):
     # email = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer_email")
     guests_choices = ((1, "1 person"), (2, "2 people"), (3, "3 people"), (4, "4 people"))
     no_of_guests = models.IntegerField(choices=guests_choices, default=1)
-    requested_time = models.DateTimeField()
+    requested_date = models.DateField(default=datetime.date.today)
+    requested_time = models.TimeField(default='')
     table_id = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="table_booked", null=True)
     status = models.CharField(
         max_length=10, choices=status_choices, default="pending")

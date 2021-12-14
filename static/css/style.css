@@ -117,7 +117,9 @@ text-align: center;
 
 .full-form li {
     padding: 5px;
+    height: 60px;
 }
+
 
 li input, li select, .input-group.date {
     width: 300px;
