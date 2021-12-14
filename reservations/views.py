@@ -31,11 +31,13 @@ class ReservationsEnquiry(View):
         if customer_form.is_valid() and reservation_form.is_valid():
             # customer_form.instance.email = request.
             customer_form.save()
+
+            
             reservation_form.save()
+
             messages.add_message(
                 request, messages.SUCCESS, "Your enquiry has been sent - please note this is not approved until you receive a confirmaton email.")
-           
-
+        
             return render(
                     request, 'reservations.html'
                     # {'customer_form': customer_form, 'reservation_form': reservation_form}

@@ -19,9 +19,5 @@ class ReservationForm(forms.ModelForm):
                     "showClear": True,
                     "showTodayButton": True,
                 }),
-            'requested_time':TimePickerInput(options={
-                    "showClose": True,
-            }
-            ),
         }
        
