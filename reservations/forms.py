@@ -13,8 +13,8 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ('no_of_guests', 'requested_date', 'requested_time')
         widgets = {
-            'requested_date':DatePickerInput(options={
-                    "format": "DD/MM/YYYY", # moment date-time format
+            'requested_date': DatePickerInput(options={
+                    # "format": "DD/MM/YYYY", # moment date-time format
                     "showClose": True,
                     "showClear": True,
                     "showTodayButton": True,
