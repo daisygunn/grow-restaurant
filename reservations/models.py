@@ -27,7 +27,7 @@ time_choices = (
 class Customer(models.Model):
     customer_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=50)
-    email = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    email = models.EmailField(max_length=254, unique=True, default="")
     phone_number = PhoneNumberField(null=True)
 
     def __str__(self):
