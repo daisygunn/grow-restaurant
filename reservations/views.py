@@ -26,7 +26,9 @@ class ReservationsEnquiry(View):
                 )
         else:
             messages.add_message(
-                        request, messages.ERROR, "You must be logged in to make a reservation.")
+                        request, messages.ERROR, 
+                        "You must be logged in to make a reservation. <br> Please sign in, alternatively\
+                        if you haven't yet got an account with us please register using the link in the navigation bar.")
                         
         logger.warning("Get request")
         return render(
