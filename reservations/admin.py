@@ -5,7 +5,7 @@ from .models import Customer, Table, Reservation
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
 
-    list_display = ('full_name', 'email', 'phone_number')
+    list_display = ('customer_id', 'full_name', 'email', 'phone_number')
 
 
 @admin.register(Table)
@@ -16,4 +16,4 @@ class TableAdmin(admin.ModelAdmin):
 @admin.register(Reservation)
 class ReservationsAdmim(admin.ModelAdmin):
     list_filter = ('no_of_guests', 'status', 'table_id')
-    list_display = ('reservation_id', 'no_of_guests', 'status', 'table_id', 'requested_date', 'requested_time')
+    list_display = ('reservation_id', 'customer_name', 'no_of_guests', 'status', 'table_id', 'requested_date', 'requested_time')
