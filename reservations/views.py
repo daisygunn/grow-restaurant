@@ -67,13 +67,28 @@ class ReservationsEnquiry(View):
                     )            
                 
             else:
-                customer_form.save()
+                customer_email = customer_form.cleaned_data['email']
+                customer_query = len(Customer.objects.filter(email=customer_email))
+
+                if customer_query > 0:
+                    logger.warning("customer exists")
+                    pass
+                else:
+                    customer_form.save()
+
+                current_customer = Customer.objects.get(email=customer_email)
+                current_customer_id = current_customer.pk
+                customer = Customer.objects.get(id=current_customer_id)
+                logger.warning(f"Customer ID is: {current_customer_id}")
+                logger.warning(f"{customer}")
+                reservation = reservation_form.save(commit=False)
+                reservation.customer_id = customer
                 reservation_form.save()
 
                 messages.add_message(
                         request, messages.SUCCESS, f"Your enquiry for {customer_requested_time} on {customer_requested_date} has been sent - please note this is not approved until you receive a confirmaton email.")
                     
-                return render(request, 'reservations.html')
+                return render(request, 'reservations.html', {'customer_form': customer_form, 'reservation_form': reservation_form})
 
         else:
 
