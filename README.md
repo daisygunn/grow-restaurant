@@ -54,6 +54,22 @@ I chose the fonts 'Abril Fatface' & 'Raleway', I wanted a bold/statement font to
 ---
 ## Features
 
+### Current Features
+
+#### Home page
+- **Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. If the user is logged in then 'Logout' will appear otehrwsie the user will be given the option to 'Register' or 'Login'/ 
+- **Menus image with link**: This image is clickable and will take the user to the menus page.
+- **Reservations image with link**: This image is clickable and will take the user to the reservations page.
+- **Footer**: The footer displays some of the restaurants key information and has links to social accounts. 
+
+#### Menus - Food & Drinks
+- **Seperate menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. 
+
+#### Reservations
+- **Reservation form**: This page consists of the customer & reservation model forms, they are displayed together to appear as one. If the user is logged in then their name & email address are pre-populated.
+
+#### Contact Form
+- **Contact form**:
 
 ---
 ## Technologies Used
@@ -87,6 +103,7 @@ I have used several technologies that have enabled this design to work:
 
 ### User Stories
 
+[#1](https://github.com/daisygunn/grow-restaurant/issues/1)
 
 ### Bugs and Fixes
 
