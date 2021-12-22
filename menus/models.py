@@ -5,6 +5,9 @@ DRINKS_MENU_SECTION = ((0, "Hot Drinks"), (1, "Fruit juices/Soft Drinks"), (2, "
 
 # Create your models here.
 class FoodItems(models.Model):
+    """
+    Food items model
+    """
     dish_id = models.AutoField(primary_key=True)
     dish_name = models.CharField(max_length=200, unique=True)
     description = models.CharField(max_length=200, unique=True)
@@ -23,6 +26,9 @@ class FoodItems(models.Model):
 
 
 class DrinkItems(models.Model):
+    """
+    Drink items model
+    """
     drink_id = models.AutoField(primary_key=True)
     drink_name = models.CharField(max_length=200, unique=True)
     description = models.CharField(max_length=200, unique=True)

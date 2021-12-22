@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="continaer">
+<div class="contianer">
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
@@ -10,10 +10,13 @@
         </div>
     </div>
     <div class="row mb-4 ">
+        <!-- Empty column for spacing -->
         <div class="col-sm-4"></div>
-        <div class="col-sm-4">
 
+        <!-- Breakfast & Brunch menu -->
+        <div class="col-sm-4">
             <h3 class="mb-4 text-center"> Breakfast & Brunch menu</h3>
+            <!-- Loop through list to display only breakfast/bruch items -->
             {% if food_items.breakfast_items %}
             {% for fooditem in food_items.breakfast_items %}
     
@@ -27,10 +30,13 @@
     </div>
 
     <div class="row mb-4">
+        <!-- Empty column for spacing -->
         <div class="col-sm-4"></div>
-        <div class="col-sm-4">
 
+        <!-- Dinner menu -->
+        <div class="col-sm-4">
             <h3 class="mb-4 text-center"> Dinner menu</h3>
+            <!-- Loop through list to display only dinner items -->
             {% if food_items.dinner_items %}
             {% for fooditem in food_items.dinner_items %}
     

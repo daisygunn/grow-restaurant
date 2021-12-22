@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-<!-- {% load crispy_forms_tags %} -->
-
 {% block content %}
+
+<!-- To display date picker -->
 {% load bootstrap4 %}
 <!-- {% bootstrap_css %} -->
 {% bootstrap_javascript jquery='full' %}
+<!-- Media to display date picker -->
 {{ reservation_form.media }}
 <div class="row">
     <div class="col-sm-2"></div>
@@ -18,8 +19,8 @@
     <div class="row">
         <div class="col-sm-3"></div>   
         <div class="col-sm-6">
+            <!-- Reservation form -->
             <form method="POST">
-                <!-- action="{% url 'reservations' %}" -->
                 <ul class="full-form">
                     
                     {% csrf_token %}
@@ -29,9 +30,10 @@
 
                     {{ reservation_form.errors }}
                     {{ reservation_form.non_field_errors }}
-                    
-                    {{ customer_form.as_ul }}
 
+                    <!-- Customer form -->
+                    {{ customer_form.as_ul }}
+                    <!-- Reservation form -->
                     {{ reservation_form.as_ul }}
 
                     <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send enquiry</button>
