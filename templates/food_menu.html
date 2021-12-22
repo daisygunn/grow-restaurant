@@ -6,7 +6,9 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <h2 class="text-center mt-2 mb-5">Food at GROW</h2>
+            <h2 class="text-center my-2">Food at GROW</h2>
+
+            <p class="text-center mb-5">V - Veggie | VE - Vegan | GF - Gluten Free</p>
         </div>
     </div>
     <div class="row mb-4 ">
@@ -18,13 +20,18 @@
             <h3 class="mb-4 text-center"> Breakfast & Brunch menu</h3>
             <!-- Loop through list to display only breakfast/bruch items -->
             {% if food_items.breakfast_items %}
+
             {% for fooditem in food_items.breakfast_items %}
-    
+
             <h5> {{ fooditem.dish_name }} </h5>
-            <em> <p> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
-            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p> 
+            <p><em> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
+            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p>
 
             {% endfor %}
+
+            {% else%}
+            <p>Menu being updated - please come back soon!</p>
+
             {% endif %}
         </div>
     </div>
@@ -39,10 +46,10 @@
             <!-- Loop through list to display only dinner items -->
             {% if food_items.dinner_items %}
             {% for fooditem in food_items.dinner_items %}
-    
+
             <h5> {{ fooditem.dish_name }} </h5>
-            <em> <p> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
-            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p> 
+            <p> <em>{{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
+            <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p>
 
             {% endfor %}
             {% endif %}
