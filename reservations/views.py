@@ -48,6 +48,8 @@ class ReservationsEnquiry(View):
                 
             customer_requested_time = reservation_form.cleaned_data['requested_time']
             customer_requested_date = reservation_form.cleaned_data['requested_date']
+            customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
+            customer_name = customer_form.cleaned_data['full_name']
 
             logger.warning(f"{customer_requested_time}, {customer_requested_date}")
 
@@ -78,7 +80,7 @@ class ReservationsEnquiry(View):
 
                 current_customer = Customer.objects.get(email=customer_email)
                 current_customer_id = current_customer.pk
-                customer = Customer.objects.get(id=current_customer_id)
+                customer = Customer.objects.get(customer_id=current_customer_id)
                 logger.warning(f"Customer ID is: {current_customer_id}")
                 logger.warning(f"{customer}")
                 reservation = reservation_form.save(commit=False)
@@ -86,7 +88,7 @@ class ReservationsEnquiry(View):
                 reservation_form.save()
 
                 messages.add_message(
-                        request, messages.SUCCESS, f"Your enquiry for {customer_requested_time} on {customer_requested_date} has been sent - please note this is not approved until you receive a confirmaton email.")
+                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                     
                 return render(request, 'reservations.html', {'customer_form': customer_form, 'reservation_form': reservation_form})
 
