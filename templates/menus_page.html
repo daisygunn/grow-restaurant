@@ -1,5 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>PLACEHOLDER</h2>
+<div class="container-fluid text-center">
+    <div class="row content mt-1">
+        <div class="col-sm-2">
+        </div>
+        <!-- Homepage content -->
+        <div class="col-sm-8 text-left">
+            <h1>Menus at GROW</h1>
+            <br>
+            <p> We are open daily for breakfast, brunch & dinner.</p>
+
+            <p>Our menu's change frequently to incorporate produce currently in season.</p>
+
+            <p>We also serve daily specials but you will have to visit to find out what they are - we have to keep some mystery.</p>
+
+            <hr>
+            <!-- Food & Drinks menus images and page links -->
+            <div class="row content mb-2">
+                <div class="col-sm-6 text-center">
+                    <div>
+                        <a href="{% url 'food_menu' %}">
+                        <img src="https://res.cloudinary.com/dm3odn3pb/image/upload/v1640181496/static/images/food_menu_image.jpg"
+                            class="img-thumbnail" alt="A bowl of healthy food.">
+                        </a>
+                        <a href="{% url 'food_menu' %}" class="page-links">
+                            <h3 class="mt-2">Food menus</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <div>
+                        <a href="{% url 'drinks_menu' %}">
+                            <img src="https://res.cloudinary.com/dm3odn3pb/image/upload/v1640181505/static/images/drinks_menu_image.jpg"
+                                class="img-thumbnail" alt="Photo of two coffees">
+                        </a>
+                        <a href="{% url 'drinks_menu' %}" class="page-links">
+                            <h3 class="mt-2">Drinks menu</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}
