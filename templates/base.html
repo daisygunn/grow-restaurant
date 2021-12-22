@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grow</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
@@ -41,9 +42,6 @@
                             <li><a class="dropdown-item" href="{% url 'food_menu' %}">Food</a></li>
                             <li><a class="dropdown-item" href="{% url 'drinks_menu' %}">Drinks</a></li>
                             <li>
-                                <!-- <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -55,6 +53,7 @@
                     </ul>
                     <ul class="navbar-nav">
                     {% if user.is_authenticated %}
+                    <!-- Display logout option if user is logged in -->
                     <li class="nav-item ml-auto">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
@@ -74,7 +73,6 @@
     <!-- Header -->
     <header class="py-5 bg-image-full">
         <div class="text-center my-5">
-            <!-- <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." /> -->
             <h1 class="text-white fs-3 ">GROW</h1>
             <p class="text-white mb-0 fw-bolder" id="subheading">Restaurant & Cafe</p>
         </div>
@@ -97,8 +95,6 @@
     {% block content%}
 
     {% endblock %}
-
-
 
     <!-- Footer  https://mdbootstrap.com/docs/b4/jquery/navigation/footer/ -->
     <footer class="page-footer font-small text-center" id="main-footer">
@@ -128,7 +124,7 @@
                 <div class="col-sm"></div>
                 <div class="col-sm pt-5 pb-2 text-right">
                     <h5>Stay in touch</h5>
-                    <p>Email: info@growrestaurant.yopmail</p>
+                    <p>Email: info@growrestaurant.com</p>
                     <p>Phone: 02076841002</p>
                     <div class="mb-2 flex-center">
                         
@@ -161,11 +157,14 @@
     </footer>
     <!-- Footer -->
 
-    <!-- Latest compiled and minified JavaScript -->
+    <!-- JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/ad6c696766.js" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Personal JS -->
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 
