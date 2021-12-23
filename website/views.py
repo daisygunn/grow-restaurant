@@ -43,3 +43,12 @@ class ContactPage(View):
                 request, messages.ERROR, "Something is not right with your form - please make sure your email address is entered in the correct format.")
 
             return render(request, 'contact_us.html', {'contact_form': contact_form})
+
+
+def error_404(request, exception):
+    return render(request, '404.html')
+
+
+def error_500(request):
+    return render(request, '500.html')
+

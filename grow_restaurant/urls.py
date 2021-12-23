@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler400, handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +24,6 @@ urlpatterns = [
     path('reservations/', include('reservations.urls'), name='reservations_urls'),
     path('accounts/', include('allauth.urls')),
 ]
+
+handler404 = 'website.views.error_404'
+handler500 = 'website.views.error_500'
