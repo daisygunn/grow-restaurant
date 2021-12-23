@@ -32,8 +32,7 @@ class ReservationsEnquiry(View):
                 {'customer_form': customer_form, 'reservation_form': reservation_form}
                 )
         logger.warning("Get request")
-        return render(
-                request, self.template_name)
+        return render(request, self.template_name)
         
 
     def post(self, request, User=User, *args, **kwargs):
@@ -55,7 +54,7 @@ class ReservationsEnquiry(View):
             customer_name = customer_form.cleaned_data['full_name']
 
             logger.warning(f"{customer_requested_time}, {customer_requested_date}")
-            
+
             # Check to see how many bookings exist at that time/date
             queryset = len(Reservation.objects.filter(
                 requested_time=customer_requested_time, requested_date=customer_requested_date, status="confirmed"))
@@ -97,9 +96,10 @@ class ReservationsEnquiry(View):
                         request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
-                customer_form = CustomerForm()
-                reservation_form = ReservationForm()
-                return render(request, 'reservations.html', {'customer_form': customer_form, 'reservation_form': reservation_form})
+                # customer_form = CustomerForm()
+                # reservation_form = ReservationForm()
+                return HttpResponseRedirect(reverse('reservations'))
+                # return render(request, 'reservations.html', {'customer_form': customer_form, 'reservation_form': reservation_form})
 
         else:
 
