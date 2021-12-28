@@ -63,9 +63,22 @@ p#subheading {
 
 /* Footer */
 
+.footer-heading {
+    text-decoration: underline 1px white;
+}
+
 #social-media-icons {
     width: 40px;
     height: 40px;
+}
+
+#email-link {
+    text-decoration: none;
+    color: #effbed;
+}
+
+.footer-copyright {
+    border: solid 1px white;
 }
 
 a.ic {
@@ -167,8 +180,7 @@ li select,
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-/* 404 error page */
-https://colorlib.com/wp/template/colorlib-error-404-15/
+/* 404 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
 
 * {-webkit-box-sizing: border-box;
 box-sizing: border-box;

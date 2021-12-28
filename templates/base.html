@@ -11,9 +11,6 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-    </script>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
@@ -24,7 +21,6 @@
     <!-- Personal CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-
 </head>
 
 <body>
@@ -32,6 +28,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="main-nav">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}" id="nav-heading">GROW</a>
+            <!-- Collapsible icon for smaller screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -101,6 +98,7 @@
             </div>
         </div>
     </div>
+
     {% block content%}
 
     {% endblock %}
@@ -110,58 +108,55 @@
 
         <!-- Footer Elements -->
         <div class="container">
-            <!-- Grid row-->
             <div class="row">
-                <!-- Grid column -->
                 <div class="col-sm pt-5 pb-2 text-left">
                     <div class="footer-widget">
-                        <h5>Opening Hours</h5>
+                        <!-- Opening hours section of footer -->
+                        <h5 class="footer-heading">Opening Hours</h5>
                         <div class="footer-widget-content">
                             <div>
-
                                 <p class="clock-time"><strong>Mon - Fri: </strong>7am-8pm</p>
-
                                 <p><strong>Sat - Sun: </strong>8am - 10pm</p>
-
                                 <p><strong>Bank Holidays: </strong> Closed</p>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <!-- Empty column for spacing -->
                 <div class="col-sm"></div>
+                <!-- Contact information section of footer -->
                 <div class="col-sm pt-5 pb-2 text-right">
-                    <h5>Stay in touch</h5>
-                    <p>Email: info@growrestaurant.com</p>
-                    <p>Phone: 02076841002</p>
+                    <h5 class="footer-heading">Stay in touch</h5>
+                    <p>Email: <a href="mailto: daisy.l.g@hotmail.co.uk" id="email-link"><strong>info@growrestaurant.com</a></strong></p>
+                    <p>Phone: <strong>02076841002</strong></p>
                     <div class="mb-2 flex-center">
-
+                        <!-- Social media links -->
                         <!-- Facebook -->
-                        <a class="ic">
+                        <a class="ic" href="https://www.facebook.com/"
+                            aria-label="Take a look at our facebook, opens in a new tab" target="_blank"
+                            rel="noreferrer">
                             <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                         <!-- Twitter -->
-                        <a class="ic">
+                        <a class="ic" href="https://twitter.com/?lang=en"
+                            aria-label="Take a look at our instagram, opens in a new tab" target="_blank"
+                            rel="noreferrer">
                             <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                         <!--Instagram-->
-                        <a class="ic">
+                        <a class="ic" aria-label="Take a look at our twitter, opens in a new tab" target="_blank"
+                            rel="noreferrer">
                             <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                     </div>
                 </div>
-                <!-- Grid column -->
             </div>
-            <!-- Grid row-->
         </div>
-        <!-- Footer Elements -->
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2021 Copyright:
             <p>Grow</p>
         </div>
-        <!-- Copyright -->
 
     </footer>
     <!-- Footer -->
@@ -172,7 +167,6 @@
     <script src="https://kit.fontawesome.com/ad6c696766.js" crossorigin="anonymous"></script>
     <!-- bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Personal JS -->
     <script src="{% static 'js/script.js' %}"></script>
 </body>
