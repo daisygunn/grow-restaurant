@@ -78,7 +78,6 @@ class ReservationsEnquiry(View):
                 # Prevent duplicate 'customers' being added to database
                 if customer_query > 0:
                     logger.warning("customer exists")
-                    pass
                 else:
                     customer_form.save()
 
@@ -96,10 +95,8 @@ class ReservationsEnquiry(View):
                         request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
-                # customer_form = CustomerForm()
-                # reservation_form = ReservationForm()
                 return HttpResponseRedirect(reverse('reservations'))
-                # return render(request, 'reservations.html', {'customer_form': customer_form, 'reservation_form': reservation_form})
+        
 
         else:
 
@@ -116,3 +113,14 @@ class ReservationsEnquiry(View):
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
                 )
 
+class ManageReservations(View):
+    # View for user to manage any existing reservations
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            messages.add_message(
+                request, messages.SUCCESS, "Your reservations will be displayed here.")
+        else:
+            messages.add_message(
+                request, messages.ERROR, "You must be logged in to manage your reservations.")
+                
+        return render(request, 'manage_reservations.html')
