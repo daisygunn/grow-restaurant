@@ -2,16 +2,10 @@
 
 {% block content %}
 
-<!-- To display date picker -->
-{% load bootstrap4 %}
-<!-- {% bootstrap_css %} -->
-{% bootstrap_javascript jquery='full' %}
-<!-- Media to display date picker -->
-{{ reservation_form.media }}
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <h2 class="text-center mt-2 mb-3">Reservations at GROW</h2>
+        <h2 class="text-center mt-2 mb-3">Manage your reservations at GROW</h2>
         <h5 class="text-center mt-2 mb-5">If you have made any previous reservations they will be displayed below.</h5>
     </div>
 </div>
@@ -20,7 +14,14 @@
         <div class="col-sm-3"></div>   
         <div class="col-sm-6">
 
-            </form>
+            <ul>   
+            {% for reservation in reservations %}
+                <li>
+                <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} person at {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
+                <p> This reservation is <strong>{{ reservation.status }}</strong></p>
+            </li>
+                {% endfor %}
+            </ul> 
         </div>
     </div>
 </div>

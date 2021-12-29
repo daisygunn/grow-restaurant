@@ -8,16 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROW Restaurant & Cafe</title>
+     <!-- Favicon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+     <link rel="manifest" href="{% static 'favicon/manifest.json' %}"> 
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
-
+    
+   
     <!-- Personal CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -61,7 +63,7 @@
                     {% if user.is_authenticated %}
                     <!-- Display logout option if user is logged in -->
                     <li class="nav-item ml-auto">
-                        <a class="nav-link" href="{% url 'manage_reservations' %}">My Reservations</a>
+                        <a class="nav-link" href="{% url 'manage_reservations' %}">Manage Reservations</a>
                     </li>
                     <li class="nav-item ml-auto">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -164,12 +166,16 @@
     </footer>
     <!-- Footer -->
 
-    <!-- JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/ad6c696766.js" crossorigin="anonymous"></script>
+    <!-- JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
     <!-- Personal JS -->
     <script src="{% static 'js/script.js' %}"></script>
 </body>

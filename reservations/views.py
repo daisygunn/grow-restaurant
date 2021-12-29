@@ -113,14 +113,24 @@ class ReservationsEnquiry(View):
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
                 )
 
-class ManageReservations(View):
+class ManageReservations(generic.ListView):
     # View for user to manage any existing reservations
-    def get(self, request, *args, **kwargs):
+    def get(self, request, User=User, *args, **kwargs):
         if request.user.is_authenticated:
-            messages.add_message(
-                request, messages.SUCCESS, "Your reservations will be displayed here.")
+            # Retrieve customer information based upon user info
+            customer_email = request.user.email
+            current_customer = Customer.objects.get(email=customer_email)
+            current_customer_id = current_customer.pk
+            logger.warning(f"user = {customer_email}") 
+
+
+            get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
+            logger.warning(f"{get_reservations}")
+                
+            return render(request, 'manage_reservations.html', {'reservations': get_reservations})
+
         else:
             messages.add_message(
                 request, messages.ERROR, "You must be logged in to manage your reservations.")
-                
+
         return render(request, 'manage_reservations.html')
