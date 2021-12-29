@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template.context_processors import csrf
-from bootstrap_datepicker_plus import DateTimePickerInput, DatePickerInput, TimePickerInput
+from bootstrap_datepicker_plus import DatePickerInput
 from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
 import logging
@@ -123,7 +123,7 @@ class ManageReservations(generic.ListView):
             current_customer_id = current_customer.pk
             logger.warning(f"user = {customer_email}") 
 
-            get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('-requested_date')
+            get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
             logger.warning(f"{get_reservations}")
                 
             return render(request, 'manage_reservations.html', {'reservations': get_reservations})
@@ -136,10 +136,37 @@ class ManageReservations(generic.ListView):
 
 
 class EditReservation(View):
+    
     def get(self, request, reservation_id, User=User, *args, **kwargs):
-        
-        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        reservation = Reservation.objects.get(reservation_id=reservation_id).first()
+        # reservation_info = reservation.values()
+        logger.warning(reservation)
         customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
-        reservation_form = ReservationForm(initial={'no_of_guests': reservation.no_of_guests, 'requested_date': reservation.requested_date, 'requested_time': reservation.requested_time})
+        reservation_form = ReservationForm(instance=reservation)
+        return render(request, 'edit_reservation.html', 
+        {'customer_form': customer_form,
+        'reservation_form': reservation_form,
+        'reservation': reservation,
+        'reservation_id': reservation_id 
+        })
 
-        return render(request, 'edit_reservation.html', {'customer_form': customer_form, 'reservation_form': reservation_form, 'reservation': reservation })
+    def post(self, request, reservation_id, User=User, *args, **kwargs):
+        reservation_id = reservation_id
+        reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
+        logger.warning(f"{reservation}")
+        reservation_form = ReservationForm(data=request.POST, instance=reservation)
+        customer_form = CustomerForm(data=request.POST)
+
+        if customer_form.is_valid and reservation_form.is_valid():
+            reservation.reservation_id = reservation_id
+            reservation.requested_time = reservation_form.cleaned_data['requested_time']
+            reservation.requested_date = reservation_form.cleaned_data['requested_date']
+            reservation.requested_guests = reservation_form.cleaned_data['no_of_guests']
+            reservation_form.save(commit=False)
+            reservation_form.save()
+            messages.add_message(request, messages.SUCCESS, "Your reservation has now been updated.")
+            return render(request, 'manage_reservations.html')
+            # return ReservationsEnquiry(request)
+        else:
+            messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
+            return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation })
