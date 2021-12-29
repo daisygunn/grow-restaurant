@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -123,8 +123,7 @@ class ManageReservations(generic.ListView):
             current_customer_id = current_customer.pk
             logger.warning(f"user = {customer_email}") 
 
-
-            get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
+            get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('-requested_date')
             logger.warning(f"{get_reservations}")
                 
             return render(request, 'manage_reservations.html', {'reservations': get_reservations})
@@ -134,3 +133,13 @@ class ManageReservations(generic.ListView):
                 request, messages.ERROR, "You must be logged in to manage your reservations.")
 
         return render(request, 'manage_reservations.html')
+
+
+class EditReservation(View):
+    def get(self, request, reservation_id, User=User, *args, **kwargs):
+        
+        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
+        reservation_form = ReservationForm(initial={'no_of_guests': reservation.no_of_guests, 'requested_date': reservation.requested_date, 'requested_time': reservation.requested_time})
+
+        return render(request, 'edit_reservation.html', {'customer_form': customer_form, 'reservation_form': reservation_form, 'reservation': reservation })

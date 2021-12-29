@@ -19,6 +19,7 @@
                 <li>
                 <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} person at {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
                 <p> This reservation is <strong>{{ reservation.status }}</strong></p>
+                <p><a href="{% url 'edit_reservation' reservation.reservation_id %}">Edit Reservation</a></p>
             </li>
                 {% endfor %}
             </ul> 
