@@ -12,17 +12,18 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
         <h2 class="text-center mt-2 mb-3">Reservations at GROW</h2>
-        <h5 class="text-center mt-2 mb-5">We do reserve a small number of tables for walk-ins but reservations are recommended</h5>
+        <h5 class="text-center mt-2 mb-5">We do reserve a small number of tables for walk-ins but reservations are
+            recommended</h5>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3"></div>   
+        <div class="col-sm-3"></div>
         <div class="col-sm-6">
             <!-- Reservation form -->
             <form method="POST">
                 <ul class="full-form">
-                    
+
                     {% csrf_token %}
 
                     {{ customer_form.errors }}
@@ -36,8 +37,9 @@
                     <!-- Reservation form -->
                     {{ reservation_form.as_ul }}
 
-                    <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send enquiry</button>
-                
+                    <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send
+                        enquiry</button>
+
                 </ul>
             </form>
         </div>

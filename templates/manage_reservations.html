@@ -23,7 +23,8 @@
                         {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
                     <p> This reservation is <strong class="{{ reservation.status }}">{{ reservation.status }}</strong>
                     </p>
-                    <p><a href="{% url 'edit_reservation' reservation.reservation_id %}">Edit Reservation</a></p>
+                    <p><a href="{% url 'edit_reservation' reservation.reservation_id %}">Edit Reservation</a> | <a
+                            href="{% url 'delete_reservation' reservation.reservation_id %}">Delete Reservation</a></p>
                     <hr>
                 </li>
                 {% endfor %}

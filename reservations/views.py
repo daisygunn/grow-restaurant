@@ -205,3 +205,29 @@ class EditReservation(View):
         else:
             messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
             return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation })
+
+class DeleteReservation(View):
+    def get(self, request, reservation_id, User=User, *args, **kwargs):
+        reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
+        customer_email = request.user.email
+        customer = Customer.objects.filter(email=customer_email).first()
+        
+        return render(request, 'delete_reservation.html',
+        {'customer': customer,
+        'reservation': reservation,
+        'reservation_id': reservation_id 
+        })
+
+    def post(self, request, reservation_id, User=User, *args, **kwargs):
+        customer_email = request.user.email
+        customer = Customer.objects.filter(email=customer_email).first()
+        reservation_id = reservation_id
+        reservation = Reservation.objects.get(pk=reservation_id)
+        logger.warning(f"{reservation}")
+        reservation.delete()
+        current_reservations = retrieve_reservations(self, request, User)
+        return render(
+                request, 'manage_reservations.html', 
+                {'reservations': current_reservations,
+                'customer': customer})
+        

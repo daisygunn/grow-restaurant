@@ -13,15 +13,16 @@
 <!-- Contact form -->
 <div class="container">
     <div class="row">
-        <div class="col-sm-4"></div>   
+        <div class="col-sm-4"></div>
         <div class="col-sm-3">
             <form action="" method="POST" class="contact-form mb-3 uni">
 
-                    {% csrf_token %}
-                    {{ contact_form | crispy }}
-                    
-                    <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send message</button> 
-               
+                {% csrf_token %}
+                {{ contact_form | crispy }}
+
+                <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Send
+                    message</button>
+
             </form>
         </div>
     </div>
