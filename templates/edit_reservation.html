@@ -13,42 +13,37 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
         <h2 class="text-center mt-2 mb-3">Edit your reservation at GROW</h2>
-        <!-- <h5 class="text-center mt-2 mb-5">Please note your booking is registered with your account details so these cannot be changed.</h5> -->
+        <h5 class="text-center mt-2 mb-3">Please note your booking is registered with your account details so these
+            cannot be changed.</h5>
+        <h5 class="text-center mt-2 mb-4">{{ customer.email }} | {{ customer.phone_number }}</h5>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3"></div>   
+        <div class="col-sm-3">
+
+        </div>
         <div class="col-sm-6">
 
-                <!-- Reservation form -->
-                <form method="POST">
-                    <ul class="full-form">
-                        
-                        {% csrf_token %}
-    
-                        {{ customer_form.errors }}
-                        {{ customer_form.non_field_errors }}
-    
-                        {{ reservation_form.errors }}
-                        {{ reservation_form.non_field_errors }}
-                        
-                        <h5 class="text-center">Reservation ID: {{ reservation.reservation_id }}</h5>
-                        <!-- Customer form -->
-                        {{ customer_form.as_ul }}
-                        <!-- Reservation form -->
-                        {{ reservation_form.as_ul }}
-    
-                        <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Edit Reservation</button>
-                    
-                    </ul>
-                </form>
-<!-- 
-            {{ customer_form }}
-            {{ reservation_form }}
-                <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} person at {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
-                <p> This reservation is <strong>{{ reservation.status }}</strong></p> -->
+            <!-- Reservation form -->
+            <form method="POST" class="mb-5">
+                <ul class="full-form">
 
+                    {% csrf_token %}
+
+                    {{ reservation_form.errors }}
+                    {{ reservation_form.non_field_errors }}
+
+                    <h5 class="text-center my-3">Reservation ID: {{ reservation.reservation_id }}</h5>
+
+                    <!-- Reservation form -->
+                    {{ reservation_form.as_ul }}
+
+                    <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">Edit
+                        Reservation</button>
+
+                </ul>
+            </form>
         </div>
     </div>
 </div>

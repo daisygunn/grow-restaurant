@@ -13,7 +13,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-
 def retreive_customer_info(reservation_form, customer_form):
     # Retreive information from form 
     customer_requested_time = reservation_form.cleaned_data['requested_time']
@@ -27,7 +26,7 @@ def retreive_customer_info(reservation_form, customer_form):
     return customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number
 
 def check_availabilty(customer_requested_time, customer_requested_date):
-    
+    # check availability against Reservation model using customer input 
     logger.warning(f"{customer_requested_time}, {customer_requested_date}")
 
             # Check to see how many bookings exist at that time/date
@@ -147,19 +146,15 @@ class ManageReservations(View):
     # View for user to manage any existing reservations
     def get(self, request, User=User, *args, **kwargs):        
         if request.user.is_authenticated:
+            customer_email = request.user.email
+            customer = Customer.objects.filter(email=customer_email).first()
             model = Reservation
             current_reservations = retrieve_reservations(self, request, User)
             paginate_by = 4
-            # Retrieve customer information based upon user info
-            # customer_email = request.user.email
-            # current_customer = Customer.objects.get(email=customer_email)
-            # current_customer_id = current_customer.pk
-            # logger.warning(f"user = {customer_email}") 
-
-            # get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
-            # logger.warning(f"{get_reservations}")
-
-            return render(request, 'manage_reservations.html', {'reservations': current_reservations})
+            return render(
+                request, 'manage_reservations.html', 
+                {'reservations': current_reservations,
+                'customer': customer})
 
         else:
             messages.add_message(
@@ -172,12 +167,17 @@ class EditReservation(View):
     
     def get(self, request, reservation_id, User=User, *args, **kwargs):
         reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
+        customer_email = request.user.email
+        customer = Customer.objects.filter(email=customer_email).first()
         # reservation_info = reservation.values()
         logger.warning(reservation)
-        customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
+        logger.warning(customer)
+        # customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
+        # customer_form = CustomerForm(instance=customer)
         reservation_form = ReservationForm(instance=reservation)
         return render(request, 'edit_reservation.html', 
-        {'customer_form': customer_form,
+        # {'customer_form': customer_form,
+        {'customer': customer,
         'reservation_form': reservation_form,
         'reservation': reservation,
         'reservation_id': reservation_id 

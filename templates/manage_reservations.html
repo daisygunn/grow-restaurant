@@ -6,7 +6,9 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
         <h2 class="text-center mt-2 mb-3">Manage your reservations at GROW</h2>
-        <h5 class="text-center mt-2 mb-5">If you have made any previous reservations they will be displayed below.</h5>
+        <h5 class="text-center mt-2 mb-5"><strong>{{ customer.full_name}}</strong> if you have made any previous
+            reservations they will be displayed below.</h5>
+
     </div>
 </div>
 <div class="container">
@@ -17,7 +19,7 @@
             <ul id="reservation-list">
                 {% for reservation in reservations %}
                 <li class="reservation-item">
-                    <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} person at
+                    <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} people at
                         {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
                     <p> This reservation is <strong class="{{ reservation.status }}">{{ reservation.status }}</strong>
                     </p>
