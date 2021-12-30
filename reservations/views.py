@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -11,6 +11,9 @@ from .forms import CustomerForm, ReservationForm
 import logging
 
 logger = logging.getLogger(__name__)
+
+# Retreive number of tables in restaurant
+max_tables = Table.objects.all().count()
 
 
 def retreive_customer_info(reservation_form, customer_form):
@@ -63,9 +66,6 @@ class ReservationsEnquiry(View):
 
         customer_form = CustomerForm(data=request.POST)
         reservation_form = ReservationForm(data=request.POST)
-
-        # Retreive number of tables in restaurant
-        max_tables = Table.objects.all().count()
 
         logger.warning(f"Maximum number of tables: {max_tables}")
        
@@ -166,49 +166,68 @@ class ManageReservations(View):
 class EditReservation(View):
     
     def get(self, request, reservation_id, User=User, *args, **kwargs):
-        reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
+        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        # reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
         customer_email = request.user.email
         customer = Customer.objects.filter(email=customer_email).first()
-        # reservation_info = reservation.values()
+    
         logger.warning(reservation)
         logger.warning(customer)
-        # customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
-        # customer_form = CustomerForm(instance=customer)
+        
+        customer_form = CustomerForm(instance=customer)
         reservation_form = ReservationForm(instance=reservation)
+
         return render(request, 'edit_reservation.html', 
-        # {'customer_form': customer_form,
-        {'customer': customer,
+        {'customer_form': customer_form,
+        'customer': customer,
         'reservation_form': reservation_form,
         'reservation': reservation,
         'reservation_id': reservation_id 
         })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
+        customer_email = request.user.email
+        customer = Customer.objects.filter(email=customer_email).first()
         reservation_id = reservation_id
-        reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
+        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
         logger.warning(f"{reservation}")
         reservation_form = ReservationForm(data=request.POST, instance=reservation)
-        customer_form = CustomerForm(data=request.POST)
+        customer_form = CustomerForm(instance=customer)
 
-        if customer_form.is_valid and reservation_form.is_valid():
-            reservation.reservation_id = reservation_id
-            reservation.requested_time = reservation_form.cleaned_data['requested_time']
-            reservation.requested_date = reservation_form.cleaned_data['requested_date']
-            reservation.requested_guests = reservation_form.cleaned_data['no_of_guests']
-            reservation.status = 'pending'
-            reservation_form.save(commit=False)
-            reservation_form.save()
-            messages.add_message(request, messages.SUCCESS, "Your reservation has now been updated.")
-            current_reservations = retrieve_reservations(self, request, User)
-            return render(request, 'manage_reservations.html', {'reservations': current_reservations})
-            # return ReservationsEnquiry(request)
+        if reservation_form.is_valid():
+
+            customer_requested_time = reservation_form.cleaned_data['requested_time']
+            customer_requested_date = reservation_form.cleaned_data['requested_date']
+
+            table_availability = check_availabilty(customer_requested_time, customer_requested_date)
+
+            # Compare number of bookings to number of tables available
+            if table_availability == max_tables:
+                messages.add_message(
+                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
+
+            else:
+                reservation.reservation_id = reservation_id
+                reservation.requested_time = customer_requested_time
+                reservation.requested_date = customer_requested_date
+                reservation.requested_guests = reservation_form.cleaned_data['no_of_guests']
+                reservation.status = 'pending'
+                reservation_form.save(commit=False)
+                reservation_form.save()
+                messages.add_message(request, messages.SUCCESS, "Your reservation has now been updated.")
+                current_reservations = retrieve_reservations(self, request, User)
+                return render(request, 'manage_reservations.html', {'reservations': current_reservations})
+                # return ReservationsEnquiry(request)
         else:
             messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
-            return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation })
+            
+        return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation, 'customer': customer, })
 
 class DeleteReservation(View):
     def get(self, request, reservation_id, User=User, *args, **kwargs):
-        reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
+        # reservation_id = reservation_id
+        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        # reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
         customer_email = request.user.email
         customer = Customer.objects.filter(email=customer_email).first()
         
