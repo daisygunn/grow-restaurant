@@ -11,20 +11,36 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3"></div>   
+        <div class="col-sm-3"></div>
         <div class="col-sm-6">
 
-            <ul>   
-            {% for reservation in reservations %}
-                <li>
-                <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} person at {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
-                <p> This reservation is <strong>{{ reservation.status }}</strong></p>
-                <p><a href="{% url 'edit_reservation' reservation.reservation_id %}">Edit Reservation</a></p>
-            </li>
+            <ul id="reservation-list">
+                {% for reservation in reservations %}
+                <li class="reservation-item">
+                    <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} person at
+                        {{ reservation.requested_time }} on {{ reservation.requested_date }} </h5>
+                    <p> This reservation is <strong class="{{ reservation.status }}">{{ reservation.status }}</strong>
+                    </p>
+                    <p><a href="{% url 'edit_reservation' reservation.reservation_id %}">Edit Reservation</a></p>
+                    <hr>
+                </li>
                 {% endfor %}
-            </ul> 
+            </ul>
         </div>
     </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
 
 {% endblock %}

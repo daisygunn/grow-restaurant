@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, get_object_or_404
+from django.shortcuts import render, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -11,6 +11,31 @@ from .forms import CustomerForm, ReservationForm
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+
+def retreive_customer_info(reservation_form, customer_form):
+    # Retreive information from form 
+    customer_requested_time = reservation_form.cleaned_data['requested_time']
+    customer_requested_date = reservation_form.cleaned_data['requested_date']
+    customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
+    customer_name = customer_form.cleaned_data['full_name']
+    customer_phone_number = customer_form.cleaned_data['phone_number']
+
+    logger.warning(f"{customer_requested_time}, {customer_requested_date}")
+    
+    return customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number
+
+def check_availabilty(customer_requested_time, customer_requested_date):
+    
+    logger.warning(f"{customer_requested_time}, {customer_requested_date}")
+
+            # Check to see how many bookings exist at that time/date
+    queryset = len(Reservation.objects.filter(
+        requested_time=customer_requested_time, requested_date=customer_requested_date, status="confirmed"))
+                        
+    logger.warning(f"{queryset}")
+    return queryset
 
 # Create your views here.
 class ReservationsEnquiry(View):
@@ -48,22 +73,23 @@ class ReservationsEnquiry(View):
         if customer_form.is_valid() and reservation_form.is_valid():
 
             # Retreive information from form 
-            customer_requested_time = reservation_form.cleaned_data['requested_time']
-            customer_requested_date = reservation_form.cleaned_data['requested_date']
-            customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
-            customer_name = customer_form.cleaned_data['full_name']
+            # customer_requested_time = reservation_form.cleaned_data['requested_time']
+            # customer_requested_date = reservation_form.cleaned_data['requested_date']
+            # customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
+            # customer_name = customer_form.cleaned_data['full_name']
 
-            logger.warning(f"{customer_requested_time}, {customer_requested_date}")
+            # logger.warning(f"{customer_requested_time}, {customer_requested_date}")
+            customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number = retreive_customer_info(reservation_form, customer_form)
 
             # Check to see how many bookings exist at that time/date
-            queryset = len(Reservation.objects.filter(
-                requested_time=customer_requested_time, requested_date=customer_requested_date, status="confirmed"))
+            # table_availability = len(Reservation.objects.filter(
+            #     requested_time=customer_requested_time, requested_date=customer_requested_date, status="confirmed"))
                         
-            logger.warning(f"{queryset}")
-            print(queryset)
+            # logger.warning(f"{table_availability}")
+            table_availability = check_availabilty(customer_requested_time, customer_requested_date)
 
             # Compare number of bookings to number of tables available
-            if queryset == max_tables:
+            if table_availability == max_tables:
                 messages.add_message(
                     request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
 
@@ -88,7 +114,7 @@ class ReservationsEnquiry(View):
                 logger.warning(f"Customer ID is: {current_customer_id}")
                 logger.warning(f"{customer}")
                 reservation = reservation_form.save(commit=False)
-                reservation.customer_id = customer
+                reservation.customer_name = customer
                 reservation_form.save()
 
                 messages.add_message(
@@ -97,36 +123,43 @@ class ReservationsEnquiry(View):
                 # Return blank forms so the same enquiry isn't sent twice.
                 return HttpResponseRedirect(reverse('reservations'))
         
-
         else:
-
             messages.add_message(
                 request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
-
-            return render(
-                request, 'reservations.html',
-                {'customer_form': customer_form, 'reservation_form': reservation_form}
-                )
       
         return render(
                     request, 'reservations.html',
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
                 )
 
-class ManageReservations(generic.ListView):
-    # View for user to manage any existing reservations
-    def get(self, request, User=User, *args, **kwargs):
-        if request.user.is_authenticated:
-            # Retrieve customer information based upon user info
-            customer_email = request.user.email
-            current_customer = Customer.objects.get(email=customer_email)
-            current_customer_id = current_customer.pk
-            logger.warning(f"user = {customer_email}") 
+def retrieve_reservations(self, request, User):
+    customer_email = request.user.email
+    current_customer = Customer.objects.get(email=customer_email)
+    current_customer_id = current_customer.pk
+    logger.warning(f"user = {customer_email}") 
 
-            get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
-            logger.warning(f"{get_reservations}")
-                
-            return render(request, 'manage_reservations.html', {'reservations': get_reservations})
+    get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
+    logger.warning(f"{get_reservations}")
+
+    return get_reservations
+
+class ManageReservations(View):
+    # View for user to manage any existing reservations
+    def get(self, request, User=User, *args, **kwargs):        
+        if request.user.is_authenticated:
+            model = Reservation
+            current_reservations = retrieve_reservations(self, request, User)
+            paginate_by = 4
+            # Retrieve customer information based upon user info
+            # customer_email = request.user.email
+            # current_customer = Customer.objects.get(email=customer_email)
+            # current_customer_id = current_customer.pk
+            # logger.warning(f"user = {customer_email}") 
+
+            # get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
+            # logger.warning(f"{get_reservations}")
+
+            return render(request, 'manage_reservations.html', {'reservations': current_reservations})
 
         else:
             messages.add_message(
@@ -138,7 +171,7 @@ class ManageReservations(generic.ListView):
 class EditReservation(View):
     
     def get(self, request, reservation_id, User=User, *args, **kwargs):
-        reservation = Reservation.objects.get(reservation_id=reservation_id).first()
+        reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
         # reservation_info = reservation.values()
         logger.warning(reservation)
         customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
@@ -162,10 +195,12 @@ class EditReservation(View):
             reservation.requested_time = reservation_form.cleaned_data['requested_time']
             reservation.requested_date = reservation_form.cleaned_data['requested_date']
             reservation.requested_guests = reservation_form.cleaned_data['no_of_guests']
+            reservation.status = 'pending'
             reservation_form.save(commit=False)
             reservation_form.save()
             messages.add_message(request, messages.SUCCESS, "Your reservation has now been updated.")
-            return render(request, 'manage_reservations.html')
+            current_reservations = retrieve_reservations(self, request, User)
+            return render(request, 'manage_reservations.html', {'reservations': current_reservations})
             # return ReservationsEnquiry(request)
         else:
             messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")

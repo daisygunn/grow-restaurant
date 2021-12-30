@@ -180,6 +180,20 @@ li select,
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+/* Manage Reservations page */
+
+.confirmed {
+    background-color: #007842;
+    color: #Effbed;
+    padding: 2px;
+}
+
+.pending {
+    background-color: #9D0208;
+    color: #Effbed;
+    padding: 2px;
+}
+
 /* 404 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
 
 * {-webkit-box-sizing: border-box;
