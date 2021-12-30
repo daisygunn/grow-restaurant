@@ -17,7 +17,7 @@ max_tables = Table.objects.all().count()
 
 
 def retreive_customer_info(reservation_form, customer_form):
-    # Retreive information from form 
+    # Retreive information from forms 
     customer_requested_time = reservation_form.cleaned_data['requested_time']
     customer_requested_date = reservation_form.cleaned_data['requested_date']
     customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
@@ -32,12 +32,18 @@ def check_availabilty(customer_requested_time, customer_requested_date):
     # check availability against Reservation model using customer input 
     logger.warning(f"{customer_requested_time}, {customer_requested_date}")
 
-            # Check to see how many bookings exist at that time/date
-    queryset = len(Reservation.objects.filter(
+    # Check to see how many bookings exist at that time/date
+    no_tables_booked = len(Reservation.objects.filter(
         requested_time=customer_requested_time, requested_date=customer_requested_date, status="confirmed"))
                         
-    logger.warning(f"{queryset}")
-    return queryset
+    # Return number of tables
+    return no_tables_booked
+
+def get_customer_instance(request, User):
+    customer_email = request.user.email
+    customer = Customer.objects.filter(email=customer_email).first()
+
+    return customer
 
 # Create your views here.
 class ReservationsEnquiry(View):
@@ -45,7 +51,8 @@ class ReservationsEnquiry(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            customer_form = CustomerForm(initial={'full_name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
+            customer = get_customer_instance(request, User)
+            customer_form = CustomerForm(instance=customer)
             reservation_form = ReservationForm()
             return render(
                 request, self.template_name, 
@@ -70,25 +77,15 @@ class ReservationsEnquiry(View):
         logger.warning(f"Maximum number of tables: {max_tables}")
        
         if customer_form.is_valid() and reservation_form.is_valid():
-
-            # Retreive information from form 
-            # customer_requested_time = reservation_form.cleaned_data['requested_time']
-            # customer_requested_date = reservation_form.cleaned_data['requested_date']
-            # customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
-            # customer_name = customer_form.cleaned_data['full_name']
-
-            # logger.warning(f"{customer_requested_time}, {customer_requested_date}")
+            # Retreive information from forms 
             customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number = retreive_customer_info(reservation_form, customer_form)
 
             # Check to see how many bookings exist at that time/date
-            # table_availability = len(Reservation.objects.filter(
-            #     requested_time=customer_requested_time, requested_date=customer_requested_date, status="confirmed"))
-                        
-            # logger.warning(f"{table_availability}")
-            table_availability = check_availabilty(customer_requested_time, customer_requested_date)
+
+            tables_booked = check_availabilty(customer_requested_time, customer_requested_date)
 
             # Compare number of bookings to number of tables available
-            if table_availability == max_tables:
+            if tables_booked == max_tables:
                 messages.add_message(
                     request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
 
@@ -146,8 +143,9 @@ class ManageReservations(View):
     # View for user to manage any existing reservations
     def get(self, request, User=User, *args, **kwargs):        
         if request.user.is_authenticated:
-            customer_email = request.user.email
-            customer = Customer.objects.filter(email=customer_email).first()
+            # customer_email = request.user.email
+            # customer = Customer.objects.filter(email=customer_email).first()
+            customer = get_customer_instance(request, User)
             model = Reservation
             current_reservations = retrieve_reservations(self, request, User)
             paginate_by = 4
@@ -164,16 +162,17 @@ class ManageReservations(View):
 
 
 class EditReservation(View):
-    
+    # View for user to be able to edit their existing reservations
     def get(self, request, reservation_id, User=User, *args, **kwargs):
+        # Get reservation object based on id
         reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
         # reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
-        customer_email = request.user.email
-        customer = Customer.objects.filter(email=customer_email).first()
-    
+        # customer_email = request.user.email
+        # customer = Customer.objects.filter(email=customer_email).first()
+        customer = get_customer_instance(request, User)
         logger.warning(reservation)
         logger.warning(customer)
-        
+        # return both forms with the existing information
         customer_form = CustomerForm(instance=customer)
         reservation_form = ReservationForm(instance=reservation)
 
@@ -186,8 +185,9 @@ class EditReservation(View):
         })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
-        customer_email = request.user.email
-        customer = Customer.objects.filter(email=customer_email).first()
+        # customer_email = request.user.email
+        # customer = Customer.objects.filter(email=customer_email).first()
+        customer = get_customer_instance(request, User)
         reservation_id = reservation_id
         reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
         logger.warning(f"{reservation}")
@@ -195,42 +195,48 @@ class EditReservation(View):
         customer_form = CustomerForm(instance=customer)
 
         if reservation_form.is_valid():
-
+            # get the information from the form 
             customer_requested_time = reservation_form.cleaned_data['requested_time']
             customer_requested_date = reservation_form.cleaned_data['requested_date']
-
-            table_availability = check_availabilty(customer_requested_time, customer_requested_date)
+            # Check the amount of tables already booked at that date and time
+            tables_booked = check_availabilty(customer_requested_time, customer_requested_date)
 
             # Compare number of bookings to number of tables available
-            if table_availability == max_tables:
+            if tables_booked == max_tables:
+                # if the amount of tables already booked = the max tables then reject the reservation.
                 messages.add_message(
                     request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
 
             else:
+                # Update the existing reservation with the form data.
                 reservation.reservation_id = reservation_id
                 reservation.requested_time = customer_requested_time
                 reservation.requested_date = customer_requested_date
                 reservation.requested_guests = reservation_form.cleaned_data['no_of_guests']
+                # Change status to pending as the admin needs to approve
                 reservation.status = 'pending'
                 reservation_form.save(commit=False)
                 reservation_form.save()
                 messages.add_message(request, messages.SUCCESS, "Your reservation has now been updated.")
+                # Retreive new list of reservations to display
                 current_reservations = retrieve_reservations(self, request, User)
+
+                # Return user to manage reservations page
                 return render(request, 'manage_reservations.html', {'reservations': current_reservations})
-                # return ReservationsEnquiry(request)
+                
         else:
             messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
             
         return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation, 'customer': customer, })
 
 class DeleteReservation(View):
+    # View for user to delete reservations
     def get(self, request, reservation_id, User=User, *args, **kwargs):
-        # reservation_id = reservation_id
         reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
-        # reservation = Reservation.objects.filter(reservation_id=reservation_id).first()
-        customer_email = request.user.email
-        customer = Customer.objects.filter(email=customer_email).first()
-        
+        # customer_email = request.user.email
+        # customer = Customer.objects.filter(email=customer_email).first()
+        customer = get_customer_instance(request, User)
+
         return render(request, 'delete_reservation.html',
         {'customer': customer,
         'reservation': reservation,
@@ -238,13 +244,17 @@ class DeleteReservation(View):
         })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
-        customer_email = request.user.email
-        customer = Customer.objects.filter(email=customer_email).first()
+        customer = get_customer_instance(request, User)
+        # get reservation from database
         reservation_id = reservation_id
         reservation = Reservation.objects.get(pk=reservation_id)
         logger.warning(f"{reservation}")
+        # Delete the reservation
         reservation.delete()
+        messages.add_message(request, messages.SUCCESS, "Your reservation has now been deleted.")
+        # Get updated list of reservations
         current_reservations = retrieve_reservations(self, request, User)
+        # Return user to manage reservations page
         return render(
                 request, 'manage_reservations.html', 
                 {'reservations': current_reservations,
