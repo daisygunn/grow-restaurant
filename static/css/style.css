@@ -180,6 +180,10 @@ li select,
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+input#id_name.textinput.textInput, input#id_email.emailinput, textarea#id_message.textarea {
+    width: 100%;
+}
+
 /* Manage Reservations page */
 
 .confirmed {
