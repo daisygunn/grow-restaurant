@@ -8,21 +8,23 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8 text-center mb-5">
+    <div class="col-sm-2 col-md-3 col-lg-4"></div>
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center mb-5">
       <h1>{% trans "Sign Up" %}</h1>
 
       <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
       </p>
-
-      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">{% trans "Sign Up" %} &raquo;</button>
-      </form>
+      <!-- <div class="col-sm-3 text-center"> -->
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button type="submit" class="button btn-outline-success mt-4 text-center submit-button">{% trans "Sign Up" %}
+            &raquo;</button>
+        </form>
+      
     </div>
   </div>
 </div>

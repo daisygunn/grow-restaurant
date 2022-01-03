@@ -72,7 +72,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # User settings
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 
@@ -131,7 +131,7 @@ if os.environ.get("DEVELOPMENT") == "True":
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else: 
+else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
         }
