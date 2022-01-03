@@ -78,7 +78,7 @@ p#subheading {
 }
 
 .footer-copyright {
-    border: solid 1px white
+    border-top: solid 1px white;
 }
 
 a.ic {
@@ -203,7 +203,8 @@ textarea#id_message.textarea {
 
 /* Accounts pages */
 
-#signup_form, .login {
+#signup_form,
+.login {
     text-align: left;
 }
 
@@ -448,9 +449,7 @@ textarea#id_message.textarea {
 @media screen and (min-width: 768px) {
     /* index */
 
-    .principles-list {
-        width: auto;
-    }
+    
 
     .full-form {
         padding-left: 0px;
@@ -482,5 +481,10 @@ textarea#id_message.textarea {
     .login input {
         float: right;
         width: 250px;
+    }
+
+    .principles-list {
+        width: 50%;
+        margin-left: 25%;
     }
 }
