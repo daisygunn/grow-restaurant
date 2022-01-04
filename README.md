@@ -94,8 +94,8 @@ I have used several technologies that have enabled this design to work:
     - Used to create the flowchart for the project.
 - [Grammarly](https://www.grammarly.com/)
     - Used to fix the thousands of grammar errors across the project.
-- [Google Sheets](https://www.google.co.uk/sheets/about/)
-    - Used to store the 'Contacts' data used for the application.
+- [ImageResizer](https://imageresizer.com/)
+    - Used to resize images to reduce loading time.
 - [Pep8](http://pep8online.com/)
     - Used to test my code for any issues or errors.
 ---
