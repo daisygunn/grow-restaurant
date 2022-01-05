@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'bootstrap4',
-    'bootstrap_datepicker_plus',
     'phonenumber_field',
     'crispy_forms',
     'website',
@@ -184,11 +183,13 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
 DATE_INPUT_FORMAT = ['%d/%M/%Y', ]
+
+DATE_FORMAT = [ 'd m Y' ]
 
 TIME_INPUT_FORMATS = ['%H:%M', ]
 

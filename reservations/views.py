@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template.context_processors import csrf
-from bootstrap_datepicker_plus import DatePickerInput
 from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
 import logging
@@ -26,6 +25,7 @@ def retreive_customer_info(reservation_form, customer_form):
     return customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number
 
 def check_availabilty(customer_requested_time, customer_requested_date):
+    
     # check availability against Reservation model using customer input 
     logger.warning(f"{customer_requested_time}, {customer_requested_date}")
 
@@ -76,7 +76,7 @@ class ReservationsEnquiry(View):
         customer_form = CustomerForm(data=request.POST)
         reservation_form = ReservationForm(data=request.POST)
 
-        logger.warning(f"Maximum number of tables: {max_tables}")
+        # logger.warning(f"Maximum number of tables: {max_tables}")
        
         if customer_form.is_valid() and reservation_form.is_valid():
             # Retreive information from forms 

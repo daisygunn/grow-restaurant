@@ -186,6 +186,19 @@ textarea#id_message.textarea {
     width: 100%;
 }
 
+.ui-widget {
+    font-family: 'Raleway', sans-serif;
+}
+
+.ui-widget-header {
+    background: #007842;
+    color: #Effbed;
+}
+
+/* .ui-widget-content {
+
+} */
+
 /* Manage Reservations page */
 
 .confirmed {
