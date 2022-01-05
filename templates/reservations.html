@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-        <h2 class="text-center mt-2 mb-3">Reservations at GROW</h2>
-        <h5 class="text-center mt-2 mb-3">We do reserve a small number of tables for walk-ins but reservations are
-            recommended</h5>
-        <p class="text-center mb-5">All tables are reserved for 1 hour and can seat a maximum of 4 people. We're only small - we hope you understand!</p>
-    </div>
-</div>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-sm-8">
+            <h2 class="text-center mt-2 mb-3">Reservations at GROW</h2>
+            <h5 class="text-center mt-2 mb-3">We do reserve a small number of tables for walk-ins but reservations are
+                recommended</h5>
+            <p class="text-center mb-5">All tables are reserved for 1 hour and can seat a maximum of 4 people. We're
+                only small - we hope you understand!</p>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6 col-md-8">
             <!-- Reservation form -->
             <form method="POST">
                 <ul class="full-form">
@@ -29,6 +29,7 @@
 
                     <!-- Customer form -->
                     {{ customer_form.as_ul }}
+                    
                     <!-- Reservation form -->
                     {{ reservation_form.as_ul }}
 

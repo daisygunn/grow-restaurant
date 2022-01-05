@@ -8,22 +8,18 @@
 {% bootstrap_javascript jquery='full' %}
 <!-- Media to display date picker -->
 {{ reservation_form.media }}
-
-<div class="row">
-    <div class="col-sm-2 col-md-3 col-lg-4"></div>
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center mb-5">
-        <h2 class="text-center mt-2 mb-3">Delete your reservation at GROW</h2>
-        <!-- <h5 class="text-center mt-2 mb-3">Please note your booking is registered with your account details so these
-            cannot be changed.</h5> -->
-        <h5 class="text-center mt-2 mb-4">{{ customer.email }} | {{ customer.phone_number }}</h5>
-    </div>
-</div>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-3">
-
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center mb-5">
+            <h2 class="text-center mt-2 mb-3">Delete your reservation at GROW</h2>
+            <!-- <h5 class="text-center mt-2 mb-3">Please note your booking is registered with your account details so these
+            cannot be changed.</h5> -->
+            <h5 class="text-center mt-2 mb-4">{{ customer.email }} | {{ customer.phone_number }}</h5>
         </div>
-        <div class="col-sm-6">
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 d-flex justify-content-center">
             <form method="POST" class="text-center mb-5" id="delete-form">
                 {% csrf_token %}
                 <h5>Reservation ID: {{ reservation.reservation_id }}</h5>

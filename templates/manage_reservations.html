@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="row">
-    <div class="col-sm-2"></div>
+<div class="container">
+<div class="row d-flex justify-content-center">
     <div class="col-sm-8">
         <h2 class="text-center mt-2 mb-3">Manage your reservations at GROW</h2>
         <h5 class="text-center mt-2 mb-5"><strong>{{ customer.full_name}}</strong> if you have made any previous
@@ -11,9 +10,8 @@
 
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3"></div>
+
+    <div class="row d-flex justify-content-center">
         <div class="col-sm-6">
 
             <ul id="reservation-list">

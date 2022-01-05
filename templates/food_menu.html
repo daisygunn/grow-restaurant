@@ -2,22 +2,17 @@
 
 {% block content %}
 
-<div class="contianer">
-    <div class="row">
-        <div class="col-sm-2"></div>
+<div class="container">
+    <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
             <h2 class="text-center my-2">Food at GROW</h2>
-
             <p class="text-center mb-5">V - Veggie | VE - Vegan | GF - Gluten Free</p>
         </div>
     </div>
-    <div class="row mb-4 ">
-        <!-- Empty column for spacing -->
-        <div class="col-sm-4"></div>
-
-        <!-- Breakfast & Brunch menu -->
-        <div class="col-sm-4">
-            <h3 class="mb-4 text-center"> Breakfast & Brunch menu</h3>
+    <div class="row m-2 row d-flex justify-content-center">
+        <div class="col-sm-4 col-md-8">
+            <!-- Breakfast & Brunch menu -->
+            <h3 class="mb-4 text-center">Breakfast & Brunch menu</h3>
             <!-- Loop through list to display only breakfast/bruch items -->
             {% if food_items.breakfast_items %}
 
@@ -33,15 +28,9 @@
             <p>Menu being updated - please come back soon!</p>
 
             {% endif %}
-        </div>
-    </div>
 
-    <div class="row mb-4">
-        <!-- Empty column for spacing -->
-        <div class="col-sm-4"></div>
-
-        <!-- Dinner menu -->
-        <div class="col-sm-4">
+            <hr>
+            <!-- Dinner menu -->
             <h3 class="mb-4 text-center"> Dinner menu</h3>
             <!-- Loop through list to display only dinner items -->
             {% if food_items.dinner_items %}
@@ -55,5 +44,6 @@
             {% endif %}
         </div>
     </div>
+
 </div>
 {% endblock %}

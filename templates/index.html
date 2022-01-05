@@ -1,13 +1,13 @@
 {% extends "base.html" %}
+
 {% load static %}
 
 {% block content %}
 
 <div class="container-fluid text-center">
-    <div class="row content mt-1">
-        <div class="col-sm-2 col-xl-3"></div>
+    <div class="row content mt-1 d-flex justify-content-center">
         <!-- Homepage content -->
-        <div class="col-12 col-sm-8 col-xl-6 text-left">
+        <div class="col-12 col-sm-8 col-lg-10 text-left">
             <h1>Welcome to <span class="brand-text">GROW</span></h1>
             <br>
             <p>Here at GROW we have three main principles:
@@ -24,26 +24,26 @@
             <p>Everything on the menu is vegetarian but can me made vegan and we design our dishes with nourishment in
                 mind.</p>
             <p><em>Founded in 2017 by two friends who absolutely adore food.</em></p>
-
+                </div>
             <hr>
             <!-- Menus & Reservation images and page links -->
-            <div class="row content mb-5">
-                <div class="col-sm-6 text-center">
+            <div class="row content mb-5 d-flex justify-content-center">
+                <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
                     <div>
                         <a href="{% url 'menus' %}">
-                            <img src="{% static 'images/menus-image.jpg' %}"
-                                class="img-thumbnail" alt="A bowl of healthy food.">
+                            <img src="{% static 'images/menus-image.jpg' %}" class="img-thumbnail"
+                                alt="A bowl of healthy food.">
                         </a>
                         <a href="{% url 'menus' %}" class="page-links">
                             <h3 class="mt-2">Menus</h3>
                         </a>
                     </div>
                 </div>
-                <div class="col-sm-6 text-center">
+                <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
                     <div>
                         <a href="{% url 'reservations' %}">
-                            <img src="{% static 'images/reservations-image.jpg' %}"
-                                class="img-thumbnail" alt="Image of the inside of Grow Restaurant">
+                            <img src="{% static 'images/reservations-image.jpg' %}" class="img-thumbnail"
+                                alt="Image of the inside of Grow Restaurant">
                         </a>
                         <a href="{% url 'reservations' %}" class="page-links">
                             <h3 class="mt-2">Reservations</h3>
