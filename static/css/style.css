@@ -52,7 +52,8 @@ h1.text-white {
 /* Header */
 
 header.bg-image-full {
-    background: url("../images/header-background.jpg")
+    background: url("../images/header-background.jpg");
+    width: 100vw;
 }
 
 p#subheading {
@@ -439,6 +440,23 @@ textarea#id_message.textarea {
     }
 }
 
+@media screen and (min-width: 320px) {
+
+    .full-form {
+        padding: 0;
+    }
+
+    .full-form li {
+        margin-bottom: 5px;
+    }
+
+    li input,
+    li select,
+    .input-group.date {
+        float: none;
+        padding-top: 5px;
+    }
+}
 
 @media screen and (max-width: 375px) {
     /* index */
@@ -457,15 +475,49 @@ textarea#id_message.textarea {
     .login .button {
         display: block;
     }
+
+
+    .full-form li label,
+    .full-form label {
+        margin-left: 0;
+        padding-top: 2px;
+        display: block;
+    }
+
+    li input,
+    li select,
+    .input-group.date {
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .full-form {
+        padding: 0;
+    }
+
+    li input,
+    li select,
+    .input-group.date {
+        width: 200px;
+        float: right;
+    }
+
+    /* .submit-button {
+        padding: 10px 0;
+    } */
 }
 
 @media screen and (min-width: 768px) {
     /* index */
 
-    
-
     .full-form {
         padding-left: 0px;
+    }
+
+    .full-form li {
+        padding: 0;
+        margin-bottom: 20px;
     }
 
     .full-form li label,
@@ -474,7 +526,10 @@ textarea#id_message.textarea {
         padding-bottom: 2px;
     }
 
+    li input,
+    li select,
     .input-group.date {
+        width: 250px;
         margin-bottom: 10px;
     }
 

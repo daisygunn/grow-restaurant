@@ -3,7 +3,6 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center">
-
         <div class="col-sm-8">
             <h2 class="text-center mt-2 mb-3">Reservations at GROW</h2>
             <h5 class="text-center mt-2 mb-3">We do reserve a small number of tables for walk-ins but reservations are
@@ -14,7 +13,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="col-sm-6 col-md-8">
+        <div class="col-xs-10 col-sm-6 col-md-8 col-lg-6 col-xl-5">
             <!-- Reservation form -->
             <form method="POST">
                 <ul class="full-form">
@@ -29,7 +28,7 @@
 
                     <!-- Customer form -->
                     {{ customer_form.as_ul }}
-                    
+
                     <!-- Reservation form -->
                     {{ reservation_form.as_ul }}
 
