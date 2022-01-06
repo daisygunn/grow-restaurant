@@ -21,6 +21,11 @@ body {
     color: #007842;
 }
 
+.pink-text {
+    background-color: white;
+    color:rgba(201, 112, 100, 1)
+}
+
 .green-bground {
     background-color: #007842;
     color: white;
@@ -35,11 +40,12 @@ body {
 
 /* Navbar */
 
-#nav-heading,
-h1.text-white {
+#nav-heading {
     font-size: 25px;
     color: #Effbed;
 }
+
+
 
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link,
@@ -66,14 +72,17 @@ header.bg-image-full {
     width: 100vw;
 }
 
-p#subheading {
+p#subheading, #main-heading {
     background-color: rgba(201, 112, 100, 0.8);
     width: 200px;
     margin: auto;
 }
 
 /* Footer */
-
+#main-footer {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
 
 #social-media-icons {
     width: 40px;
@@ -82,7 +91,7 @@ p#subheading {
 
 #email-link {
     text-decoration: none;
-    color: #effbed;
+    color: white;
 }
 
 /* .footer-copyright {
@@ -93,6 +102,7 @@ a.ic {
     color: #effbed;
     letter-spacing: 4px;
     text-decoration: none;
+    font-size: 1rem;
 }
 
 a.ic:hover {
