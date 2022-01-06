@@ -5,14 +5,14 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
-            <h2 class="text-center my-2">Food at GROW</h2>
+            <h2 class="text-center my-2">Food at <span class="brand-text">GROW</span></h2>
             <p class="text-center mb-5">V - Veggie | VE - Vegan | GF - Gluten Free</p>
         </div>
     </div>
     <div class="row m-2 row d-flex justify-content-center">
         <div class="col-sm-4 col-md-8">
             <!-- Breakfast & Brunch menu -->
-            <h3 class="mb-4 text-center">Breakfast & Brunch menu</h3>
+            <h3 class="mb-4 text-center brand-text pink-bground">Breakfast & Brunch</h3>
             <!-- Loop through list to display only breakfast/bruch items -->
             {% if food_items.breakfast_items %}
 
@@ -31,7 +31,7 @@
 
             <hr>
             <!-- Dinner menu -->
-            <h3 class="mb-4 text-center"> Dinner menu</h3>
+            <h3 class="mb-4 text-center brand-text pink-bground">Dinner</h3>
             <!-- Loop through list to display only dinner items -->
             {% if food_items.dinner_items %}
             {% for fooditem in food_items.dinner_items %}

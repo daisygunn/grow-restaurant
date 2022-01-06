@@ -17,6 +17,20 @@ body {
     display: none;
 }
 
+.green-text {
+    color: #007842;
+}
+
+/* .green-bground {
+    background-color: #C97064;
+    color: white;
+    padding: 5px;
+} */
+.pink-bground {
+    background-color: #C97064;
+    color: white;
+    padding: 5px;
+}
 /* Navbar */
 
 #main-nav,
@@ -42,12 +56,17 @@ h1.text-white {
     color: #Effbed;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover,
+/* .navbar-dark .navbar-nav .nav-link:hover,
 .dropdown-item:hover {
     color: #007842;
     background-color: #Effbed;
-}
+} */
 
+.navbar-dark .navbar-nav .nav-link:hover,
+.dropdown-item:hover {
+    color: #effbed;
+    background-color: #C97064;
+}
 
 /* Header */
 
@@ -64,9 +83,6 @@ p#subheading {
 
 /* Footer */
 
-.footer-heading {
-    text-decoration: underline 1px white;
-}
 
 #social-media-icons {
     width: 40px;
@@ -79,7 +95,7 @@ p#subheading {
 }
 
 .footer-copyright {
-    border-top: solid 1px white;
+    border-top: solid 2px white;
 }
 
 a.ic {
@@ -89,7 +105,8 @@ a.ic {
 }
 
 a.ic:hover {
-    text-shadow: 2px 2px 4px #7AE7C7;
+    color: #C97064;
+    text-shadow: 2px 2px 4px #effbed;
 }
 
 a.ic::after {
@@ -107,14 +124,27 @@ a.ic::after {
     text-decoration: none;
     color: rgba(0, 120, 66, 1);
     border: none;
+    position: relative;
+    display: block;
+    font-size: 2em;
+    font-weight: 800;
+    overflow: hidden;
+    background: linear-gradient(to right, #C97064, #C97064 50%, rgba(0, 120, 66, 1) 50% );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
 }
 
 .page-links:hover {
-    text-shadow: 2px 2px 4px #7AE7C7;
+    background-position: 0 100%;
+    /* text-shadow: 2px 2px 4px #7AE7C7;
     text-decoration: none;
     border: none;
     color: rgba(0, 120, 66, 1);
-    background-color: none;
+    background-color: none; */
 }
 
 /* Index.html */
@@ -196,9 +226,6 @@ textarea#id_message.textarea {
     color: #Effbed;
 }
 
-/* .ui-widget-content {
-
-} */
 
 /* Manage Reservations page */
 
@@ -214,6 +241,9 @@ textarea#id_message.textarea {
     padding: 2px;
 }
 
+#reservation-list {
+    list-style: none;
+}
 
 /* Accounts pages */
 
@@ -540,10 +570,6 @@ textarea#id_message.textarea {
 }
 
 @media screen and (min-width: 1024px) {
-    /* #signup_form {
-        text-align: left;
-        margin: 0 100px;
-    } */
 
     #signup_form input,
     .login input {
@@ -551,8 +577,4 @@ textarea#id_message.textarea {
         width: 250px;
     }
 
-    .principles-list {
-        width: 50%;
-        margin-left: 25%;
-    }
 }

@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
-            <h2 class="text-center mt-2 mb-5">Drinks at GROW</h2>
+            <h2 class="text-center mt-2 mb-5">Drinks at <span class="brand-text">GROW</span></h2>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
 
         <div class="col-sm-4 col-md-6">
             <!-- Hot drinks menu -->
-            <h3 class="mb-4 text-center">Hot Drinks</h3>
+            <h3 class="mb-4 text-center brand-text pink-bground">Hot Drinks</h3>
             {% if drinks_items.hotdrinks_items %}
             {% for drinkitem in drinks_items.hotdrinks_items %}
 
@@ -34,7 +34,7 @@
             <hr>
 
             <!-- Fruit juices & smoothies menu -->
-            <h3 class="mb-4 text-center">Fruit Juices & Smoothies</h3>
+            <h3 class="mb-4 text-center brand-text pink-bground">Fruit Juices & Smoothies</h3>
             {% if drinks_items.fruitjuices_smoothies_items %}
             {% for drinkitem in drinks_items.fruitjuices_smoothies_items %}
 
@@ -53,7 +53,7 @@
             <hr>
 
             <!-- Alcohol menu -->
-            <h3 class="mb-4 text-center">Wine/Beer/Cocktails</h3>
+            <h3 class="mb-4 text-center brand-text pink-bground">Wine/Beer/Cocktails</h3>
             {% if drinks_items.alcohol_items %}
             {% for drinkitem in drinks_items.alcohol_items %}
 
