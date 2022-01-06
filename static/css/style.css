@@ -21,11 +21,11 @@ body {
     color: #007842;
 }
 
-/* .green-bground {
-    background-color: #C97064;
+.green-bground {
+    background-color: #007842;
     color: white;
-    padding: 5px;
-} */
+    /* padding: 5px; */
+}
 .pink-bground {
     background-color: #C97064;
     color: white;
@@ -33,20 +33,9 @@ body {
 }
 /* Navbar */
 
-#main-nav,
-#main-footer,
-.dropdown-menu,
-.dropdown-item {
-    background-color: #007842;
-    color: #Effbed;
-}
-
-
 #nav-heading,
 h1.text-white {
-    font-family: 'Abril Fatface', cursive;
     font-size: 25px;
-    letter-spacing: 3px;
     color: #Effbed;
 }
 
@@ -71,12 +60,12 @@ h1.text-white {
 /* Header */
 
 header.bg-image-full {
-    background: url("/static/images/header-background.jpg");
+    background: url("https://res.cloudinary.com/dm3odn3pb/image/upload/v1641287186/static/images/header-background.f094be5a1a24.jpg");
     width: 100vw;
 }
 
 p#subheading {
-    background-color: rgba(0, 120, 66, 0.6);
+    background-color: rgba(201, 112, 100, 0.8);
     width: 200px;
     margin: auto;
 }
@@ -94,9 +83,9 @@ p#subheading {
     color: #effbed;
 }
 
-.footer-copyright {
+/* .footer-copyright {
     border-top: solid 2px white;
-}
+} */
 
 a.ic {
     color: #effbed;
@@ -105,7 +94,7 @@ a.ic {
 }
 
 a.ic:hover {
-    color: #C97064;
+    color: #007842;
     text-shadow: 2px 2px 4px #effbed;
 }
 
@@ -140,11 +129,6 @@ a.ic::after {
 
 .page-links:hover {
     background-position: 0 100%;
-    /* text-shadow: 2px 2px 4px #7AE7C7;
-    text-decoration: none;
-    border: none;
-    color: rgba(0, 120, 66, 1);
-    background-color: none; */
 }
 
 /* Index.html */
@@ -258,9 +242,11 @@ textarea#id_message.textarea {
     width: 250px;
 }
 
-/* #id_remember {
-    width: auto;
-} */
+#id_remember {
+    width: 50px;
+    float: none;
+    margin-left: 50px;
+}
 
 /* 404 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
 

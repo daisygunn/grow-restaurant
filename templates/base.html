@@ -28,9 +28,9 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="main-nav">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark green-bground" id="main-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}" id="nav-heading">GROW</a>
+            <a class="navbar-brand brand-text" href="{% url 'index' %}" id="nav-heading">GROW</a>
             <!-- Collapsible icon for smaller screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -42,14 +42,14 @@
                     <li class="nav-item light-text">
                         <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown green-bground">
                         <a class="nav-link dropdown-toggle" href="{% url 'menus' %}" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Menus
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'food_menu' %}">Food</a></li>
-                            <li><a class="dropdown-item" href="{% url 'drinks_menu' %}">Drinks</a></li>
+                        <ul class="dropdown-menu green-bground" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item green-bground" href="{% url 'food_menu' %}">Food</a></li>
+                            <li><a class="dropdown-item green-bground" href="{% url 'drinks_menu' %}">Drinks</a></li>
                             <li>
                         </ul>
                     </li>
@@ -85,7 +85,7 @@
     <!-- Header -->
     <header class="py-5 bg-image-full">
         <div class="text-center my-5">
-            <h1 class="text-white fs-3 ">GROW</h1>
+            <h1 class="text-white fs-3 brand-text">GROW</h1>
             <p class="text-white mb-0 fw-bolder" id="subheading">Restaurant & Cafe</p>
         </div>
     </header>
@@ -109,12 +109,11 @@
     {% endblock %}
 
     <!-- Footer  https://mdbootstrap.com/docs/b4/jquery/navigation/footer/ -->
-    <footer class="page-footer font-small text-center" id="main-footer">
-
+    <footer class="page-footer font-small text-center green-bground" id="main-footer">
         <!-- Footer Elements -->
         <div class="container">
             <div class="row d-flex justify-content-between">
-                <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 footer-style">
+                <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground">
                         <!-- Opening hours section of footer -->
                         <h5 class="brand-text">Opening Hours</h5>
                                 <p class="clock-time"><strong>Mon - Fri: </strong>7am-8pm</p>
@@ -122,7 +121,7 @@
                                 <p><strong>Bank Holidays: </strong> Closed</p>
                 </div>
                 <!-- Contact information section of footer -->
-                <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 footer-style">
+                <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground">
                     <h5 class="footer-heading brand-text">Stay in touch</h5>
                     <p>Email: <a href="mailto: daisy.l.g@hotmail.co.uk"
                             id="email-link"><strong>info@growrestaurant.com</a></strong></p>
@@ -153,7 +152,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <div class="footer-copyright text-center  green-bground py-3">© 2021 Copyright:
             <p><span class="brand-text">GROW</span></p>
         </div>
 
