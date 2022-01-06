@@ -71,7 +71,7 @@ h1.text-white {
 /* Header */
 
 header.bg-image-full {
-    background: url("../images/header-background.jpg");
+    background: url("/static/images/header-background.jpg");
     width: 100vw;
 }
 
