@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-11 col-sm-8 col-md-6 col-lg-5 text-center mb-5">
+    <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 text-center mb-5">
       <h1>{% trans "Sign In" %}</h1>
 
       {% get_providers as socialaccount_providers %}
@@ -44,7 +44,7 @@
         {% endif %}
         <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
         <button
-          class="primaryAction button btn-outline-success mt-4 text-center submit-button">{% trans "Sign In" %}</button>
+          class="primaryAction button mt-4 text-center submit-button">{% trans "Sign In" %}</button>
       </form>
     </div>
   </div>

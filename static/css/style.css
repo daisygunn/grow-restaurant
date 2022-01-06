@@ -26,11 +26,13 @@ body {
     color: white;
     /* padding: 5px; */
 }
+
 .pink-bground {
     background-color: #C97064;
     color: white;
     padding: 5px;
 }
+
 /* Navbar */
 
 #nav-heading,
@@ -118,7 +120,7 @@ a.ic::after {
     font-size: 2em;
     font-weight: 800;
     overflow: hidden;
-    background: linear-gradient(to right, #C97064, #C97064 50%, rgba(0, 120, 66, 1) 50% );
+    background: linear-gradient(to right, #C97064, #C97064 50%, rgba(0, 120, 66, 1) 50%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -193,6 +195,18 @@ li select,
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.submit-button {
+    color: white;
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.submit-button:hover {
+    color: #fff;
+    background-color: #C97064;
+    border-color: #C97064;
 }
 
 input#id_name.textinput.textInput,
