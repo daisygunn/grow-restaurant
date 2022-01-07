@@ -4,7 +4,7 @@ FOOD_MENU_SECTION = ((0, "Breakfast/Brunch"), (1, "Dinner"), (2, "New item"))
 DRINKS_MENU_SECTION = ((0, "Hot Drinks"), (1, "Fruit juices/Soft Drinks"), (2, "Wine/Beer/Cocktails"), (3, "New item"))
 
 # Create your models here.
-class FoodItems(models.Model):
+class FoodItem(models.Model):
     """
     Food items model
     """
@@ -25,7 +25,7 @@ class FoodItems(models.Model):
         return self.dish_name
 
 
-class DrinkItems(models.Model):
+class DrinkItem(models.Model):
     """
     Drink items model
     """
