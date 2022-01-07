@@ -1,4 +1,4 @@
-{% extends "/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
@@ -7,8 +7,7 @@
 {% block content %}
 <div class="container">
   <div class="row d-flex justify-content-center">
-
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center mb-5">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-5 text-center mb-5">
       <h1>{% trans "E-mail Addresses" %}</h1>
       {% if user.emailaddress_set.all %}
       <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
@@ -18,7 +17,7 @@
         <fieldset class="blockLabels">
 
           {% for emailaddress in user.emailaddress_set.all %}
-          <div class="ctrlHolder">
+          <div class="ctrlHolder mx-3">
             <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%}">
 
               <input id="email_radio_{{forloop.counter}}" type="radio" name="email"
@@ -29,18 +28,25 @@
               {% if emailaddress.verified %}
               <span class="verified">{% trans "Verified" %}</span>
               {% else %}
+              <hr>
               <span class="unverified">{% trans "Unverified" %}</span>
               {% endif %}
+              <hr>
               {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
             </label>
           </div>
           {% endfor %}
 
-          <div class="buttonHolder">
-            <button class="secondaryAction" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
-            <button class="secondaryAction" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
-            <button class="primaryAction" type="submit" name="action_remove">{% trans 'Remove' %}</button>
-          </div>
+          <ul class="buttonHolder text-center mt-5">
+            <li class="mb-2"><button class="secondaryAction button submit-button" type="submit"
+                name="action_primary">{% trans 'Make Primary' %}</button></li>
+            <li class="mb-2"><button class="secondaryAction button submit-button" type="submit"
+                name="action_send">{% trans 'Re-send Verification' %}</button></li>
+            <li class="mb-2"><button class="primaryAction button submit-button" type="submit"
+                name="action_remove">{% trans 'Remove' %}</button></li>
+
+
+          </ul>
 
         </fieldset>
       </form>
@@ -53,34 +59,34 @@
       {% endif %}
 
       {% if can_add_email %}
-      <h2>{% trans "Add E-mail Address" %}</h2>
+      <h2 class="my-5">{% trans "Add E-mail Address" %}</h2>
 
-      <form method="post" action="{% url 'account_email' %}" class="add_email">
+      <form method="post" action="{% url 'account_email' %}" class="add_email mx-5">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+        <button name="action_add" class="button submit-button" type="submit">{% trans "Add E-mail" %}</button>
       </form>
       {% endif %}
-
-      {% endblock %}
-
-
-      {% block extra_body %}
-      <script type="text/javascript">
-        (function () {
-          var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
-          var actions = document.getElementsByName('action_remove');
-          if (actions.length) {
-            actions[0].addEventListener("click", function (e) {
-              if (!confirm(message)) {
-                e.preventDefault();
-              }
-            });
-          }
-        })();
-      </script>
     </div>
   </div>
 </div>
 </div>
+{% endblock %}
+
+
+{% block extra_body %}
+<script type="text/javascript">
+  (function () {
+    var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+    var actions = document.getElementsByName('action_remove');
+    if (actions.length) {
+      actions[0].addEventListener("click", function (e) {
+        if (!confirm(message)) {
+          e.preventDefault();
+        }
+      });
+    }
+  })();
+</script>
+
 {% endblock %}

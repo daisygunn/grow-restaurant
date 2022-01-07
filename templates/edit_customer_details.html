@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-sm-8 text-center">
+            <h2 class="text-center mt-2 mb-3">Edit your details at <span class="brand-text">GROW</span></h2>
+            <p>Please note as your email is associated with your User account this must be changed <a href="{% url 'account_email' %}">here</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-sm-6">
+
+            <!-- Reservation form -->
+            <form method="POST" class="mb-5">
+                <ul class="full-form">
+
+                    {% csrf_token %}
+
+                    <!-- Customer form -->
+
+                    {{ customer_form.as_ul }}
+
+                    <button type="submit" class="button mt-4 text-center submit-button">Edit
+                        Details</button>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

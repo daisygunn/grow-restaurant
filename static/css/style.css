@@ -260,6 +260,13 @@ textarea#id_message.textarea {
     margin-left: 50px;
 }
 
+.buttonHolder {
+    display: inline;
+}
+
+.buttonHolder li {
+    list-style: none;
+}
 /* 404 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
 
 * {

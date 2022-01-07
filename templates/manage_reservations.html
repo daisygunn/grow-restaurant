@@ -2,14 +2,15 @@
 
 {% block content %}
 <div class="container">
-<div class="row d-flex justify-content-center">
-    <div class="col-sm-8">
-        <h2 class="text-center mt-2 mb-3">Manage your reservations at <span class="brand-text">GROW</span></h2>
-        <h5 class="text-center mt-2 mb-5"><strong>{{ customer.full_name}}</strong> if you have made any previous
-            reservations they will be displayed below.</h5>
-
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8 text-center">
+            <h2 class=" mt-2 mb-3">Manage your reservations at <span class="brand-text">GROW</span></h2>
+            <p class="mt-2"><strong>{{ customer.full_name}}</strong> please use the below options to
+                make changes to your reservations.</p>
+            <p class="mt-2 mb-4">Please note, your booking status will change to 'pending' to make sure
+                we can accomodate your changes.</p>
+        </div>
     </div>
-</div>
 
     <div class="row d-flex justify-content-center">
         <div class="col-sm-6">
