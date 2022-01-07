@@ -29,7 +29,6 @@ body {
 .green-bground {
     background-color: #007842;
     color: white;
-    /* padding: 5px; */
 }
 
 .pink-bground {
@@ -45,19 +44,11 @@ body {
     color: #Effbed;
 }
 
-
-
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-toggler-icon {
     color: #Effbed;
 }
-
-/* .navbar-dark .navbar-nav .nav-link:hover,
-.dropdown-item:hover {
-    color: #007842;
-    background-color: #Effbed;
-} */
 
 .navbar-dark .navbar-nav .nav-link:hover,
 .dropdown-item:hover {
@@ -93,10 +84,6 @@ p#subheading, #main-heading {
     text-decoration: none;
     color: white;
 }
-
-/* .footer-copyright {
-    border-top: solid 2px white;
-} */
 
 a.ic {
     color: #effbed;
@@ -211,6 +198,7 @@ li select,
     color: white;
     background-color: #198754;
     border-color: #198754;
+    text-transform: capitalize;
 }
 
 .submit-button:hover {

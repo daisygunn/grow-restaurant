@@ -21,39 +21,39 @@
                 around the world. <br> All produce used within the restaurant is sourced locally and we only eat what is
                 currently in season in
                 the UK.</p>
-            <p>Everything on the menu is vegetarian but can me made vegan and we design our dishes with nourishment in
+            <p>Everything on the menu is vegetarian but can be made vegan and we design our dishes with nourishment in
                 mind.</p>
             <p><em>Founded in 2017 by two friends who absolutely adore food.</em></p>
+        </div>
+        <hr>
+        <!-- Menus & Reservation images and page links -->
+        <div class="row content mb-5 d-flex justify-content-center">
+            <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
+                <div>
+                    <a href="{% url 'menus' %}">
+                        <img src="{% static 'images/menus-image.jpg' %}" class="img-thumbnail"
+                            alt="A bowl of healthy food.">
+                    </a>
+                    <a href="{% url 'menus' %}" class="page-links">
+                        <h3 class="mt-2 brand-text text-uppercase"><strong>Menus</strong></h3>
+                    </a>
                 </div>
-            <hr>
-            <!-- Menus & Reservation images and page links -->
-            <div class="row content mb-5 d-flex justify-content-center">
-                <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
-                    <div>
-                        <a href="{% url 'menus' %}">
-                            <img src="{% static 'images/menus-image.jpg' %}" class="img-thumbnail"
-                                alt="A bowl of healthy food.">
-                        </a>
-                        <a href="{% url 'menus' %}" class="page-links">
-                            <h3 class="mt-2 brand-text text-uppercase"><strong>Menus</strong></h3>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
-                    <div>
-                        <a href="{% url 'reservations' %}">
-                            <img src="{% static 'images/reservations-image.jpg' %}" class="img-thumbnail"
-                                alt="Image of the inside of Grow Restaurant">
-                        </a>
-                        <a href="{% url 'reservations' %}" class="page-links">
-                            <h3 class="mt-2 brand-text text-uppercase"><strong>Reservations</strong></h3>
-                        </a>
-                    </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
+                <div>
+                    <a href="{% url 'reservations' %}">
+                        <img src="{% static 'images/reservations-image.jpg' %}" class="img-thumbnail"
+                            alt="Grow Restaurant interior">
+                    </a>
+                    <a href="{% url 'reservations' %}" class="page-links">
+                        <h3 class="mt-2 brand-text text-uppercase"><strong>Reservations</strong></h3>
+                    </a>
                 </div>
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 {% endblock %}

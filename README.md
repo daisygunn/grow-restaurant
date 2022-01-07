@@ -81,7 +81,12 @@ I have used several technologies that have enabled this design to work:
 - [Python](https://www.python.org/)
     - Python is the core programming language used to write all of the code in this application to make it fully functional.
 - [Bootstrap]()
-
+- [Google Fonts](https://fonts.google.com/)
+    - Used to obtain the fonts linked in the header, fonts used were Playfair and Cookie
+- [Font Awesome](https://fontawesome.com/)
+    - Used to obtain the icons used on the high scores and rules pages.
+- [Google Developer Tools](https://developers.google.com/web/tools/chrome-devtools)
+    - Used as a primary method of fixing spacing issues, finding bugs, and testing responsiveness across the project.
 - [GitHub](https://github.com/)
     - Used to store code for the project after being pushed.
 - [Git](https://git-scm.com/)
@@ -98,6 +103,30 @@ I have used several technologies that have enabled this design to work:
     - Used to resize images to reduce loading time.
 - [Pep8](http://pep8online.com/)
     - Used to test my code for any issues or errors.
+- [AutoPrefixer](https://autoprefixer.github.io/)
+    - Used to parse my CSS and ass vendor prefixes.
+- [Grammarly](https://www.grammarly.com/)
+    - Used to fix the grammar errors across the project.
+- [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB)
+    - Used to detect overflow of elements, which allowed me to quickly debug any issues.
+- [Coloors](https://coolors.co/)
+    - Used to create a colour palette for the design.
+- [Favicon.io](https://favicon.io/)
+    - Used to create favicon's for my website
+- [Color Contrast Accessibility Validator](https://color.a11y.com/)
+    - Allowed me to test the colour contrast of my webpage.
+- [W3C Markup Validation Service](https://validator.w3.org/) 
+    - Used to validate all HTML code written and used in this webpage.
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
+    - Used to validate all CSS code written and used in this webpage.
+- [Freeformatter CSS Beautify](https://www.freeformatter.com/css-beautifier.html)
+    - Used to accurately format my CSS code.
+- [Freeformatter HTML Formatter](https://www.freeformatter.com/html-formatter.html)
+    - Used to accurately format my HTML code.
+- [AmIResponsive](http://ami.responsivedesign.is/)
+    - Used to generate responsive image used in README file.
+- [Wave](https://wave.webaim.org/)
+    - Used to test the accessibility of the website.
 ---
 ## Testing
 

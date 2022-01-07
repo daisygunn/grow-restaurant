@@ -41,6 +41,9 @@
             <p> {{ fooditem.dietary }} | Allergens: {{ fooditem.allergens }}</p>
 
             {% endfor %}
+            
+            {% else%}
+            <p>Menu being updated - please come back soon!</p>
             {% endif %}
         </div>
     </div>
