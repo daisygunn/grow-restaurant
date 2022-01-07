@@ -4,7 +4,6 @@ from .models import Customer, Table, Reservation
 # Register your models here.
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-
     list_display = ('customer_id', 'full_name', 'email', 'phone_number')
 
 

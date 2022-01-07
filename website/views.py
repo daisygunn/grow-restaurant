@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactForm
+from reservations.models import Customer
 
 # Create your views here.
 def index(request):
@@ -20,6 +21,15 @@ def send_message(request, contact_form):
     recipient_list = [settings.EMAIL_HOST_USER]
     send_mail( subject, message, email_from, recipient_list )
 
+def get_customer_instance(request, User):
+    """
+    Returns customer instance if User is logged in """
+    customer_email = request.user.email
+    customer = Customer.objects.filter(email=customer_email).first()
+
+    return customer
+
+
 class ContactPage(View):
     """
     Contact page - for a user to send a contact form.
@@ -28,8 +38,10 @@ class ContactPage(View):
         template = 'contact_us.html'
 
         if request.user.is_authenticated:
+            customer = get_customer_instance(request, User)
+            customer_name = customer.full_name
             # if user is logged in pre-populate the fields
-            contact_form = ContactForm(initial={'name': request.user.first_name + " " + request.user.last_name, 'email': request.user.email})
+            contact_form = ContactForm(initial={'name': customer_name,  'email': request.user.email})
         else:
             contact_form = ContactForm()
 
