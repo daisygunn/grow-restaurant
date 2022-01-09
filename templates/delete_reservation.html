@@ -2,12 +2,6 @@
 
 {% block content %}
 
-<!-- To display date picker -->
-{% load bootstrap4 %}
-<!-- {% bootstrap_css %} -->
-{% bootstrap_javascript jquery='full' %}
-<!-- Media to display date picker -->
-{{ reservation_form.media }}
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center mb-5">
@@ -18,8 +12,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6 d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
             <form method="POST" class="text-center mb-5" id="delete-form">
                 {% csrf_token %}
                 <h5>Reservation ID: {{ reservation.reservation_id }}</h5>
@@ -27,7 +21,7 @@
                     {{ reservation.requested_time }} on {{ reservation.requested_date }}</p>
 
 
-                <button type="button" data-toggle="modal" data-target="#confirmationModal"
+                <button type="button" data-toggle="modal" data-target="#confirmationModal" href="#confirmationModal"
                     class="button mt-4 text-center submit-button" id="delete-reservation">Delete
                     Reservation</button>
 

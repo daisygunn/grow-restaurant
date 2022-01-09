@@ -126,7 +126,8 @@ class ReservationsEnquiry(View):
                         request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
-                return HttpResponseRedirect(reverse('reservations'))
+                url = reverse('reservations')
+                return HttpResponseRedirect(url)
         
         else:
             messages.add_message(
@@ -282,9 +283,9 @@ class DeleteReservation(View):
         current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
         return render(
-                request, 'manage_reservations.html', 
-                {'reservations': current_reservations,
-                'customer': customer})
+                    request, 'manage_reservations.html', 
+                    {'reservations': current_reservations,
+                    'customer': customer})
 
 
 class EditCustomerDetails(View):
@@ -310,7 +311,7 @@ class EditCustomerDetails(View):
         
         if customer_form.is_valid():
             if customer_form.has_changed():
-                # get the information from the form 
+                # get the information from the form
                 customer_full_name = customer_form.cleaned_data['full_name']
                 customer_email = customer_form.cleaned_data['email']
                 customer_phone_number = customer_form.cleaned_data['phone_number']
@@ -320,8 +321,10 @@ class EditCustomerDetails(View):
                 customer.phone_number = customer_phone_number
                 customer_form.save()
                 messages.add_message(request, messages.SUCCESS, "Your details have now been updated.")
-                url = reverse('index')
-                return HttpResponseRedirect(url)
+                return render(request, 'edit_customer_details.html', 
+                {'customer_form': customer_form,
+                'customer': customer,
+                })
 
             else:
                 messages.add_message(request, messages.WARNING, "No information has changed.")

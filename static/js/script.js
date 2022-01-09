@@ -5,4 +5,8 @@ $(document).ready(function () {
 
     $("#id_requested_date").datepicker({ dateFormat: 'dd/mm/yy' });
 
+    $("#delete-reservation").on('click', function() {
+        $('#confirmationModal').modal('show');
+    });
+
 });
