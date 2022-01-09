@@ -13,6 +13,7 @@ def index(request):
     # Return homepage
     return render(request, 'index.html')
 
+
 def send_message(request, contact_form):
     customer_name = contact_form.cleaned_data['name']
     subject = (f'Message from {customer_name}')
@@ -21,9 +22,11 @@ def send_message(request, contact_form):
     recipient_list = [settings.EMAIL_HOST_USER]
     send_mail( subject, message, email_from, recipient_list )
 
+
 def get_customer_instance(request, User):
     """
-    Returns customer instance if User is logged in """
+    Returns customer instance if User is logged in 
+    """
     customer_email = request.user.email
     customer = Customer.objects.filter(email=customer_email).first()
 

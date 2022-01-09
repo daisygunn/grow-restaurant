@@ -24,6 +24,7 @@ def retreive_customer_info(reservation_form, customer_form):
     
     return customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number
 
+
 def check_availabilty(customer_requested_time, customer_requested_date):
     
     # check availability against Reservation model using customer input 
@@ -35,6 +36,7 @@ def check_availabilty(customer_requested_time, customer_requested_date):
                         
     # Return number of tables
     return no_tables_booked
+
 
 def get_customer_instance(request, User):
     """
@@ -71,25 +73,21 @@ class ReservationsEnquiry(View):
             reservation_form = ReservationForm()
             return render(
                 request, self.template_name, 
-                {'customer_form': customer_form, 'reservation_form': reservation_form}
-                )
-        logger.warning("Get request")
-        return render(request, self.template_name)
+                {'customer_form': customer_form, 'reservation_form': reservation_form})
+
+        
+        # return render(request, self.template_name)
         
 
     def post(self, request, User=User, *args, **kwargs):
 
         customer_form = CustomerForm(data=request.POST)
         reservation_form = ReservationForm(data=request.POST)
-
-        # logger.warning(f"Maximum number of tables: {max_tables}")
-       
         if customer_form.is_valid() and reservation_form.is_valid():
             # Retreive information from forms 
             customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number = retreive_customer_info(reservation_form, customer_form)
 
             # Check to see how many bookings exist at that time/date
-
             tables_booked = check_availabilty(customer_requested_time, customer_requested_date)
             max_tables = get_tables_info
 
@@ -126,8 +124,10 @@ class ReservationsEnquiry(View):
                         request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
-                url = reverse('reservations')
-                return HttpResponseRedirect(url)
+                return render(
+                    request, 'reservations.html',
+                    {'customer_form': customer_form, 'reservation_form': reservation_form}
+                )
         
         else:
             messages.add_message(
@@ -137,6 +137,7 @@ class ReservationsEnquiry(View):
                     request, 'reservations.html',
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
                 )
+
 
 def retrieve_reservations(self, request, User):
     customer_email = request.user.email
@@ -149,11 +150,13 @@ def retrieve_reservations(self, request, User):
         logger.warning(f"{get_reservations}")
 
         if len(get_reservations) == 0:
+            # if no reservations
             logger.warning(f"No existing reservations.") 
             return 1
         else:
             return get_reservations
     else:
+        # if user is not present in customer model
         logger.warning(f"No user in customer model") 
         return 1
 
@@ -177,7 +180,6 @@ class ManageReservations(View):
                 return HttpResponseRedirect(url)
                 
             else:
-                pass
                 return render(
                     request, 'manage_reservations.html', 
                     {'reservations': current_reservations,
@@ -270,6 +272,7 @@ class DeleteReservation(View):
         'reservation_id': reservation_id 
         })
 
+    
     def post(self, request, reservation_id, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
         # get reservation from database
@@ -304,6 +307,7 @@ class EditCustomerDetails(View):
         'customer': customer,
         })
 
+    
     def post(self, request, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
 
