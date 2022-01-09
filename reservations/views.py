@@ -64,25 +64,22 @@ class ReservationsEnquiry(View):
             customer = get_customer_instance(request, User)
             customer_form = CustomerForm(instance=customer)
             reservation_form = ReservationForm()
-            return render(
-                request, self.template_name, 
-                {'customer_form': customer_form, 'reservation_form': reservation_form}
-                )
+            # return render(
+            #     request, self.template_name, 
+            #     {'customer_form': customer_form, 'reservation_form': reservation_form}
+            #     )
         else:
             customer_form = CustomerForm()
             reservation_form = ReservationForm()
-            return render(
-                request, self.template_name, 
-                {'customer_form': customer_form, 'reservation_form': reservation_form})
-
         
-        # return render(request, self.template_name)
-        
+        return render(request, self.template_name, {'customer_form': customer_form, 'reservation_form': reservation_form})
+     
 
     def post(self, request, User=User, *args, **kwargs):
 
         customer_form = CustomerForm(data=request.POST)
         reservation_form = ReservationForm(data=request.POST)
+
         if customer_form.is_valid() and reservation_form.is_valid():
             # Retreive information from forms 
             customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number = retreive_customer_info(reservation_form, customer_form)
@@ -111,7 +108,7 @@ class ReservationsEnquiry(View):
                     customer_form.save()
 
                 # Retreive customer information pass to reservation model
-                current_customer = get_customer_instance(request, User)
+                current_customer = Customer.objects.get(email=customer_email)
                 current_customer_id = current_customer.pk
                 customer = Customer.objects.get(customer_id=current_customer_id)
                 logger.warning(f"Customer ID is: {current_customer_id}")
@@ -124,19 +121,16 @@ class ReservationsEnquiry(View):
                         request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
-                return render(
-                    request, 'reservations.html',
-                    {'customer_form': customer_form, 'reservation_form': reservation_form}
-                )
+                url = reverse('reservations')
+                return HttpResponseRedirect(url)
+                
         
         else:
             messages.add_message(
-                request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
-      
-        return render(
-                    request, 'reservations.html',
-                    {'customer_form': customer_form, 'reservation_form': reservation_form}
-                )
+                request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number in the correct format.")
+
+        return render(request, 'reservations.html', {'customer_form': customer_form, 'reservation_form': reservation_form})
+        
 
 
 def retrieve_reservations(self, request, User):
@@ -175,7 +169,7 @@ class ManageReservations(View):
                 return HttpResponseRedirect(url)
             # If the user does not exist in the customer model 
             elif current_reservations == 1:
-                messages.add_message(request, messages.WARNING, "Ooops, you've never made a reservation enquiry. You can make reservations here.")
+                messages.add_message(request, messages.WARNING, "Ooops, you've not got any existing reservations. You can make reservations here.")
                 url = reverse('reservations')
                 return HttpResponseRedirect(url)
                 
@@ -285,10 +279,12 @@ class DeleteReservation(View):
         # Get updated list of reservations
         current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
-        return render(
-                    request, 'manage_reservations.html', 
-                    {'reservations': current_reservations,
-                    'customer': customer})
+
+        url = reverse('manage_reservations')
+        return HttpResponseRedirect(url)
+        # return render(request, 'manage_reservations.html', 
+        #             {'reservations': current_reservations,
+        #             'customer': customer})
 
 
 class EditCustomerDetails(View):
