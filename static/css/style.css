@@ -37,6 +37,11 @@ body {
     padding: 5px;
 }
 
+
+a {
+    text-decoration: none;
+}
+
 /* Navbar */
 
 #nav-heading {
@@ -44,14 +49,14 @@ body {
     color: #Effbed;
 }
 
-.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav ,
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-toggler-icon {
     color: #Effbed;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
-.dropdown-item:hover {
+.dropdown-item:hover, .navbar-active {
     color: #effbed;
     background-color: #C97064;
 }
@@ -80,10 +85,11 @@ p#subheading, #main-heading {
     height: 40px;
 }
 
-#email-link {
+.contact-link {
     text-decoration: none;
     color: white;
 }
+
 
 a.ic {
     color: #effbed;
@@ -92,9 +98,8 @@ a.ic {
     font-size: 1rem;
 }
 
-a.ic:hover {
+.contact-link:hover, a.ic:hover {
     color: #007842;
-    text-shadow: 2px 2px 4px #effbed;
 }
 
 a.ic::after {
@@ -267,7 +272,7 @@ textarea#id_message.textarea {
 .buttonHolder li {
     list-style: none;
 }
-/* 404 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
+/* 404 & 500 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
 
 * {
     -webkit-box-sizing: border-box;
@@ -331,7 +336,7 @@ textarea#id_message.textarea {
     transform: translateY(-160px);
     height: 160px;
     width: 2px;
-    background-color: #00ffc0;
+    background-color: #007842;
 }
 
 @-webkit-keyframes drop {
@@ -398,15 +403,15 @@ textarea#id_message.textarea {
 }
 
 .notfound .notfound-404 h1 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 188px;
     font-weight: 700;
     margin: 0px;
-    text-shadow: 4px 4px 0px #00ffc0;
+    text-shadow: 4px 4px 0px #007842;
 }
 
 .notfound h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 42px;
     font-weight: 700;
     margin: 0;
@@ -415,7 +420,7 @@ textarea#id_message.textarea {
 }
 
 .notfound p {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #000;
     font-weight: 400;
     margin-top: 20px;
@@ -423,23 +428,23 @@ textarea#id_message.textarea {
 }
 
 .notfound a {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding: 10px 30px;
     display: inline-block;
     color: #000;
     font-weight: 400;
     text-transform: uppercase;
-    -webkit-box-shadow: 0px 0px 0px 2px #000, 2px 2px 0px 2px #00ffc0;
-    box-shadow: 0px 0px 0px 2px #000, 2px 2px 0px 2px #00ffc0;
+    -webkit-box-shadow: 0px 0px 0px 2px #000, 2px 2px 0px 2px #007842;
+    box-shadow: 0px 0px 0px 2px #000, 2px 2px 0px 2px #007842;
     text-decoration: none;
     -webkit-transition: 0.2s all;
     transition: 0.2s all;
 }
 
 .notfound a:hover {
-    background-color: #00ffc0;
-    -webkit-box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #00ffc0;
-    box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #00ffc0;
+    background-color: #007842;
+    -webkit-box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #007842;
+    box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #007842;
 }
 
 .notfound-social {
@@ -455,9 +460,9 @@ textarea#id_message.textarea {
 }
 
 .notfound-social>a:hover {
-    background-color: #00ffc0;
-    -webkit-box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #00ffc0;
-    box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #00ffc0;
+    background-color: #007842;
+    -webkit-box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #007842;
+    box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #007842;
 }
 
 @media only screen and (max-width: 480px) {

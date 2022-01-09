@@ -6,10 +6,7 @@
 
         <div class="col-sm-8">
             <h2 class="text-center mt-2 mb-3">Edit your reservation at <span class="brand-text">GROW</span></h2>
-            <h5 class="text-center mt-2 mb-3">Please note your booking is registered with your account details so these
-                cannot be changed.</h5>
-            <h5 class="text-center mt-2 mb-4">{{ customer.email }} | {{ customer.phone_number }}</h5>
-        </div>
+            <h5 class="text-center mt-2 mb-3">Make changes to your <a class="green-text" href="{% url 'edit_customer_details' %}">accounts details</a></div>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -22,14 +19,8 @@
 
                     {% csrf_token %}
 
-                    {{ reservation_form.errors }}
-                    {{ reservation_form.non_field_errors }}
-
                     <h5 class="text-center my-3">Reservation ID: {{ reservation.reservation_id }}</h5>
-                    <!-- Customer form - hidden from user -->
-                    <div class="hidden">
-                        {{ customer_form.as_ul }}
-                    </div>
+
                     <!-- Reservation form -->
                     {{ reservation_form.as_ul }}
 
