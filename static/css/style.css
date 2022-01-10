@@ -21,7 +21,7 @@ body {
 
 .pink-text {
     background-color: white;
-    color: rgba(201, 112, 100, 1)
+    color: #C97064;
 }
 
 .green-bground {
@@ -37,7 +37,12 @@ body {
 
 
 a {
+    color: #007842;
     text-decoration: none;
+}
+
+a:hover {
+    background-color: #007842;
     color: white;
 }
 
@@ -101,6 +106,7 @@ a.ic {
 
 .contact-link:hover,
 a.ic:hover {
+    background-color: inherit;
     color: #007842;
 }
 
@@ -117,7 +123,7 @@ a.ic::after {
 }
 
 .page-links {
-    text-decoration: none;
+    text-decoration: none !important;
     color: #007842;
     border: none;
     position: relative;
@@ -127,6 +133,7 @@ a.ic::after {
 
 .page-links:hover {
     background-color: #C97064;
+    text-decoration: none;
     color: white;
 }
 
@@ -145,6 +152,7 @@ a.ic::after {
     width: 400px;
     margin: auto;
     text-align: center;
+    list-style: none;
 }
 
 .opening-time {
@@ -169,9 +177,7 @@ a.ic::after {
     margin-bottom: 20px;
 }
 
-
-li input,
-li select,
+li input,li select,
 .input-group.date {
     width: 300px;
     margin-right: 30px;
@@ -207,6 +213,10 @@ li select,
     border-color: #C97064;
 }
 
+.inline-btn {
+    display: inline;
+}
+
 input#id_name.textinput.textInput,
 input#id_email.emailinput,
 textarea#id_message.textarea {
@@ -239,6 +249,7 @@ textarea#id_message.textarea {
 
 #reservation-list {
     list-style: none;
+    padding-left: 0;
 }
 
 /* Accounts pages */
@@ -492,6 +503,7 @@ textarea#id_message.textarea {
         float: none;
         padding-top: 5px;
     }
+
 }
 
 @media screen and (max-width: 375px) {
@@ -524,6 +536,11 @@ textarea#id_message.textarea {
     li select,
     .input-group.date {
         margin-right: 0;
+    }
+
+    .inline-btn {
+        display: block;
+        margin-bottom: 10px;
     }
 }
 

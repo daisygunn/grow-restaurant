@@ -1,4 +1,4 @@
-// Reservation form 
+// JS for Forms
 
 $(document).ready(function () {
     console.log('Working')
@@ -9,4 +9,8 @@ $(document).ready(function () {
         $('#confirmationModal').modal('show');
     });
 
+    if( $(".alert.alert-danger").length )
+    {
+        $(".full-form").addClass("animate__animated animate__shakeX")
+    }
 });
