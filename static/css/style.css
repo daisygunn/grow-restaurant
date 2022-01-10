@@ -21,7 +21,7 @@ body {
 
 .pink-text {
     background-color: white;
-    color:rgba(201, 112, 100, 1)
+    color: rgba(201, 112, 100, 1)
 }
 
 .green-bground {
@@ -38,6 +38,7 @@ body {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 /* Navbar */
@@ -47,14 +48,15 @@ a {
     color: #Effbed;
 }
 
-.navbar-dark .navbar-nav ,
+.navbar-dark .navbar-nav,
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-toggler-icon {
     color: #Effbed;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
-.dropdown-item:hover, .navbar-active {
+.dropdown-item:hover,
+.navbar-active {
     color: #effbed;
     background-color: #C97064;
 }
@@ -66,7 +68,8 @@ header.bg-image-full {
     width: 100vw;
 }
 
-p#subheading, #main-heading {
+p#subheading,
+#main-heading {
     background-color: rgba(201, 112, 100, 0.8);
     width: 200px;
     margin: auto;
@@ -96,7 +99,8 @@ a.ic {
     font-size: 1rem;
 }
 
-.contact-link:hover, a.ic:hover {
+.contact-link:hover,
+a.ic:hover {
     color: #007842;
 }
 
@@ -119,18 +123,10 @@ a.ic::after {
     position: relative;
     display: block;
     font-size: 2em;
-    overflow: hidden;
-    background: linear-gradient(to right, white, white 50%, #C97064 50%);
-    background-clip: text;
-    /* -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
-    background-size: 200% 100%;
-    background-position: 0 100%;
-    transition: background-position 275ms ease;
 }
 
 .page-links:hover {
-    background-position: 100%;
+    background-color: #C97064;
     color: white;
 }
 
@@ -271,6 +267,7 @@ textarea#id_message.textarea {
 .buttonHolder li {
     list-style: none;
 }
+
 /* 404 & 500 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
 
 * {
