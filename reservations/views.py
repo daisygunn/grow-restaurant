@@ -195,17 +195,29 @@ class EditReservation(View):
         logger.warning(reservation)
         logger.warning(customer)
 
-        # return both forms with the existing information
-        customer_form = CustomerForm(instance=customer)
-        reservation_form = ReservationForm(instance=reservation)
+        name1 = reservation.customer_name
+        name2 = customer
 
-        return render(request, 'edit_reservation.html', 
-        {'customer_form': customer_form,
-        'customer': customer,
-        'reservation_form': reservation_form,
-        'reservation': reservation,
-        'reservation_id': reservation_id 
-        })
+        logger.warning(name1)
+        logger.warning(name2)
+
+        if name1 != name2:
+            messages.add_message(request, messages.ERROR, "You are trying to edit a reservation that is not yours.")
+            url = reverse('manage_reservations')
+            return HttpResponseRedirect(url)
+        
+        else:
+            # return both forms with the existing information
+            customer_form = CustomerForm(instance=customer)
+            reservation_form = ReservationForm(instance=reservation)
+
+            return render(request, 'edit_reservation.html', 
+            {'customer_form': customer_form,
+            'customer': customer,
+            'reservation_form': reservation_form,
+            'reservation': reservation,
+            'reservation_id': reservation_id 
+            })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
@@ -259,12 +271,24 @@ class DeleteReservation(View):
         # customer_email = request.user.email
         # customer = Customer.objects.filter(email=customer_email).first()
         customer = get_customer_instance(request, User)
+        
+        name1 = reservation.customer_name
+        name2 = customer
 
-        return render(request, 'delete_reservation.html',
-        {'customer': customer,
-        'reservation': reservation,
-        'reservation_id': reservation_id 
-        })
+        logger.warning(name1)
+        logger.warning(name2)
+
+        if name1 != name2:
+            messages.add_message(request, messages.ERROR, "You are trying to delete a reservation that is not yours.")
+            url = reverse('manage_reservations')
+            return HttpResponseRedirect(url)
+        
+        else:
+            return render(request, 'delete_reservation.html',
+            {'customer': customer,
+            'reservation': reservation,
+            'reservation_id': reservation_id 
+            })
 
     
     def post(self, request, reservation_id, User=User, *args, **kwargs):
