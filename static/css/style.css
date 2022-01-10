@@ -114,23 +114,24 @@ a.ic::after {
 
 .page-links {
     text-decoration: none;
-    color: rgba(0, 120, 66, 1);
+    color: #007842;
     border: none;
     position: relative;
     display: block;
     font-size: 2em;
     overflow: hidden;
-    background: linear-gradient(to right, #C97064, #C97064 50%, rgba(0, 120, 66, 1) 50%);
+    background: linear-gradient(to right, white, white 50%, #C97064 50%);
     background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
     background-size: 200% 100%;
-    background-position: 100%;
+    background-position: 0 100%;
     transition: background-position 275ms ease;
 }
 
 .page-links:hover {
-    background-position: 0 100%;
+    background-position: 100%;
+    color: white;
 }
 
 /* Index.html */
