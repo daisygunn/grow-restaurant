@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&family=Raleway:wght@400;600&display=swap');
 
-
-/* font-family: 'Abril Fatface', cursive;
+/* font-family: 'Lobster Two', cursive;
 font-family: 'Raleway', sans-serif; */
 
 /* Dark green: 007842 / 0, 120, 66 */
-/* light green  7AE7C7 / 122, 231, 199 */
 /* off white: EFFBED */
 
 
@@ -109,8 +107,9 @@ a.ic::after {
 /* General */
 
 .brand-text {
-    font-family: 'Abril Fatface', cursive;
+    font-family: 'Lobster Two', cursive;
     letter-spacing: 3px;
+    font-weight: 700;
 }
 
 .page-links {

@@ -2,6 +2,6 @@
 
 {% block content %}{% endblock %}
 
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you for using https://grow-restaurant.herokuapp.com/!
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you for using {{ site_domain }}
 {% endblocktrans %}
 {% endautoescape %}
