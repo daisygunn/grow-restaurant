@@ -12,26 +12,26 @@ class TestViews(TestCase):
         self.reservations_url = reverse('reservations')
         self.manage_reservations_url = reverse('manage_reservations')
 
-        table = Table.objects.create(
+        self.table = Table.objects.create(
             table_id = 5,
             table_name = 'Table 5',
             max_no_people = 4
         )
 
-        customer = Customer.objects.create(
+        self.customer = Customer.objects.create(
             customer_id = 1,
             full_name = 'Project Test',
             email =  'project.test@test.com',
             phone_number = '+447980987654'       
         )
 
-        Reservation.objects.create(
+        self.reservation = Reservation.objects.create(
             reservation_id = 35,
-            customer_name = customer,
+            customer_name = self.customer,
             no_of_guests = 4,
             requested_date = '2022-01-20',
             requested_time = '12:00',
-            table_id = table,
+            table_id = self.table,
             status = 'pending'
         )
 
@@ -46,10 +46,13 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'reservations.html')
 
     def test_manage_reservation_GET(self):
-        response = self.client.get(self.manage_reservations_url)
+        if self.user.is_authenticated:
+            response = self.client.get(self.manage_reservations_url)
 
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'manage_reservations.html')    
+            self.assertEquals(response.status_code, 200)
+            self.assertTemplateUsed(response, 'manage_reservations.html') 
+        else:
+            failureException
 
     def test_delete_reservation_GET(self):
         response = self.client.get(self.delete_reservations_url)
@@ -57,8 +60,41 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete_reservation.html')     
 
+  
     def test_edit_reservation_GET(self):
         response = self.client.get(self.edit_reservations_url)
 
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'edit_reservation.html')    
+        self.assertTemplateUsed(response, 'edit_reservation.html')
+
+
+    def test_reservation_POST_adds_new_customer_and_reservation(self):
+        table = self.table
+
+        customer = Customer.objects.create(
+            customer_id = 3,
+            full_name = 'Project Test123',
+            email =  'project.test123@test.com',
+            phone_number = '+447980987654'       
+        )
+
+        customer.save()
+         
+        reservation = Reservation.objects.create(
+            reservation_id = 36,
+            customer_name = customer,
+            no_of_guests = 4,
+            requested_date = '2022-01-29',
+            requested_time = '12:00',
+            table_id = table,
+            status = 'pending'
+        )
+
+        reservation.save()
+        
+        response = self.client.post(self.reservations_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(len(Reservation.objects.all()), 2)
+        self.assertEquals(len(Customer.objects.all()), 2)
+        
