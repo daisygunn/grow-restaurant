@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&family=Raleway:wght@400;600&display=swap');
 
-/* font-family: 'Lobster Two', cursive;
-font-family: 'Raleway', sans-serif; */
-
-/* Dark green: 007842 / 0, 120, 66 */
-/* off white: EFFBED */
-
+/* General styling */
 
 body {
     font-family: 'Raleway', sans-serif;
@@ -35,6 +30,26 @@ body {
     padding: 5px;
 }
 
+.brand-text {
+    font-family: 'Lobster Two', cursive;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.page-links {
+    text-decoration: none !important;
+    color: #007842;
+    border: none;
+    position: relative;
+    display: block;
+    font-size: 2em;
+}
+
+.page-links:hover {
+    background-color: #C97064;
+    text-decoration: none;
+    color: white;
+}
 
 a {
     color: #007842;
@@ -82,6 +97,7 @@ p#subheading,
 }
 
 /* Footer */
+
 #main-footer {
     font-size: 1.25rem;
     font-weight: 800;
@@ -113,29 +129,6 @@ a.ic:hover {
 
 a.ic::after {
     color: #effbed;
-}
-
-/* General */
-
-.brand-text {
-    font-family: 'Lobster Two', cursive;
-    letter-spacing: 3px;
-    font-weight: 700;
-}
-
-.page-links {
-    text-decoration: none !important;
-    color: #007842;
-    border: none;
-    position: relative;
-    display: block;
-    font-size: 2em;
-}
-
-.page-links:hover {
-    background-color: #C97064;
-    text-decoration: none;
-    color: white;
 }
 
 /* Index.html */
@@ -178,7 +171,8 @@ a.ic::after {
     margin-bottom: 20px;
 }
 
-li input,li select,
+li input,
+li select,
 .input-group.date {
     width: 300px;
     margin-right: 30px;
@@ -223,6 +217,8 @@ input#id_email.emailinput,
 textarea#id_message.textarea {
     width: 100%;
 }
+
+/* Date picker */
 
 .ui-widget {
     font-family: 'Raleway', sans-serif;
@@ -479,6 +475,8 @@ textarea#id_message.textarea {
     box-shadow: 0px 0px 0px 0px #000, 0px 0px 0px 2px #007842;
 }
 
+/* Media query for 404/500 pages */
+
 @media only screen and (max-width: 480px) {
     .notfound .notfound-404 {
         height: 122px;
@@ -494,6 +492,9 @@ textarea#id_message.textarea {
     }
 }
 
+/* Media Queries for rest of site */
+
+/* Extra-small screens */
 @media screen and (min-width: 320px) {
 
     .full-form {
@@ -513,6 +514,7 @@ textarea#id_message.textarea {
 
 }
 
+/* Small screens */
 @media screen and (max-width: 375px) {
     /* index */
 
@@ -551,6 +553,21 @@ textarea#id_message.textarea {
     }
 }
 
+/* for iphones */
+@media screen and (max-width: 390px) {
+
+    li input,
+    li select,
+    .input-group.date {
+        float: right;
+        padding-top: 5px;
+    }
+
+    #id_requested_time {
+        margin-bottom: 20px;
+    }
+}
+
 @media screen and (min-width: 425px) {
     .full-form {
         padding: 0;
@@ -563,11 +580,9 @@ textarea#id_message.textarea {
         float: right;
     }
 
-    /* .submit-button {
-        padding: 10px 0;
-    } */
 }
 
+/* Tablets */
 @media screen and (min-width: 768px) {
     /* index */
 
@@ -598,6 +613,8 @@ textarea#id_message.textarea {
     }
 
 }
+
+/* Laptops */
 
 @media screen and (min-width: 1024px) {
 
