@@ -39,6 +39,7 @@ body {
 a {
     color: #007842;
     text-decoration: none;
+    font-weight: 600;
 }
 
 a:hover {
@@ -277,6 +278,12 @@ textarea#id_message.textarea {
 
 .buttonHolder li {
     list-style: none;
+}
+
+#forgot-pword {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
 }
 
 /* 404 & 500 error page https://colorlib.com/wp/template/colorlib-error-404-15/ */
