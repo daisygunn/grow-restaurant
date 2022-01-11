@@ -182,7 +182,7 @@ class ManageReservations(View):
         else:
             messages.add_message(
                 request, messages.ERROR, "You must be logged in to manage your reservations.")
-
+            
         return render(request, 'manage_reservations.html')
 
 
