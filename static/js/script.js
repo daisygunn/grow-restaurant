@@ -5,7 +5,9 @@ function screenClass() {
         $('#map-section').addClass('hidden')
         $('#contact-section').addClass('col-md-6')
     } else {
-        //pass
+        console.log("Screen is bigger")
+        $('#map-section').removeClass('hidden')
+        $('#contact-section').removeClass('col-md-6')
     }
 }
 
@@ -51,6 +53,7 @@ var myEfficientFn = debounce(function() {
 	screenClass();
 }, 250);
 
+// Trigger efficient screen class function each time screen resizes
 window.addEventListener('resize', myEfficientFn);
 
 
