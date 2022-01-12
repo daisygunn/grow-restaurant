@@ -2,7 +2,7 @@
 
 ![]()
 
-[Live application can be found here]()
+[Live application can be found here](https://grow-restaurant.herokuapp.com/)
 
 This is a full-stack frameworks project built using Django, Python, HTML, CSS and JavaScript. This is a restaurant website designed to display menus to customers & allow them to make reservations. This project has been built for educational purpose.
 
@@ -39,7 +39,7 @@ In order to acheuve the desired user & business goals the following features wil
 ### Structure
 This website has been designed with simplicity in mind, each page only have entirely relevant information on it so that the user is able to find what they want quickly without having to read through unnessecary things. I have seperated out each key feature to really highlight their functionality to the user.
 
-![Database Schema can be found here](assets/images/menus-schema.png)
+![Database Schemas can be found here](assets/images/database_schemas.jpg)
 
 ### Skeleton
 [Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
@@ -54,22 +54,22 @@ I chose the fonts 'Abril Fatface' & 'Raleway', I wanted a bold/statement font to
 ---
 ## Features
 
-### Current Features
-
-#### Home page
+### Home page
 - **Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. If the user is logged in then 'Logout' will appear otehrwsie the user will be given the option to 'Register' or 'Login'/ 
 - **Menus image with link**: This image is clickable and will take the user to the menus page.
 - **Reservations image with link**: This image is clickable and will take the user to the reservations page.
 - **Footer**: The footer displays some of the restaurants key information and has links to social accounts. 
 
-#### Menus - Food & Drinks
+### Menus - Food & Drinks
 - **Seperate menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. 
 
-#### Reservations
+### Reservations
 - **Reservation form**: This page consists of the customer & reservation model forms, they are displayed together to appear as one. If the user is logged in then their name & email address are pre-populated.
+- **Manage Reservations**: Logged in users are able to view, edit & delete any existing reservations they have. If the booking was confirmed before editing it will change to pending status. 
+- **Update customer details**: A logged in user can also update their phone number or full name that are stored in the customer model. 
 
-#### Contact Form
-- **Contact form**:
+### Contact Form
+- **Contact form**: All users are able to submit a contact form, which sends an email to the website owner using Google SMTP. 
 
 ---
 ## Technologies Used
@@ -80,9 +80,10 @@ I have used several technologies that have enabled this design to work:
     - Django is the framework that has been used to build the over project and it's apps.
 - [Python](https://www.python.org/)
     - Python is the core programming language used to write all of the code in this application to make it fully functional.
-- [Bootstrap]()
+- [Bootstrap](https://getbootstrap.com/)
+    - Used for creating responsive design.
 - [Google Fonts](https://fonts.google.com/)
-    - Used to obtain the fonts linked in the header, fonts used were Playfair and Cookie
+    - Used to obtain the fonts linked in the header, fonts used were Raleway and Lobster
 - [Font Awesome](https://fontawesome.com/)
     - Used to obtain the icons used on the high scores and rules pages.
 - [Google Developer Tools](https://developers.google.com/web/tools/chrome-devtools)
@@ -127,12 +128,13 @@ I have used several technologies that have enabled this design to work:
     - Used to generate responsive image used in README file.
 - [Wave](https://wave.webaim.org/)
     - Used to test the accessibility of the website.
----
+- [Animate](https://animate.style/)
+    - Used to animate main heading and forms. 
 ## Testing
 
-### User Stories
+I have used a combination of manual and automated testing to ensure the websites functionality meets the desired intent.
 
-[#1](https://github.com/daisygunn/grow-restaurant/issues/1)
+### User Stories
 
 ### Bugs and Fixes
 

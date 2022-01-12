@@ -16,7 +16,7 @@ def index(request):
 
 def send_message(request, contact_form):
     customer_name = contact_form.cleaned_data['name']
-    subject = (f'Message from {customer_name}')
+    subject = (f'Message from {customer_name}, {email}')
     message = contact_form.cleaned_data['message']
     email_from = contact_form.cleaned_data['email']
     recipient_list = [settings.EMAIL_HOST_USER]

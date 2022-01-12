@@ -4,7 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 import phone_field.models
 import datetime
 
-status_choices = (("pending", "pending"), ("confirmed", "confirmed"))
+status_choices = (("pending", "pending"), ("confirmed", "confirmed"), ("rejected", "rejected"))
 time_choices = (
     ("07:00", "07:00"),
     ("08:00", "08:00"),
