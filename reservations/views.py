@@ -3,8 +3,8 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.template.context_processors import csrf
+# from django.contrib.auth.decorators import login_required
+# from django.template.context_processors import csrf
 from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
 import logging
