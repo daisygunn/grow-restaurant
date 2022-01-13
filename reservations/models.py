@@ -1,8 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
-import phone_field.models
-import datetime
+from datetime import datetime, date
 
 status_choices = (("pending", "pending"), ("confirmed", "confirmed"), ("rejected", "rejected"))
 time_choices = (
@@ -61,7 +60,7 @@ class Reservation(models.Model):
     customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer", null=True)
     guests_choices = ((1, "1 person"), (2, "2 people"), (3, "3 people"), (4, "4 people"))
     no_of_guests = models.IntegerField(choices=guests_choices, default=1)
-    requested_date = models.DateField(default=datetime.date.today)
+    requested_date = models.DateField()
     requested_time = models.CharField(max_length=10, choices=time_choices, default='12:00')
     table_id = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="table_booked", null=True)
     status = models.CharField(
