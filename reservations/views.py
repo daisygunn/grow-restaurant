@@ -55,6 +55,12 @@ def get_tables_info():
 
     return max_tables
 
+def convert_date(customer_requested_date):
+    formatted_date = customer_requested_date.strftime('%d/%m/%Y')
+
+    return formatted_date
+
+
 # Create your views here.
 class ReservationsEnquiry(View):
     template_name = "reservations.html"
@@ -90,8 +96,9 @@ class ReservationsEnquiry(View):
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
+                date = convert_date(customer_requested_date)
                 messages.add_message(
-                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
+                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {date}")
 
                 return render(request, 'reservations.html', 
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
@@ -116,9 +123,9 @@ class ReservationsEnquiry(View):
                 reservation = reservation_form.save(commit=False)
                 reservation.customer_name = customer
                 reservation_form.save()
-
+                date = convert_date(customer_requested_date)
                 messages.add_message(
-                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
+                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
                 url = reverse('reservations')
@@ -238,9 +245,10 @@ class EditReservation(View):
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
+                date = convert_date(customer_requested_date)
                 # if the amount of tables already booked = the max tables then reject the reservation.
                 messages.add_message(
-                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
+                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {date}")
 
             else:
                 # Update the existing reservation with the form data.

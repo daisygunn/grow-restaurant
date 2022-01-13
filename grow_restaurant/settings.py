@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.conf.locale.en import formats as en_formats
 from django.contrib.messages import constants as messages
 if os.path.isfile("env.py"):
     import env
@@ -177,7 +178,7 @@ LOGGING = {
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'UTC'
 
@@ -187,9 +188,11 @@ USE_L10N = False
 
 USE_TZ = True
 
-DATE_INPUT_FORMAT = ['%d/%M/%Y', ]
+en_formats.DATE_INPUT_FORMAT = ['%d/%M/%Y', ]
 
-DATE_FORMAT = 'd/m/Y'
+en_formats.DATE_FORMAT = 'd/m/Y'
+
+en_formats.DATETIME_FORMAT = 'd/m/Y'
 
 TIME_INPUT_FORMATS = ['%H:%M', ]
 

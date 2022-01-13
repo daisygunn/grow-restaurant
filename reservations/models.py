@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
-from datetime import datetime, date
+import datetime
 
 status_choices = (("pending", "pending"), ("confirmed", "confirmed"), ("rejected", "rejected"))
 time_choices = (
