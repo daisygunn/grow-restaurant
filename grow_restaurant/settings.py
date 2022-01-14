@@ -188,7 +188,7 @@ USE_L10N = False
 
 USE_TZ = True
 
-en_formats.DATE_INPUT_FORMAT = ['%d/%M/%Y', ]
+DATE_INPUT_FORMAT = ['%d/%M/%Y', ]
 
 en_formats.DATE_FORMAT = 'd/m/Y'
 

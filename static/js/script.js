@@ -29,11 +29,9 @@ function checkDate() {
         e.preventDefault();
         var $this = $(this)
         var selectedDate = $('#id_requested_date').datepicker('getDate');
-        console.log(selectedDate)
         if ((selectedDate.getTime() < Date.now())) {
             alert("Selected date is in the past, please choose a date in the future.");
         } else {
-            console.log("Selected date is NOT in the past");
             $this.submit();
         }
     }))

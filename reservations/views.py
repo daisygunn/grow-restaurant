@@ -3,26 +3,12 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-# from django.contrib.auth.decorators import login_required
-# from django.template.context_processors import csrf
+import datetime
 from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
 import logging
 
 logger = logging.getLogger(__name__)
-
-
-def retreive_customer_info(reservation_form, customer_form):
-    # Retreive information from forms 
-    customer_requested_time = reservation_form.cleaned_data['requested_time']
-    customer_requested_date = reservation_form.cleaned_data['requested_date']
-    customer_requested_guests = reservation_form.cleaned_data['no_of_guests']
-    customer_name = customer_form.cleaned_data['full_name']
-    customer_phone_number = customer_form.cleaned_data['phone_number']
-
-    logger.warning(f"{customer_requested_time}, {customer_requested_date}")
-    
-    return customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number
 
 
 def check_availabilty(customer_requested_time, customer_requested_date):
@@ -55,11 +41,6 @@ def get_tables_info():
 
     return max_tables
 
-def convert_date(customer_requested_date):
-    formatted_date = customer_requested_date.strftime('%d/%m/%Y')
-
-    return formatted_date
-
 
 # Create your views here.
 class ReservationsEnquiry(View):
@@ -70,10 +51,7 @@ class ReservationsEnquiry(View):
             customer = get_customer_instance(request, User)
             customer_form = CustomerForm(instance=customer)
             reservation_form = ReservationForm()
-            # return render(
-            #     request, self.template_name, 
-            #     {'customer_form': customer_form, 'reservation_form': reservation_form}
-            #     )
+
         else:
             customer_form = CustomerForm()
             reservation_form = ReservationForm()
@@ -88,24 +66,31 @@ class ReservationsEnquiry(View):
 
         if customer_form.is_valid() and reservation_form.is_valid():
             # Retreive information from forms 
-            customer_requested_time, customer_requested_date, customer_requested_guests, customer_name, customer_phone_number = retreive_customer_info(reservation_form, customer_form)
+            customer_requested_date = request.POST.get('requested_date')
+            customer_requested_time = request.POST.get('requested_time')
+            customer_requested_guests = request.POST.get('no_of_guests')
+            customer_name = request.POST.get('full_name')
+            customer_phone_number = request.POST.get('phone_number')
+            
+            # Convert date in to format required by django
+            date_formatted = datetime.datetime.strptime(customer_requested_date, "%d/%m/%Y").strftime('%Y-%m-%d')
+            logger.warning(date_formatted)
 
             # Check to see how many bookings exist at that time/date
-            tables_booked = check_availabilty(customer_requested_time, customer_requested_date)
+            tables_booked = check_availabilty(customer_requested_time, date_formatted)
             max_tables = get_tables_info
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
-                date = convert_date(customer_requested_date)
                 messages.add_message(
-                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {date}")
+                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
 
                 return render(request, 'reservations.html', 
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
                     )            
                 
             else:
-                customer_email = customer_form.cleaned_data['email']
+                customer_email = request.POST.get('email')
                 customer_query = len(Customer.objects.filter(email=customer_email))
 
                 # Prevent duplicate 'customers' being added to database
@@ -120,12 +105,15 @@ class ReservationsEnquiry(View):
                 customer = Customer.objects.get(customer_id=current_customer_id)
                 logger.warning(f"Customer ID is: {current_customer_id}")
                 logger.warning(f"{customer}")
+                logger.warning(f"{customer_requested_date}")
                 reservation = reservation_form.save(commit=False)
+                # Pass formatted date in to model to prevent incorrect date saving
+                reservation.requested_date = date_formatted
                 reservation.customer_name = customer
                 reservation_form.save()
-                date = convert_date(customer_requested_date)
+                
                 messages.add_message(
-                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {date} has been sent.")
+                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for {customer_requested_guests} people at {customer_requested_time} on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
                 url = reverse('reservations')
