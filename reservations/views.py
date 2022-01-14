@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def check_availabilty(customer_requested_time, customer_requested_date):
-    
+ 
     # check availability against Reservation model using customer input 
     logger.warning(f"{customer_requested_time}, {customer_requested_date}")
 
@@ -103,9 +103,9 @@ class ReservationsEnquiry(View):
                 current_customer = Customer.objects.get(email=customer_email)
                 current_customer_id = current_customer.pk
                 customer = Customer.objects.get(customer_id=current_customer_id)
-                logger.warning(f"Customer ID is: {current_customer_id}")
-                logger.warning(f"{customer}")
-                logger.warning(f"{customer_requested_date}")
+                # logger.warning(f"Customer ID is: {current_customer_id}")
+                # logger.warning(f"{customer}")
+                # logger.warning(f"{customer_requested_date}")
                 reservation = reservation_form.save(commit=False)
                 # Pass formatted date in to model to prevent incorrect date saving
                 reservation.requested_date = date_formatted
@@ -133,10 +133,10 @@ def retrieve_reservations(self, request, User):
     if len(Customer.objects.filter(email=customer_email)) != 0:
         current_customer = Customer.objects.get(email=customer_email)
         current_customer_id = current_customer.pk
-        logger.warning(f"user = {customer_email}") 
+        # logger.warning(f"user = {customer_email}") 
 
         get_reservations = Reservation.objects.filter(customer_name=current_customer_id).values().order_by('requested_date')
-        logger.warning(f"{get_reservations}")
+        # logger.warning(f"{get_reservations}")
 
         if len(get_reservations) == 0:
             # if no reservations
@@ -186,6 +186,9 @@ class EditReservation(View):
     def get(self, request, reservation_id, User=User, *args, **kwargs):
         # Get reservation object based on id
         reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        # Convert date to display in dd/mm/YYYY format
+        date_to_string = reservation.requested_date.strftime("%d/%m/%Y")
+        reservation.requested_date = date_to_string
         customer = get_customer_instance(request, User)
         logger.warning(reservation)
         logger.warning(customer)
@@ -224,26 +227,28 @@ class EditReservation(View):
 
         if reservation_form.is_valid():
             # get the information from the form 
-            customer_requested_time = reservation_form.cleaned_data['requested_time']
-            customer_requested_date = reservation_form.cleaned_data['requested_date']
+            customer_requested_date = request.POST.get('requested_date')
+            customer_requested_time = request.POST.get('requested_time')
+            # Convert date into format required by django
+            date_formatted = datetime.datetime.strptime(customer_requested_date, "%d/%m/%Y").strftime('%Y-%m-%d')
             # Check the amount of tables already booked at that date and time
-            tables_booked = check_availabilty(customer_requested_time, customer_requested_date)
+            tables_booked = check_availabilty(customer_requested_time, date_formatted)
             # Get total number of tables in restaurant
             max_tables = get_tables_info
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
-                date = convert_date(customer_requested_date)
                 # if the amount of tables already booked = the max tables then reject the reservation.
                 messages.add_message(
-                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {date}")
+                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
 
             else:
                 # Update the existing reservation with the form data.
                 reservation.reservation_id = reservation_id
                 reservation.requested_time = customer_requested_time
-                reservation.requested_date = customer_requested_date
-                reservation.requested_guests = reservation_form.cleaned_data['no_of_guests']
+                # Pass formatted date to prevent it from saving incorrectly
+                reservation.requested_date = date_formatted
+                reservation.requested_guests = request.POST.get('no_of_guests')
                 # Change status to pending as the admin needs to approve
                 reservation.status = 'pending'
                 reservation_form.save(commit=False)
@@ -256,7 +261,8 @@ class EditReservation(View):
                 return render(request, 'manage_reservations.html', {'reservations': current_reservations})
                 
         else:
-            messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
+            messages.add_message(
+                request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
             
         return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation, 'customer': customer, })
 
@@ -329,10 +335,8 @@ class EditCustomerDetails(View):
 
         customer_form = CustomerForm(data=request.POST, instance=customer)
         logger.warning(customer)
-        
-
+    
         # Prevent duplicate 'customers' being added to database
- 
         if customer_form.is_valid():
             if customer == None:
                 customer_form.save()
@@ -340,9 +344,9 @@ class EditCustomerDetails(View):
             else:
                 if customer_form.has_changed():
                     # get the information from the form
-                    customer_full_name = customer_form.cleaned_data['full_name']
-                    customer_email = customer_form.cleaned_data['email']
-                    customer_phone_number = customer_form.cleaned_data['phone_number']
+                    customer_full_name = request.POST.get('full_name')
+                    customer_email = request.POST.get('email')
+                    customer_phone_number = request.POST.get('phone_number')
                 
                     customer_form.save(commit=False)
                     customer.full_name = customer_full_name
