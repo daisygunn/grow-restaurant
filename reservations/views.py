@@ -270,17 +270,15 @@ class DeleteReservation(View):
     # View for user to delete reservations
     def get(self, request, reservation_id, User=User, *args, **kwargs):
         reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
-        # customer_email = request.user.email
-        # customer = Customer.objects.filter(email=customer_email).first()
         customer = get_customer_instance(request, User)
         
-        name1 = reservation.customer_name
-        name2 = customer
+        name_in_model = reservation.customer_name
+        name_of_user = customer
 
         logger.warning(name1)
         logger.warning(name2)
 
-        if name1 != name2:
+        if name_in_model != name_of_user:
             messages.add_message(request, messages.ERROR, "You are trying to delete a reservation that is not yours.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
@@ -308,10 +306,6 @@ class DeleteReservation(View):
 
         url = reverse('manage_reservations')
         return HttpResponseRedirect(url)
-        # return render(request, 'manage_reservations.html', 
-        #             {'reservations': current_reservations,
-        #             'customer': customer})
-
 
 class EditCustomerDetails(View):
     # View for user to be able to edit their information
