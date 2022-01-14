@@ -2,7 +2,7 @@ from django.test import TestCase
 from reservations.models import Reservation, Table, Customer
 
 
-class TestModels(TestCase):
+class TestReservationsModels(TestCase):
 
     def setUp(self):
         self.table = Table(table_id=1, table_name='Table 1', max_no_people=4)

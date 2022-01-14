@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from menus.models import FoodItem, DrinkItem
 
 
-class TestViews(TestCase):
+class TestMenusViews(TestCase):
     def setUp(self):
         self.client = Client()
         self.menus_url = reverse('menus')

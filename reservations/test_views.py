@@ -4,7 +4,7 @@ from reservations.models import Customer, Table, Reservation
 from django.contrib.auth.models import User
 
 
-class TestViews(TestCase):
+class TestReservationsViews(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username='project.test@test.com', email='project.test@test.com', password='12345')
@@ -98,3 +98,15 @@ class TestViews(TestCase):
         self.assertEquals(len(Reservation.objects.all()), 2)
         self.assertEquals(len(Customer.objects.all()), 2)
         
+
+    def test_edit_reservation_POST_updates_model(self):
+        customer = self.customer
+        reservation = self.reservation
+
+        updated_date = '2022-04-01'
+
+        reservation.requested_date = updated_date
+
+        reservation.save()
+
+        self.assertEquals(self.reservation.requested_date, '2022-04-11')

@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from reservations.views import ReservationsEnquiry, ManageReservations, EditReservation, DeleteReservation
 
 # Create your tests here
-class TestUrls(SimpleTestCase):
+class TestReservationsUrls(SimpleTestCase):
     def test_reservations_url_is_resolved(self):
         url = reverse('reservations')
         self.assertEquals(resolve(url).func.view_class, ReservationsEnquiry)
