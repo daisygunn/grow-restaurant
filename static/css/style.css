@@ -202,10 +202,18 @@ li select,
     text-transform: capitalize;
 }
 
-.submit-button:hover {
+.submit-button:hover, 
+.cancel-button:hover {
     color: #fff;
     background-color: #C97064;
     border-color: #C97064;
+}
+
+.cancel-button {
+    color: white;
+    background-color: #ee0a0a;
+    border-color: #ee0a0a;
+    text-transform: capitalize;    
 }
 
 .inline-btn {
@@ -244,9 +252,16 @@ textarea#id_message.textarea {
     padding: 2px;
 }
 
-#reservation-list {
+#reservation-list, .reservation-item {
     list-style: none;
     padding-left: 0;
+}
+
+/* Delete Reservation */
+
+button.close {
+    background-color: none;
+    color: none;
 }
 
 /* Accounts pages */

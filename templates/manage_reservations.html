@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8 text-center">
             <h2 class=" mt-2 mb-3">Manage your reservations at <span class="brand-text">GROW</span></h2>
@@ -13,27 +13,46 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="col-sm-6">
-            <ul id="reservation-list">
+
+        <div class="col-sm-12">
+            <div class="row d-flex justify-content-center">
                 {% for reservation in reservations %}
-                <li class="reservation-item">
-                    <h5>Reservation ID: {{ reservation.reservation_id }} - {{ reservation.no_of_guests }} people at
-                        {{ reservation.requested_time }} on {{ reservation.requested_date|date:"d/m/Y" }} </h5>
-                    <p> This reservation is <strong class="{{ reservation.status }}">{{ reservation.status }}</strong>
-                    </p>
-                    <div class="text-center">
-                        <a href="{% url 'edit_reservation' reservation.reservation_id %}"
-                            class="button submit-button inline-btn">Edit Reservation</a>
-                        <a href="{% url 'delete_reservation' reservation.reservation_id %}"
-                            class="button submit-button inline-btn">Delete Reservation</a>
-                    </div>
-                    <hr>
-                </li>
+                <div class="col-md-6 col-lg-4">
+                    <ul id="reservation-list" class="text-center">
+                        <li class="reservation-item">
+                            <h5>Reservation ID: {{ reservation.reservation_id }} </h5>
+                        </li>
+                        {% if reservation.no_of_guests == 1 %}
+                        <li class="reservation-item">Guests: {{ reservation.no_of_guests }} person </li>
+                        {% else %}
+                        <li class="reservation-item">Guests: {{ reservation.no_of_guests }} people </li>
+                        {% endif %}
+                        <li class="reservation-item">Time: {{ reservation.requested_time }} </li>
+                        <li class="reservation-item">Date: {{ reservation.requested_date|date:"d/m/Y" }} </li>
+
+                        <p class="mt-3 mb-4"> This reservation is <strong
+                                class="{{ reservation.status }}">{{ reservation.status }}</strong>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="{% url 'edit_reservation' reservation.reservation_id %}"
+                                class="button submit-button inline-btn">Edit Reservation</a>
+                            <a href="{% url 'delete_reservation' reservation.reservation_id %}"
+                                class="button cancel-button inline-btn">Cancel Reservation</a>
+                        </div>
+                        <hr>
+                        </li>
+                    </ul>
+                </div>
+
+                {% if forloop.counter|divisibleby:2 %}
+            </div>
+            <div class="row d-flex justify-content-center">
+                {% endif %}
                 {% endfor %}
-            </ul>
+            </div>
         </div>
     </div>
-
 </div>
 
 {% endblock %}

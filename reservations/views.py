@@ -149,7 +149,6 @@ def retrieve_reservations(self, request, User):
         logger.warning(f"No user in customer model") 
         return 1
 
-
 class ManageReservations(View):
     # View for user to manage any existing reservations
     def get(self, request, User=User, *args, **kwargs):        
@@ -272,11 +271,9 @@ class DeleteReservation(View):
         reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
         customer = get_customer_instance(request, User)
         
+        # compare user & reservation model to make sure reservations can only be delete by the owner
         name_in_model = reservation.customer_name
         name_of_user = customer
-
-        logger.warning(name1)
-        logger.warning(name2)
 
         if name_in_model != name_of_user:
             messages.add_message(request, messages.ERROR, "You are trying to delete a reservation that is not yours.")

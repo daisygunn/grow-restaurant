@@ -43,6 +43,10 @@ function deleteModal() {
     $("#delete-reservation").on('click', function () {
         $('#confirmationModal').modal('show');
     });
+
+    $(".close").on('click', function () {
+        $('#confirmationModal').modal('hide');
+    });
 };
 
 // Returns a function, that, as long as it continues to be invoked, will not
