@@ -19,7 +19,7 @@
             {% for fooditem in food_items.breakfast_items %}
 
             <h5> {{ fooditem.dish_name }} </h5>
-            <p><em> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
+            <p><em> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price|floatformat:2 }}</strong></p>
             <p> {{ fooditem.dietary }} | Allergens: <strong>{{ fooditem.allergens }}</strong></p>
 
             {% endfor %}
@@ -37,7 +37,7 @@
             {% for fooditem in food_items.dinner_items %}
 
             <h5> {{ fooditem.dish_name }} </h5>
-            <p> <em>{{ fooditem.description }} </em> | <strong>£{{ fooditem.price}}</strong></p>
+            <p> <em>{{ fooditem.description }} </em> | <strong>£{{ fooditem.price|floatformat:2 }}</strong></p>
             <p> {{ fooditem.dietary }} | Allergens: <strong>{{ fooditem.allergens }}</strong></p>
 
             {% endfor %}

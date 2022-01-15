@@ -21,7 +21,7 @@
 
             <h5> {{ drinkitem.drink_name }} </h5>
 
-            <p> <em>{{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price}}</strong></p>
+            <p> <em>{{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price|floatformat:2 }}</strong></p>
             <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
 
             {% endfor %}
@@ -41,7 +41,7 @@
 
             <h5> {{ drinkitem.drink_name }} </h5>
 
-            <p> <em>{{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price}}</strong></p>
+            <p> <em>{{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price|floatformat:2 }}</strong></p>
             <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
 
             {% endfor %}
@@ -59,7 +59,7 @@
             {% for drinkitem in drinks_items.alcohol_items %}
 
             <h5> {{ drinkitem.drink_name }} </h5>
-            <p> <em> {{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price}}</strong></p>
+            <p> <em> {{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price|floatformat:2 }}</strong></p>
             <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
 
             {% endfor %}
