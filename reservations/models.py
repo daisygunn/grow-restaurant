@@ -3,13 +3,15 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 import datetime
 
-status_choices = (("pending", "pending"), ("confirmed", "confirmed"), ("rejected", "rejected"))
+status_choices = (("pending", "pending"),
+                  ("confirmed", "confirmed"),
+                  ("rejected", "rejected"))
 time_choices = (
     ("07:00", "07:00"),
     ("08:00", "08:00"),
     ("09:00", "09:00"),
     ("10:00", "10:00"),
-    ("11:00", "11:00"), 
+    ("11:00", "11:00"),
     ("12:00", "12:00"),
     ("13:00", "13:00"),
     ("14:00", "14:00"),
@@ -21,6 +23,7 @@ time_choices = (
     ("20:00", "20:00"),
     ("21:00", "21:00"),
     )
+
 
 # Create your models here.
 class Customer(models.Model):
@@ -45,7 +48,8 @@ class Table(models.Model):
     Restaurant table model
     """
     table_id = models.AutoField(primary_key=True)
-    table_name = models.CharField(max_length=10, default="New table", unique=True)
+    table_name = models.CharField(
+        max_length=10, default="New table", unique=True)
     max_no_people = models.IntegerField()
 
     def __str__(self):
@@ -57,12 +61,17 @@ class Reservation(models.Model):
     Reservation model, which uses information from Customer and Table
     """
     reservation_id = models.AutoField(primary_key=True)
-    customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer", null=True)
-    guests_choices = ((1, "1 person"), (2, "2 people"), (3, "3 people"), (4, "4 people"))
+    customer_name = models.ForeignKey(
+        Customer, on_delete=models.CASCADE, related_name="customer", null=True)
+    guests_choices = ((1, "1 person"), (2, "2 people"),
+                      (3, "3 people"), (4, "4 people"))
     no_of_guests = models.IntegerField(choices=guests_choices, default=1)
     requested_date = models.DateField()
-    requested_time = models.CharField(max_length=10, choices=time_choices, default='12:00')
-    table_id = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="table_booked", null=True)
+    requested_time = models.CharField(
+        max_length=10, choices=time_choices, default='12:00')
+    table_id = models.ForeignKey(
+        Table, on_delete=models.CASCADE, related_name="table_booked",
+        null=True)
     status = models.CharField(
         max_length=10, choices=status_choices, default="pending")
 

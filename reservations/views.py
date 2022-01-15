@@ -235,9 +235,12 @@ class EditReservation(View):
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
-                # if the amount of tables already booked = the max tables then reject the reservation.
+                """ if the amount of tables already booked = the max tables 
+                then reject the reservation."""
                 messages.add_message(
-                    request, messages.ERROR, f"Unfortunately we are fully booked at {customer_requested_time} on {customer_requested_date}")
+                    request, messages.ERROR, 
+                    "Unfortunately we are fully booked at" 
+                    f"{customer_requested_time} on {customer_requested_date}")
 
             else:
                 # Update the existing reservation with the form data.
@@ -250,42 +253,55 @@ class EditReservation(View):
                 reservation.status = 'pending'
                 reservation_form.save(commit=False)
                 reservation_form.save()
-                messages.add_message(request, messages.SUCCESS, "Your reservation has now been updated.")
+                messages.add_message(request, messages.SUCCESS, 
+                                    "Your reservation has now been updated.")
                 # Retreive new list of reservations to display
-                current_reservations = retrieve_reservations(self, request, User)
+                current_reservations = retrieve_reservations(
+                    self, request, User)
 
                 # Return user to manage reservations page
-                return render(request, 'manage_reservations.html', {'reservations': current_reservations})
-                
+                return render(request, 'manage_reservations.html',
+                              {'reservations': current_reservations})
+
         else:
             messages.add_message(
-                request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
-            
-        return render(request, 'edit_reservation.html', {'reservation_form': reservation_form, 'customer_form': customer_form, 'reservation': reservation, 'customer': customer, })
+                request, messages.ERROR,
+                "Something is not right with your form"
+                "- please make sure your email address & phone number are"
+                "entered in the correct format.")
+
+        return render(request, 'edit_reservation.html',
+                      {'reservation_form': reservation_form,
+                       'customer_form': customer_form,
+                       'reservation': reservation,
+                       'customer': customer, })
+
 
 class DeleteReservation(View):
     # View for user to delete reservations
     def get(self, request, reservation_id, User=User, *args, **kwargs):
-        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        reservation = get_object_or_404(
+            Reservation, reservation_id=reservation_id)
         customer = get_customer_instance(request, User)
-        
-        # compare user & reservation model to make sure reservations can only be delete by the owner
+
+        """ compare user & reservation model to make sure
+        reservations can only be delete by the owner """
         name_in_model = reservation.customer_name
         name_of_user = customer
 
         if name_in_model != name_of_user:
-            messages.add_message(request, messages.ERROR, "You are trying to delete a reservation that is not yours.")
+            messages.add_message(request, messages.ERROR,
+                                 "You are trying to delete a",
+                                 "reservation that is not yours.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
-        
+
         else:
             return render(request, 'delete_reservation.html',
-            {'customer': customer,
-            'reservation': reservation,
-            'reservation_id': reservation_id 
-            })
+                          {'customer': customer,
+                           'reservation': reservation,
+                           'reservation_id': reservation_id, })
 
-    
     def post(self, request, reservation_id, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
         # get reservation from database
@@ -294,13 +310,15 @@ class DeleteReservation(View):
         logger.warning(f"{reservation}")
         # Delete the reservation
         reservation.delete()
-        messages.add_message(request, messages.SUCCESS, "Your reservation has now been deleted.")
+        messages.add_message(request, messages.SUCCESS,
+                             "Your reservation has now been deleted.")
         # Get updated list of reservations
         current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
 
         url = reverse('manage_reservations')
         return HttpResponseRedirect(url)
+
 
 class EditCustomerDetails(View):
     # View for user to be able to edit their information
@@ -313,51 +331,53 @@ class EditCustomerDetails(View):
         # return both forms with the existing information
         customer_form = CustomerForm(instance=customer)
 
-        return render(request, 'edit_customer_details.html', 
-        {'customer_form': customer_form,
-        'customer': customer,
-        })
+        return render(request, 'edit_customer_details.html',
+                      {'customer_form': customer_form,
+                       'customer': customer, })
 
-    
     def post(self, request, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
 
         customer_form = CustomerForm(data=request.POST, instance=customer)
         logger.warning(customer)
-    
+
         # Prevent duplicate 'customers' being added to database
         if customer_form.is_valid():
-            if customer == None:
+            if customer is None:
                 customer_form.save()
-                messages.add_message(request, messages.SUCCESS, "Your details have now been added.")
+                messages.add_message(request, messages.SUCCESS,
+                                     "Your details have now been added.")
             else:
                 if customer_form.has_changed():
                     # get the information from the form
                     customer_full_name = request.POST.get('full_name')
                     customer_email = request.POST.get('email')
                     customer_phone_number = request.POST.get('phone_number')
-                
+
                     customer_form.save(commit=False)
                     customer.full_name = customer_full_name
                     customer.phone_number = customer_phone_number
                     customer_form.save()
-                    messages.add_message(request, messages.SUCCESS, "Your details have now been updated.")
-                    return render(request, 'edit_customer_details.html', 
-                    {'customer_form': customer_form,
-                    'customer': customer,
-                    })
+                    messages.add_message(request, messages.SUCCESS,
+                                         "Your details have now been updated.")
+                    return render(request, 'edit_customer_details.html',
+                                  {'customer_form': customer_form,
+                                   'customer': customer, })
 
                 else:
-                    messages.add_message(request, messages.WARNING, "No information has changed.")
-                    return render(request, 'edit_customer_details.html', 
-                    {'customer_form': customer_form,
-                    'customer': customer,
-                    })
-            
+                    messages.add_message(request, messages.WARNING,
+                                         "No information has changed.")
+                    return render(request, 'edit_customer_details.html',
+                                  {'customer_form': customer_form,
+                                   'customer': customer, })
+
         else:
-            messages.add_message(request, messages.ERROR, "Something is not right with your form - please make sure your email address & phone number are entered in the correct format.")
-            
-        return render(request, 'edit_customer_details.html', 
-        {'customer_form': customer_form,
-        'customer': customer,
-        })
+            messages.add_message(
+                request, messages.ERROR,
+                "Something is not right with your form",
+                "please make sure your email address & phone number",
+                "are entered in the correct format.")
+
+        return render(request, 'edit_customer_details.html',
+                      {'customer_form': customer_form,
+                       'customer': customer, })

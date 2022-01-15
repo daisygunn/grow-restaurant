@@ -22,7 +22,6 @@ class TestMenusViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'food_menu.html')
 
-
     def test_drink_menu_GET(self):
         response = self.client.get(self.drink_menu_url)
 
