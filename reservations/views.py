@@ -12,9 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def check_availabilty(customer_requested_time, customer_requested_date):
- 
-    # check availability against Reservation model using customer input 
-    logger.warning(f"{customer_requested_time}, {customer_requested_date}")
+    """ check availability against Reservation model using customer input """
 
     # Check to see how many bookings exist at that time/date
     no_tables_booked = len(Reservation.objects.filter(

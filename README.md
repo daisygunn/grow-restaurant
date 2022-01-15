@@ -1,10 +1,10 @@
 # Grow Restaurant
 
-![]()
+![](assets/images/responsive.jpg)
 
 [Live application can be found here](https://grow-restaurant.herokuapp.com/)
 
-This is a full-stack frameworks project built using Django, Python, HTML, CSS and JavaScript. This is a restaurant website designed to display menus to customers & allow them to make reservations. This project has been built for educational purpose.
+This is a full-stack framework project built using Django, Python, HTML, CSS and JavaScript. This is a restaurant website designed to display menus to customers & allow them to make/edit/delete reservations. This project has been built for educational purposes.
 
 ---
 ## UX
@@ -47,9 +47,9 @@ This website has been designed with simplicity in mind, each page only have enti
 The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
 
 ### Surface
-The colour pallete I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. 
+Initially the colour pallete I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat and so I chose to add a pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
 
-I chose the fonts 'Abril Fatface' & 'Raleway', I wanted a bold/statement font to use for headings which is why I chose 'Abril' and then 'Raleway' for the general content as it's easier to read for the user. 
+I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use for headings which is why I chose 'Lobster' and then 'Raleway' for the general content as it's easier to read for the user. 
 
 ---
 ## Features
@@ -130,13 +130,27 @@ I have used several technologies that have enabled this design to work:
     - Used to test the accessibility of the website.
 - [Animate](https://animate.style/)
     - Used to animate main heading and forms. 
+
 ## Testing
 
 I have used a combination of manual and automated testing to ensure the websites functionality meets the desired intent.
 
-### User Stories
+### Manual Testing
+
+[TESTING.md](TESTING.md)
+
+### Automated Testing
+I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written.
+
+To generate your own coverage report from the command-line:
+
+1. Install the package using `pip3 install coverage`
+2. Run `coverage run manage.py test`
+3. Then `coverage html` to generate the report
+4. You can view the report in a browser by opening the `index.html` file from inside the `htmlcov` folder.
 
 ### Bugs and Fixes
+ - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using 'cleaned-data' to retrieve the information from the post request and reformatted the date myself using `strptime`.
 
 ---
 ## Deployment
@@ -208,7 +222,21 @@ In the Deploy tab:
 ---
 ## Credits
 
+[Full width pic header](https://startbootstrap.com/template/full-width-pics)
 
+[Navbar](https://getbootstrap.com/docs/5.0/components/navbar/)
+
+[To display multiple queryset](https://stackoverflow.com/questions/48872380/display-multiple-queryset-in-list-view)
+
+[Django phone number](https://github.com/stefanfoulis/django-phonenumber-field)
+
+[Gmail SMTP](https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e)
+
+[Updating form](https://stackoverflow.com/questions/42217334/django-get-data-and-edit-in-the-same-form-edit-in-one-place)
+
+[Debounce](https://davidwalsh.name/javascript-debounce-function)
+
+[Animate](https://animate.style/)
 
 ---
 ## Acknowledgements
