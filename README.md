@@ -120,6 +120,8 @@ I have used several technologies that have enabled this design to work:
     - Used to validate all HTML code written and used in this webpage.
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
     - Used to validate all CSS code written and used in this webpage.
+- [JSHint](https://jshint.com/)
+    - Used to validate JS code
 - [Freeformatter CSS Beautify](https://www.freeformatter.com/css-beautifier.html)
     - Used to accurately format my CSS code.
 - [Freeformatter HTML Formatter](https://www.freeformatter.com/html-formatter.html)
