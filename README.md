@@ -27,22 +27,32 @@ This website will offer all of these things whilst also allowing for intuitive n
 Due to the age group of the users, it is assumed that most users will be viewing the site on their mobile phones and therefore creating something responsive is integral to the design, I have used Bootstrap elements & custom CSS to allow for this.
 
 ### Scope
-In order to acheuve the desired user & business goals the following features will be included in this release:
+In order to acheive the desired user & business goals the following features will be included in this release:
 
 - Responsive navbar that will navigate to the various pages throughout the site
 - Landing page with brief information about the restaurant and links to the menu and reservations page
 - Menus page, with links to food & drinks menu respectively
 - Reservations page, with booking form to enquire with the restaurant
+- Manage reservations page, where logged in users are able to edit/delete exisiting reservations they have.
+- Update details page, for logged in users to update their details which in turn updates the customer model. 
 - Register/login feature
 - Contact form
 
 ### Structure
-This website has been designed with simplicity in mind, each page only have entirely relevant information on it so that the user is able to find what they want quickly without having to read through unnessecary things. I have seperated out each key feature to really highlight their functionality to the user.
+This website has been designed with simplicity in mind, each page only has key information on it so that the user is able to find what they want quickly without having to read through unnessecary things. I have seperated out each key feature to really highlight their functionality to the user.
+
+The website is made of three apps:
+
+1. Website - core functionality
+2. Menus - menu display
+3. Reservations - reservations enquiries & customer management
 
 ![Database Schemas can be found here](assets/images/database_schemas.jpg)
 
 ### Skeleton
 [Wireframes can be viewed here](assets/documents/grow-wireframes.pdf)
+
+Please note the actual website differs slightly from the original wireframes. 
 
 The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
 
@@ -134,8 +144,27 @@ I have used several technologies that have enabled this design to work:
     - Used to animate main heading and forms. 
 
 ## Testing
-
 I have used a combination of manual and automated testing to ensure the websites functionality meets the desired intent.
+
+### Code Validation
+All of my code has been validated using an online validator specific to the language, all code now passes with zero errors. 
+
+- [W3C Markup Validation Service](https://validator.w3.org/) 
+    - Used to validate all HTML code written and used in this webpage.
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
+    - Used to validate all CSS code written and used in this webpage.
+- [JSHint](https://jshint.com/)
+    - Used to validate JS code
+- [Pep8](http://pep8online.com/)
+    - Used to test my code for any issues or errors.
+
+In addition to this I have also used online validators to test the accessbility of my website:
+- [Wave](https://wave.webaim.org/)
+    - Used to test the accessibility of the website.
+- [Color Contrast Accessibility Validator](https://color.a11y.com/)
+    - Allowed me to test the colour contrast of my webpage.
+
+
 
 ### Manual Testing
 
@@ -153,6 +182,9 @@ To generate your own coverage report from the command-line:
 
 ### Bugs and Fixes
  - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using 'cleaned-data' to retrieve the information from the post request and reformatted the date myself using `strptime`.
+
+ - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others I came to the conclusion that due to me linking an image within the static directory in my css file that was also in the static directory this is what was causing the problem. For that reason I have linked directly the cloudinary image url. 
+
 
 ---
 ## Deployment
@@ -224,6 +256,8 @@ In the Deploy tab:
 ---
 ## Credits
 
+Throughout the process of building this website I have used various sources online to help me fix bugs & tackle problems. 
+
 [Full width pic header](https://startbootstrap.com/template/full-width-pics)
 
 [Navbar](https://getbootstrap.com/docs/5.0/components/navbar/)
@@ -239,6 +273,12 @@ In the Deploy tab:
 [Debounce](https://davidwalsh.name/javascript-debounce-function)
 
 [Animate](https://animate.style/)
+
+[Testing](https://www.youtube.com/watch?v=0MrgsYswT1c)
+
+[Unsplash for images](https://unsplash.com/@daisygunn94/likes)
+
+[404 page template](https://colorlib.com/wp/template/colorlib-error-404-15/)
 
 ---
 ## Acknowledgements
