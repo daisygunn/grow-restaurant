@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center">
 
         <div class="col-sm-8 text-center">
             <h2 class="text-center mt-2 mb-3">Edit your details at <span class="brand-text">GROW</span></h2>
-            <p>Please note as your email is associated with your User account this must be changed <a href="{% url 'account_email' %}">here</a>.
+            <!-- Link to manage User email -->
+            <p>Please note as your email is associated with your user account this must be changed <a href="{% url 'account_email' %}">here</a>.
             </p>
         </div>
     </div>

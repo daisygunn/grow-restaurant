@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
             <h2 class="text-center my-2">Drinks at <span class="brand-text">GROW</span></h2>
@@ -20,14 +20,14 @@
             {% for drinkitem in drinks_items.hotdrinks_items %}
 
             <h5> {{ drinkitem.drink_name }} </h5>
-
+            <!-- Display price with 2 decimal spaces -->
             <p> <em>{{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price|floatformat:2 }}</strong></p>
             <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
 
             {% endfor %}
 
             {% else%}
-
+            <!-- If no items found display this placeholder -->
             <p>Menu being updated - please come back soon!</p>
 
             {% endif %}
@@ -40,14 +40,14 @@
             {% for drinkitem in drinks_items.fruitjuices_smoothies_items %}
 
             <h5> {{ drinkitem.drink_name }} </h5>
-
+            <!-- Display price with 2 decimal spaces -->
             <p> <em>{{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price|floatformat:2 }}</strong></p>
             <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
 
             {% endfor %}
 
             {% else%}
-
+            <!-- If no items found display this placeholder -->
             <p>Menu being updated - please come back soon!</p>
             {% endif %}
 
@@ -59,13 +59,14 @@
             {% for drinkitem in drinks_items.alcohol_items %}
 
             <h5> {{ drinkitem.drink_name }} </h5>
+            <!-- Display price with 2 decimal spaces -->
             <p> <em> {{ drinkitem.description }}</em> | <strong>£{{ drinkitem.price|floatformat:2 }}</strong></p>
             <p> {{ drinkitem.dietary }} | Allergens: {{ drinkitem.allergens }}</p>
 
             {% endfor %}
 
             {% else%}
-
+            <!-- If no items found display this placeholder -->
             <p>Menu being updated - please come back soon!</p>
 
             {% endif %}

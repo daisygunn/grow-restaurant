@@ -2,10 +2,11 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
             <h2 class="text-center my-2">Food at <span class="brand-text">GROW</span></h2>
+            <!-- Dietary key -->
             <p class="text-center mb-3">V - Veggie | VE - Vegan | GF - Gluten Free</p>
         </div>
     </div>
@@ -19,12 +20,14 @@
             {% for fooditem in food_items.breakfast_items %}
 
             <h5> {{ fooditem.dish_name }} </h5>
+            <!-- Display price with 2 decimal spaces -->
             <p><em> {{ fooditem.description }} </em> | <strong>£{{ fooditem.price|floatformat:2 }}</strong></p>
             <p> {{ fooditem.dietary }} | Allergens: <strong>{{ fooditem.allergens }}</strong></p>
 
             {% endfor %}
 
             {% else%}
+            <!-- If no items found display this placeholder -->
             <p>Menu being updated - please come back soon!</p>
 
             {% endif %}
@@ -37,12 +40,14 @@
             {% for fooditem in food_items.dinner_items %}
 
             <h5> {{ fooditem.dish_name }} </h5>
+            <!-- Display price with 2 decimal spaces -->
             <p> <em>{{ fooditem.description }} </em> | <strong>£{{ fooditem.price|floatformat:2 }}</strong></p>
             <p> {{ fooditem.dietary }} | Allergens: <strong>{{ fooditem.allergens }}</strong></p>
 
             {% endfor %}
             
             {% else%}
+            <!-- If no items found display this placeholder -->
             <p>Menu being updated - please come back soon!</p>
             {% endif %}
         </div>

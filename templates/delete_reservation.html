@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center mb-3">
             <h2 class="text-center mt-2 mb-3">Cancel your reservation at <span class="brand-text">GROW</span></h2>
@@ -12,10 +12,12 @@
     <div class="row d-flex justify-content-center">
         <div class="col-sm-6">
             <form method="POST" class="text-center mb-5" id="delete-form">
+                <!-- Display the reservation -->
                 <ul class="reservation"></ul>
                 {% csrf_token %}
                 <h5>Reservation ID: {{ reservation.reservation_id }} </h5>
                 </li>
+                <!-- Display '1 person' instead of '1 people' -->
                 {% if reservation.no_of_guests == 1 %}
                 <li class="reservation-item">Guests: {{ reservation.no_of_guests }} person </li>
                 {% else %}
@@ -24,7 +26,7 @@
                 <li class="reservation-item">Time: {{ reservation.requested_time }} </li>
                 <li class="reservation-item">Date: {{ reservation.requested_date|date:"d/m/Y" }} </li>
 
-
+                <!-- Button to open modal -->
                 <button type="button" data-toggle="modal" data-target="#confirmationModal" href="#confirmationModal"
                     class="button mt-4 text-center cancel-button" id="delete-reservation">Cancel
                     Reservation</button>
@@ -46,7 +48,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary close" data-dismiss="modal">Nope, changed my mind!</button>
-                                <button type="submit" class="btn btn-danger">Yes, delete.</button>
+                                <button type="submit" class="btn btn-danger">Delete.</button>
                             </div>
                         </div>
                     </div>
