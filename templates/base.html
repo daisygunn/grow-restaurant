@@ -44,7 +44,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item light-text">
+                    <li class="nav-item light-text green-bground">
                         <a class="nav-link {% if request.resolver_match.url_name == 'index' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
@@ -64,12 +64,12 @@
                             <li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item green-bground">
                         <a class="nav-link {% if request.resolver_match.url_name == 'reservations' %}
                         green-text {% else %} text-white {% endif %}"
                             href="{% url 'reservations' %}">Reservations</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item green-bground">
                         <a class="nav-link {% if request.resolver_match.url_name == 'contact_us' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'contact_us' %}">Contact Us</a>
                     </li>
