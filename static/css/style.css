@@ -65,6 +65,10 @@ a:hover {
 
 /* Navbar */
 
+nav {
+    border-bottom: 3px solid #C97064;
+}
+
 #nav-heading {
     font-size: 25px;
     color: white;
@@ -76,7 +80,7 @@ a:hover {
     color: white;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav, 
+.navbar-dark .navbar-nav .nav-link:hover,
 .dropdown-item:hover,
 .navbar-active {
     color: #007842;
@@ -203,7 +207,7 @@ li select,
     text-transform: capitalize;
 }
 
-.submit-button:hover, 
+.submit-button:hover,
 .cancel-button:hover {
     color: #fff;
     background-color: #C97064;
@@ -214,7 +218,7 @@ li select,
     color: white;
     background-color: #ee0a0a;
     border-color: #ee0a0a;
-    text-transform: capitalize;    
+    text-transform: capitalize;
 }
 
 .inline-btn {
@@ -260,7 +264,8 @@ textarea#id_message.textarea {
 }
 
 
-#reservation-list, .reservation-item {
+#reservation-list,
+.reservation-item {
     list-style: none;
     padding-left: 0;
 }
