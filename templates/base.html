@@ -46,32 +46,32 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item light-text">
                         <a class="nav-link {% if request.resolver_match.url_name == 'index' %}
-                        navbar-active {% else %} text-white {% endif %}" href="{% url 'index' %}">Home</a>
+                        green-text {% else %} text-white {% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown green-bground">
                         <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'menus' %}
-                        navbar-active {% else %} text-white {% endif %}" href="{% url 'menus' %}" id="navbarDropdown"
+                        green-text {% else %} text-white {% endif %}" href="{% url 'menus' %}" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Menus
                         </a>
                         <ul class="dropdown-menu green-bground" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item green-bground {% if request.resolver_match.url_name == 'food_menu' %}
-                                navbar-active {% else %} text-white {% endif %}" href="{% url 'food_menu' %}">Food</a>
+                                green-text {% else %} text-white {% endif %}" href="{% url 'food_menu' %}">Food</a>
                             </li>
                             <li><a class="dropdown-item green-bground {% if request.resolver_match.url_name == 'drinks_menu' %}
-                                navbar-active {% else %} text-white {% endif %}"
+                                green-text {% else %} text-white {% endif %}"
                                     href="{% url 'drinks_menu' %}">Drinks</a></li>
                             <li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'reservations' %}
-                        navbar-active {% else %} text-white {% endif %}"
+                        green-text {% else %} text-white {% endif %}"
                             href="{% url 'reservations' %}">Reservations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'contact_us' %}
-                        navbar-active {% else %} text-white {% endif %}" href="{% url 'contact_us' %}">Contact Us</a>
+                        green-text {% else %} text-white {% endif %}" href="{% url 'contact_us' %}">Contact Us</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

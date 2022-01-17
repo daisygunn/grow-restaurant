@@ -12,6 +12,7 @@ body {
 
 .green-text {
     color: #007842;
+    background-color: white;
 }
 
 .pink-text {
@@ -75,7 +76,7 @@ a:hover {
     color: white;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav, 
 .dropdown-item:hover,
 .navbar-active {
     color: #007842;
@@ -564,8 +565,6 @@ textarea#id_message.textarea {
 
 /* for iphones */
 @media screen and (max-width: 390px) {
-
-
 
     #id_requested_time {
         margin-bottom: 20px;
