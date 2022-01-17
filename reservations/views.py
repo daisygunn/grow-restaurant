@@ -341,17 +341,19 @@ class DeleteReservation(View):
 class EditCustomerDetails(View):
     # View for user to be able to edit their information
     def get(self, request, User=User, *args, **kwargs):
+        if request.user.is_authenticated:
         # Get customer object based on user
-        customer = get_customer_instance(request, User)
+            customer = get_customer_instance(request, User)
+            if customer is None:
+                email = request.user.email
+                customer_form = CustomerForm(initial={"email": email})
+            else:
+            # return both forms with the existing information
+                customer_form = CustomerForm(instance=customer)
 
-        logger.warning(customer)
-
-        # return both forms with the existing information
-        customer_form = CustomerForm(instance=customer)
-
-        return render(request, 'edit_customer_details.html',
-                      {'customer_form': customer_form,
-                       'customer': customer, })
+            return render(request, 'edit_customer_details.html',
+                        {'customer_form': customer_form,
+                        'customer': customer, })
 
     def post(self, request, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)

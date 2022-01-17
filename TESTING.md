@@ -10,17 +10,17 @@ The navbar is self explanatory and it is also clear to the user which page they 
 
 The footer provides all additional key information required, opening times, location and contact information. For users viewing on a larger screen an embedded google map is included. 
 
-![](assets/images/user_stories_s1.jpg)
+![](assets/images/user_stories_testing/user_stories_s1.jpg)
 
-![](assets/images/user_stories_footer.jpg)
+![](assets/images/user_stories_testing/user_stories_footer.jpg)
 
 [Contact form can be sent](https://github.com/daisygunn/grow-restaurant/issues/16)
 
 Upon submitting the contact form the user is given a postive message to confirm that is has been sent to the website owner and an email is received with the information from the form.
 
-![](assets/images/contact_form.jpg)
-![](assets/images/contact_form_sent.jpg)
-![](assets/images/email_received.jpg)
+![](assets/images/user_stories_testing/contact_form.jpg)
+![](assets/images/user_stories_testing/contact_form_sent.jpg)
+![](assets/images/user_stories_testing/email_received.jpg)
 
 ## Epic 2 - Admin functionality
 ### User Stories
@@ -29,17 +29,17 @@ Upon submitting the contact form the user is given a postive message to confirm 
 
 Using a specified login the site owner can access the admin backend
 
-![](assets/images/admin.jpg)
+![](assets/images/user_stories_testing/admin.jpg)
 
 Once in this admin backend, the admin user is able to access the food and drinks item model, add new items or edit/delete existing one and toggle with 'on menu' which will change which items are displayed on the 'live' menu pages respectively.
 
-![](assets/images/drinks.jpg)
+![](assets/images/user_stories_testing/drinks.jpg)
 
-![](assets/images/individual_drink.jpg)
+![](assets/images/user_stories_testing/individual_drink.jpg)
 
-![](assets/images/food.jpg)
+![](assets/images/user_stories_testing/food.jpg)
 
-![](assets/images/individual_food.jpg)
+![](assets/images/user_stories_testing/individual_food.jpg)
 
 
 ## Epic 3 - User Authentication
@@ -61,7 +61,6 @@ Once in this admin backend, the admin user is able to access the food and drinks
 [Reservations can be edited by the user on the front end](https://github.com/daisygunn/grow-restaurant/issues/17) / 
 [Users can edit their information](https://github.com/daisygunn/grow-restaurant/issues/18)
 
-
-
+## JavaScript Tests
 
 

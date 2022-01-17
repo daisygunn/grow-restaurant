@@ -257,12 +257,6 @@ textarea#id_message.textarea {
     padding-left: 0;
 }
 
-/* Delete Reservation */
-
-/* button.close {
-    background-color: none;
-    color: none;
-} */
 
 /* Accounts pages */
 
@@ -570,13 +564,13 @@ textarea#id_message.textarea {
 
 /* for iphones */
 @media screen and (max-width: 390px) {
-
+/* 
     li input,
     li select,
     .input-group.date {
         float: right;
         padding-top: 5px;
-    }
+    } */
 
     #id_requested_time {
         margin-bottom: 20px;
