@@ -39,6 +39,11 @@ function checkDate() {
     }));
 }
 
+// Hide the email input on 'Update Details' page, using opacity to prevent errors once the form is submitted
+function hideEmail(){
+    $("#customer-details-form>li:nth-child(3)").css({"opacity": 0, "margin": "-20px"})
+}
+
 
 // Opens the modal on delete_reservation
 function deleteModal() {
@@ -89,4 +94,6 @@ $(document).ready(function () {
     formError();
 
     checkDate();
+
+    hideEmail();
 });

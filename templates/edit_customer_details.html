@@ -12,17 +12,13 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-
         <div class="col-sm-6">
-
-            <!-- Reservation form -->
             <form method="POST" class="mb-5">
-                <ul class="full-form">
+                <ul class="full-form" id="customer-details-form">
 
                     {% csrf_token %}
 
                     <!-- Customer form -->
-
                     {{ customer_form.as_ul }}
 
                     <button type="submit" class="button mt-4 text-center submit-button">Edit
