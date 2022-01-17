@@ -248,10 +248,17 @@ textarea#id_message.textarea {
 }
 
 .pending {
-    background-color: #9D0208;
+    background-color: rgb(216, 141, 2);
     color: #Effbed;
     padding: 2px;
 }
+
+.rejected {
+    background-color: rgb(167, 8, 3);
+    color: #Effbed;
+    padding: 2px;
+}
+
 
 #reservation-list, .reservation-item {
     list-style: none;
