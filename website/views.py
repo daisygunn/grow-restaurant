@@ -41,7 +41,12 @@ class ContactPage(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             customer = get_customer_instance(request, User)
-            customer_name = customer.full_name
+
+            if customer is None:
+                customer_name = ""
+            else:
+                customer_name = customer.full_name
+
             # if user is logged in pre-populate the fields
             contact_form = ContactForm(
                 initial={'name': customer_name,  'email': request.user.email})
@@ -59,7 +64,9 @@ class ContactPage(View):
             contact_form = ContactForm()
             messages.add_message(
                 request, messages.SUCCESS,
-                "Thank you for contacting us, one of our staff will be in touch shortly. <br>For anything urgent please call on 02076841002.")
+                "Thank you for contacting us, one of our staff will be in"
+                "touch shortly. <br>For anything urgent please call on"
+                "02076841002.")
             return render(
                 request, 'contact_us.html', {'contact_form': contact_form})
 
@@ -67,7 +74,8 @@ class ContactPage(View):
             contact_form = ContactForm(request.POST)
             messages.add_message(
                 request, messages.ERROR,
-                "Something is not right with your form - please make sure your email address is entered in the correct format.")
+                "Something is not right with your form - please make sure your"
+                "email address is entered in the correct format.")
 
         return render(
             request, 'contact_us.html', {'contact_form': contact_form})
