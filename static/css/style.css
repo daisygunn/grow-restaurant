@@ -81,7 +81,9 @@ nav {
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
-.dropdown-item:hover, .navbar-dark .navbar-nav:hover {
+.dropdown-item:hover,
+.navbar-dark .navbar-nav:hover {
+    
     color: #007842!important;
     background-color: white;
 }

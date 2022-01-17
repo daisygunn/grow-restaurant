@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% load crispy_forms_tags %}
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
 
@@ -20,7 +22,7 @@
                     {% csrf_token %}
 
                     <!-- Customer form -->
-                    {{ customer_form.as_ul }}
+                    {{ customer_form | crispy }}
 
                     <button type="submit" class="button mt-4 text-center submit-button">Edit
                         Details</button>

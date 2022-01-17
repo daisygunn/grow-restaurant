@@ -77,26 +77,26 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <!-- Display manage reservations, edit customer details & logout option if user is logged in -->
-                    <li class="nav-item ml-auto">
+                    <li class="nav-item green-bground ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'manage_reservations' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'manage_reservations' %}">Manage
                             Reservations</a>
                     </li>
-                    <li class="nav-item ml-auto">
+                    <li class="nav-item green-bground ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'edit_customer_details' %}
                         green-text {% else %} text-white {% endif %}"
                             href="{% url 'edit_customer_details' %}">Update Details</a>
                     </li>
-                    <li class="nav-item ml-auto">
+                    <li class="nav-item green-bground ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     {% else %}
-                    <li class="nav-item ml-auto">
+                    <li class="nav-item green-bground ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'account_signup' %}">Register</a>
                     </li>
-                    <li class="nav-item ml-auto">
+                    <li class="nav-item green-bground ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'account_login' %}">Login</a>
                     </li>
