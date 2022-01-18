@@ -26,6 +26,8 @@ This website will offer all of these things whilst also allowing for intuitive n
 
 Due to the age group of the users, it is assumed that most users will be viewing the site on their mobile phones and therefore creating something responsive is integral to the design, I have used Bootstrap elements & custom CSS to allow for this.
 
+Please find all my defined user stories & their acceptance criteria [here](https://github.com/daisygunn/grow-restaurant/issues)
+
 ### Scope
 In order to acheive the desired user & business goals the following features will be included in this release:
 
@@ -46,6 +48,18 @@ The website is made of three apps:
 1. Website - core functionality
 2. Menus - menu display
 3. Reservations - reservations enquiries & customer management
+
+### Databases
+
+The menus and reservations app both require databases to store information so I have built 5 custom models. 
+
+#### Menus
+FoodItem & DrinksItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurants menu.
+
+#### Reservations
+There are 3 models in this app, Customer, Table & Reservation. The combination of these 3 models allow for customer details to be stored, reservation enquiries to be made & managed & also enable availability checks whilst the user is enquiring. 
+
+Entity Relationship Diagram below to see how the models relate to eachother: 
 
 ![Database Schemas can be found here](assets/images/database_schemas.jpg)
 
@@ -142,7 +156,7 @@ I have used several technologies that have enabled this design to work:
     - Used to test the accessibility of the website.
 - [Animate](https://animate.style/)
     - Used to animate main heading and forms. 
-
+---
 ## Testing
 I have used a combination of manual and automated testing to ensure the websites functionality meets the desired intent.
 
@@ -164,8 +178,6 @@ In addition to this I have also used online validators to test the accessbility 
 - [Color Contrast Accessibility Validator](https://color.a11y.com/)
     - Allowed me to test the colour contrast of my webpage.
 
-
-
 ### Manual Testing
 
 [TESTING.md](TESTING.md)
@@ -183,8 +195,7 @@ To generate your own coverage report from the command-line:
 ### Bugs and Fixes
  - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using 'cleaned-data' to retrieve the information from the post request and reformatted the date myself using `strptime`.
 
- - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others I came to the conclusion that due to me linking an image within the static directory in my css file that was also in the static directory this is what was causing the problem. For that reason I have linked directly the cloudinary image url. 
-
+ - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we came to the conclusion that due to me linking an image within the static directory in my css file (that was also in the static directory) this is what was causing the problem. For that reason I have linked directly the cloudinary image url. 
 
 ---
 ## Deployment

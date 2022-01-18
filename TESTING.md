@@ -49,10 +49,53 @@ Once in this admin backend, the admin user is able to access the food and drinks
 [Prompt user to register](https://github.com/daisygunn/grow-restaurant/issues/9) /
 [Forms pre-populated for users](https://github.com/daisygunn/grow-restaurant/issues/10)
 
+The navbar displays different navlinks depending on the status of the user. If they aren't logged in already the options are `Register` or `Login`.
+
+![](assets/images/user_stories_testing/display_when_logged_out.jpg)
+
+On the sign in page the user is prompted to register if they do not have an account:
+
+![](assets/images/user_stories_testing/sign_in.jpg)
+
+Once a user logs in they are presented with a success message:
+
+![](assets/images/user_stories_testing/logged_in_message.jpg)
+
+ If they are logged in then this changes, pages that require authentication show instead, these are `Manage Reservations`, `Update Details` & `Logout`.
+
+![](assets/images/user_stories_testing/display_when_logged_in.jpg)
+
+Logged in user have the benefit of forms pre-populating with their information:
+
+![](assets/images/user_stories_testing/pre_populated_form.jpg)
+
+![](assets/images/user_stories_testing/form_two.jpg)
+
+![](assets/images/user_stories_testing/form_three.jpg)
+
+New users will only have their email populated as they will not yet be present in the Customer model.
+
 ## Epic 4 - Menus can be viewed
 ### User Stories
 [Food and drinks menus displayed seperately](https://github.com/daisygunn/grow-restaurant/issues/11) /
 [All items on the menu have a price, description and dietary info](https://github.com/daisygunn/grow-restaurant/issues/12) 
+
+In the navbar there is a `Menus` link which has a dropdown to display the two menu options, `Food` & `Drinks`. 
+
+![](assets/images/user_stories_testing/menus_nav.jpg)
+
+On the `Menus` page there are links to both the Food and Drinks menu pages.
+
+![](assets/images/user_stories_testing/menus_page_links.jpg)
+
+On each of the menu pages each menu section is seperated by a `<hr>` and has a clear heading to highlight these seperate sections, making it easier for the user to find what they're looking for. 
+
+For each item there is a name, description, dietary label, allergens list & price.
+
+![](assets/images/user_stories_testing/food_menu.jpg)
+
+![](assets/images/user_stories_testing/drinks_menu.jpg)
+
 
 ## Epic 5 - Reservations Functionality
 ### User Stories
@@ -60,6 +103,32 @@ Once in this admin backend, the admin user is able to access the food and drinks
 [Reservation is rejected if restaurant is fully booked](https://github.com/daisygunn/grow-restaurant/issues/14)  / 
 [Reservations can be edited by the user on the front end](https://github.com/daisygunn/grow-restaurant/issues/17) / 
 [Users can edit their information](https://github.com/daisygunn/grow-restaurant/issues/18)
+
+From the reservations page any user (autheticated or not) can add their details, requested time & date and submit the form, if there is availability they will get a positive message.
+
+![](assets/images/user_stories_testing/reservation_message.jpg)
+
+If there is no availability then they will not be able to submit their request and they will get a message to explain this:
+
+![](assets/images/user_stories_testing/rejected_request.jpg)
+
+An authenticated user is able to manage any existing reservations from the Manage Reservations page, if they have any they are displayed like this:
+
+![](assets/images/user_stories_testing/manage_reservations.jpg)
+
+From this panel they are able to edit & their reservations:
+
+![](assets/images/user_stories_testing/reservation_edit_before.jpg)
+
+![](assets/images/user_stories_testing/reservation_changed.jpg)
+
+And users can also cancel them as well:
+
+![](assets/images/user_stories_testing/cancel_reservation.jpg)
+
+![](assets/images/user_stories_testing/cancel_modal.jpg)
+
+![](assets/images/user_stories_testing/cancel_message.jpg)
 
 ## JavaScript Tests
 
