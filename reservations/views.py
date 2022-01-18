@@ -315,7 +315,7 @@ class DeleteReservation(View):
 
         if reservation_owner != name_of_user:
             messages.add_message(request, messages.ERROR,
-                                 "You are trying to delete a "
+                                 "You are trying to cancel a "
                                  "reservation that is not yours.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
@@ -335,7 +335,7 @@ class DeleteReservation(View):
         # Delete the reservation
         reservation.delete()
         messages.add_message(request, messages.SUCCESS,
-                             f"Reservation {reservation_id} has now been deleted.")
+                             f"Reservation {reservation_id} has now been cancelled.")
         # Get updated list of reservations
         current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
