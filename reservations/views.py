@@ -83,7 +83,7 @@ class ReservationsEnquiry(View):
 
             # Check to see how many bookings exist at that time/date
             tables_booked = check_availabilty(customer_requested_time, date_formatted)
-        
+
             max_tables = get_tables_info()
 
             # Compare number of bookings to number of tables available
@@ -147,7 +147,7 @@ def retrieve_reservations(self, request, User):
         # logger.warning(f"user = {customer_email}") 
 
         get_reservations = Reservation.objects.filter(
-            customer_name=current_customer_id).values().order_by('requested_date')
+            customer=current_customer_id).values().order_by('requested_date')
         # logger.warning(f"{get_reservations}")
 
         if len(get_reservations) == 0:
@@ -255,7 +255,7 @@ class EditReservation(View):
 
             logger.warning(tables_booked)
             # Get total number of tables in restaurant
-            max_tables = get_tables_info
+            max_tables = get_tables_info()
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
@@ -278,7 +278,7 @@ class EditReservation(View):
                 reservation_form.save(commit=False)
                 reservation_form.save()
                 messages.add_message(request, messages.SUCCESS, 
-                                    "Your reservation has now been updated.")
+                                    f"Reservation {reservation_id} has now been updated.")
                 # Retreive new list of reservations to display
                 current_reservations = retrieve_reservations(
                     self, request, User)
@@ -335,7 +335,7 @@ class DeleteReservation(View):
         # Delete the reservation
         reservation.delete()
         messages.add_message(request, messages.SUCCESS,
-                             "Your reservation has now been deleted.")
+                             f"Reservation {reservation_id} has now been deleted.")
         # Get updated list of reservations
         current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
