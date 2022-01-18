@@ -35,7 +35,7 @@ def get_tables_info():
     Retrieves the number of tables in the 
     table model
     """
-    max_tables = Table.objects.all().count
+    max_tables = len(Table.objects.all())
 
     return max_tables
 
@@ -83,14 +83,15 @@ class ReservationsEnquiry(View):
 
             # Check to see how many bookings exist at that time/date
             tables_booked = check_availabilty(customer_requested_time, date_formatted)
-            max_tables = get_tables_info
+        
+            max_tables = get_tables_info()
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
                 messages.add_message(
                     request, messages.ERROR, 
-                    f"Unfortunately we are fully booked at {customer_requested_time}"
-                    f"on {customer_requested_date}")
+                    f"Unfortunately we are fully booked at {customer_requested_time} "
+                    f"on {customer_requested_date}.")
 
                 return render(request, 'reservations.html', 
                     {'customer_form': customer_form, 'reservation_form': reservation_form}
@@ -118,8 +119,8 @@ class ReservationsEnquiry(View):
                 reservation_form.save()
                 
                 messages.add_message(
-                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for"
-                        f"{customer_requested_guests} people at {customer_requested_time}"
+                        request, messages.SUCCESS, f"Thank you {customer_name}, your enquiry for "
+                        f"{customer_requested_guests} people at {customer_requested_time} "
                         f"on {customer_requested_date} has been sent.")
                 
                 # Return blank forms so the same enquiry isn't sent twice.
@@ -129,7 +130,7 @@ class ReservationsEnquiry(View):
         
         else:
             messages.add_message(
-                request, messages.ERROR, "Something is not right with your form"
+                request, messages.ERROR, "Something is not right with your form "
                 "- please make sure your email address & phone number in the correct format.")
 
         return render(request, 'reservations.html',
@@ -170,14 +171,14 @@ class ManageReservations(View):
             # If the user has no reservations
             if current_reservations == 0:
                 messages.add_message(
-                    request, messages.WARNING, "Ooops, you've not got any existing"
+                    request, messages.WARNING, "Ooops, you've not got any existing "
                     "reservations. You can make reservations here.")
                 url = reverse('reservations')
                 return HttpResponseRedirect(url)
             # If the user does not exist in the customer model 
             elif current_reservations == 1:
                 messages.add_message(
-                    request, messages.WARNING, "Ooops, you've not got any existing"
+                    request, messages.WARNING, "Ooops, you've not got any existing "
                     "reservations. You can make reservations here.")
                 url = reverse('reservations')
                 return HttpResponseRedirect(url)
@@ -190,7 +191,7 @@ class ManageReservations(View):
 
         else:
             messages.add_message(
-                request, messages.ERROR, "You must be logged in to"
+                request, messages.ERROR, "You must be logged in to "
                 "manage your reservations.")
             
         return render(request, 'manage_reservations.html')
@@ -214,7 +215,7 @@ class EditReservation(View):
 
         if reservation_owner != name_of_user:
             messages.add_message(
-                request, messages.ERROR, "You are trying to edit a"
+                request, messages.ERROR, "You are trying to edit a "
                 "reservation that is not yours.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
@@ -247,8 +248,12 @@ class EditReservation(View):
             # Convert date into format required by django
             date_formatted = datetime.datetime.strptime(
                 customer_requested_date, "%d/%m/%Y").strftime('%Y-%m-%d')
+
+            logger.warning(date_formatted)
             # Check the amount of tables already booked at that date and time
             tables_booked = check_availabilty(customer_requested_time, date_formatted)
+
+            logger.warning(tables_booked)
             # Get total number of tables in restaurant
             max_tables = get_tables_info
 
@@ -258,7 +263,7 @@ class EditReservation(View):
                 then reject the reservation."""
                 messages.add_message(
                     request, messages.ERROR, 
-                    "Unfortunately we are fully booked at" 
+                    "Unfortunately we are fully booked at " 
                     f"{customer_requested_time} on {customer_requested_date}")
 
             else:
@@ -285,8 +290,8 @@ class EditReservation(View):
         else:
             messages.add_message(
                 request, messages.ERROR,
-                "Something is not right with your form"
-                "- please make sure your email address & phone number are"
+                "Something is not right with your form "
+                "- please make sure your email address & phone number are "
                 "entered in the correct format.")
 
         return render(request, 'edit_reservation.html',
@@ -310,7 +315,7 @@ class DeleteReservation(View):
 
         if reservation_owner != name_of_user:
             messages.add_message(request, messages.ERROR,
-                                 "You are trying to delete a",
+                                 "You are trying to delete a "
                                  "reservation that is not yours.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
@@ -403,8 +408,8 @@ class EditCustomerDetails(View):
         else:
             messages.add_message(
                 request, messages.ERROR,
-                "Something is not right with your form",
-                "please make sure your email address & phone number",
+                "Something is not right with your form "
+                "please make sure your email address & phone number "
                 "are entered in the correct format.")
 
         return render(request, 'edit_customer_details.html',
