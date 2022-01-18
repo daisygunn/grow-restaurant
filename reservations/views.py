@@ -200,7 +200,8 @@ class EditReservation(View):
     # View for user to be able to edit their existing reservations
     def get(self, request, reservation_id, User=User, *args, **kwargs):
         # Get reservation object based on id
-        reservation = get_object_or_404(Reservation, reservation_id=reservation_id)
+        reservation = get_object_or_404(
+            Reservation, reservation_id=reservation_id)
         # Convert date to display in dd/mm/YYYY format
         date_to_string = reservation.requested_date.strftime("%d/%m/%Y")
         reservation.requested_date = date_to_string
@@ -354,6 +355,14 @@ class EditCustomerDetails(View):
             return render(request, 'edit_customer_details.html',
                         {'customer_form': customer_form,
                         'customer': customer, })
+                        
+        # If user not logged in redirect to reservations page
+        else:
+            messages.add_message(request, messages.ERROR,
+            "You must be logged in to update your details.")
+
+            url = reverse('reservations')
+            return HttpResponseRedirect(url)
 
     def post(self, request, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
