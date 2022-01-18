@@ -59,10 +59,10 @@
                             Menus
                         </a>
                         <ul class="dropdown-menu green-bground" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item green-bground {% if request.resolver_match.url_name == 'food_menu' %}
+                            <li><a class="dropdown-item {% if request.resolver_match.url_name == 'food_menu' %}
                                 green-text {% else %} text-white {% endif %}" href="{% url 'food_menu' %}">Food</a>
                             </li>
-                            <li><a class="dropdown-item green-bground {% if request.resolver_match.url_name == 'drinks_menu' %}
+                            <li><a class="dropdown-item  {% if request.resolver_match.url_name == 'drinks_menu' %}
                                 green-text {% else %} text-white {% endif %}" href="{% url 'drinks_menu' %}">Drinks</a>
                             </li>
                             <li>
