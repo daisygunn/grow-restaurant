@@ -11,7 +11,7 @@ body {
 }
 
 .green-text {
-    color: #007842!important;
+    color: #007842 !important;
     background-color: white;
 }
 
@@ -83,8 +83,8 @@ nav {
 .navbar-dark .navbar-nav .nav-link:hover,
 .dropdown-item:hover,
 .navbar-dark .navbar-nav:hover {
-    
-    color: #007842!important;
+
+    color: #007842 !important;
     background-color: white;
 }
 
@@ -228,7 +228,9 @@ li select,
 
 input#id_name.textinput.textInput,
 input#id_email.emailinput,
-textarea#id_message.textarea {
+textarea#id_message.textarea,
+input#id_full_name.textinput.textInput,
+input#id_phone_number.textinput.textInput {
     width: 100%;
 }
 
@@ -269,6 +271,18 @@ textarea#id_message.textarea {
 .reservation-item {
     list-style: none;
     padding-left: 0;
+}
+
+
+/* Update details */
+
+#customer-details-form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#customer-details-form>input#id_email.emailinput {
+    width: 80%;
 }
 
 
