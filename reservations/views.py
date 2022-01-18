@@ -114,7 +114,7 @@ class ReservationsEnquiry(View):
                 reservation = reservation_form.save(commit=False)
                 # Pass formatted date in to model to prevent incorrect date saving
                 reservation.requested_date = date_formatted
-                reservation.customer_name = customer
+                reservation.customer = customer
                 reservation_form.save()
                 
                 messages.add_message(
@@ -209,7 +209,7 @@ class EditReservation(View):
         logger.warning(reservation)
         logger.warning(customer)
 
-        reservation_owner = reservation.customer_name
+        reservation_owner = reservation.customer
         name_of_user = customer
 
         if reservation_owner != name_of_user:
@@ -305,7 +305,7 @@ class DeleteReservation(View):
 
         """ compare user & reservation model to make sure
         reservations can only be delete by the owner """
-        reservation_owner = reservation.customer_name
+        reservation_owner = reservation.customer
         name_of_user = customer
 
         if reservation_owner != name_of_user:
@@ -355,7 +355,7 @@ class EditCustomerDetails(View):
             return render(request, 'edit_customer_details.html',
                         {'customer_form': customer_form,
                         'customer': customer, })
-                        
+
         # If user not logged in redirect to reservations page
         else:
             messages.add_message(request, messages.ERROR,

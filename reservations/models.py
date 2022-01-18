@@ -61,7 +61,7 @@ class Reservation(models.Model):
     Reservation model, which uses information from Customer and Table
     """
     reservation_id = models.AutoField(primary_key=True)
-    customer_name = models.ForeignKey(
+    customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="customer", null=True)
     guests_choices = ((1, "1 person"), (2, "2 people"),
                       (3, "3 people"), (4, "4 people"))
@@ -69,7 +69,7 @@ class Reservation(models.Model):
     requested_date = models.DateField()
     requested_time = models.CharField(
         max_length=10, choices=time_choices, default='12:00')
-    table_id = models.ForeignKey(
+    table = models.ForeignKey(
         Table, on_delete=models.CASCADE, related_name="table_booked",
         null=True)
     status = models.CharField(

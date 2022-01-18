@@ -15,4 +15,4 @@ class TableAdmin(admin.ModelAdmin):
 @admin.register(Reservation)
 class ReservationsAdmim(admin.ModelAdmin):
     list_filter = ('no_of_guests', 'status', 'table_id')
-    list_display = ('reservation_id', 'customer_name', 'no_of_guests', 'status', 'table_id', 'requested_date', 'requested_time')
+    list_display = ('reservation_id', 'customer', 'no_of_guests', 'status', 'table', 'requested_date', 'requested_time')
