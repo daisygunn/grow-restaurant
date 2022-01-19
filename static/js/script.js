@@ -2,32 +2,24 @@
 
 /* globals $ */
 
-// Adds and removes classes in footer depending on screen width.
-function screenClass() {
-    if (window.innerWidth < 769) {
-        $('#map-section').addClass('hidden');
-        $('#contact-section').addClass('col-md-6');
-    } else {
-        $('#map-section').removeClass('hidden');
-        $('#contact-section').removeClass('col-md-6');
-    }
-}
-
 // JS for Forms
+// Apply datepicker styling for reservation form
 function datePicker() {
     $("#id_requested_date").datepicker({
         dateFormat: 'dd/mm/yy'
     });
 }
 
+// If there is a form error, shake the form 
 function formError() {
     if ($(".alert.alert-danger").length) {
         $(".full-form").addClass("animate__animated animate__shakeX");
     }
 }
 
+// Prevents dates in the past from being submitted on the reservation form
 function checkDate() {
-    $("#reservation-enquiry").one('submit', (function (e) {
+    $(".reservation-enquiry").one('submit', (function (e) {
         e.preventDefault();
         var $this = $(this);
         var selectedDate = $('#id_requested_date').datepicker('getDate');
@@ -52,7 +44,7 @@ function removeDisableAttrOnSubmit() {
         console.log("function called")
         $("#customer-details-form>.full-form>#div_id_email>.controls>.emailinput").attr("disabled", false)
         $this.submit();
-}))
+    }))
 };
 
 
@@ -67,9 +59,20 @@ function deleteModal() {
     });
 }
 
+// Adds and removes classes in footer depending on screen width.
+function screenSize() {
+    if (window.innerWidth < 769) {
+        $('#map-section').addClass('hidden');
+        $('#contact-section').addClass('col-md-6');
+    } else {
+        $('#map-section').removeClass('hidden');
+        $('#contact-section').removeClass('col-md-6');
+    }
+}
+
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
+// 250 milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
 function debounce(func, wait, immediate) {
     var timeout;
@@ -87,13 +90,12 @@ function debounce(func, wait, immediate) {
     };
 }
 
-var myEfficientFn = debounce(function () {
-    screenClass();
+var screenChangeEfficient = debounce(function () {
+    screenSize();
 }, 250);
 
 // Trigger efficient screen class function each time screen resizes
-window.addEventListener('resize', myEfficientFn);
-
+window.addEventListener('resize', screenChangeEfficient);
 
 // Call all functions 
 $(document).ready(function () {
