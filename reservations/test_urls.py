@@ -1,6 +1,7 @@
 from django.test import TestCase, SimpleTestCase
 from django.urls import reverse, resolve
-from reservations.views import ReservationsEnquiry, ManageReservations, EditReservation, DeleteReservation
+from reservations.views import (ReservationsEnquiry, ManageReservations,
+                                EditReservation, DeleteReservation)
 
 
 # Create your tests here

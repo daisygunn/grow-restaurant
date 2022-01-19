@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import FoodItem, DrinkItem
 
-# Register your models here.
 
+# Register your models here.
 @admin.register(FoodItem)
 class FoodAdmin(admin.ModelAdmin):
 

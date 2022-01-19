@@ -18,14 +18,13 @@ def check_availabilty(customer_requested_time, customer_requested_date):
     no_tables_booked = len(Reservation.objects.filter(
         requested_time=customer_requested_time,
         requested_date=customer_requested_date, status="confirmed"))
-       
+
     # Return number of tables
     return no_tables_booked
 
 
 def get_customer_instance(request, User):
-    """
-    Returns customer instance if User is logged in """
+    """ Returns customer instance if User is logged in """
     customer_email = request.user.email
     customer = Customer.objects.filter(email=customer_email).first()
 
@@ -33,10 +32,7 @@ def get_customer_instance(request, User):
 
 
 def get_tables_info():
-    """
-    Retrieves the number of tables in the 
-    table model
-    """
+    """ Retrieves the number of tables in the table model """
     max_tables = len(Table.objects.all())
 
     return max_tables
@@ -44,8 +40,9 @@ def get_tables_info():
 
 # Create your views here.
 class ReservationsEnquiry(View):
+    """ Reservation view allows customers to make enquiries """
     def get(self, request, *args, **kwargs):
-            
+
         if request.user.is_authenticated:
             customer = get_customer_instance(request, User)
             if customer is None:
@@ -65,7 +62,7 @@ class ReservationsEnquiry(View):
                        'reservation_form': reservation_form})
 
     def post(self, request, User=User, *args, **kwargs):
-
+        # Get post data from forms
         customer_form = CustomerForm(data=request.POST)
         reservation_form = ReservationForm(data=request.POST)
 
@@ -79,16 +76,20 @@ class ReservationsEnquiry(View):
             # Convert date in to format required by django
             date_formatted = datetime.datetime.strptime(
                 customer_requested_date, "%d/%m/%Y").strftime('%Y-%m-%d')
-            logger.warning(date_formatted)
 
             # Check to see how many bookings exist at that time/date
             tables_booked = check_availabilty(
                 customer_requested_time, date_formatted)
 
+            # Get the number of tables in the restaurant
             max_tables = get_tables_info()
 
             # Compare number of bookings to number of tables available
-            if tables_booked == max_tables:
+            if tables_booked >= max_tables:
+                """ If the number of tables is bigger than or equal to the
+                max number of tables in the restaurant stop form being
+                submitted
+                """
                 messages.add_message(
                     request, messages.ERROR,
                     "Unfortunately we are fully booked at "
@@ -96,20 +97,21 @@ class ReservationsEnquiry(View):
 
                 return render(request, 'reservations.html',
                               {'customer_form': customer_form,
-                               'reservation_form': reservation_form})         
-                
+                               'reservation_form': reservation_form})
+
             else:
                 customer_email = request.POST.get('email')
+                # See if customer already exists in model
                 customer_query = len(Customer.objects.filter(
                     email=customer_email))
 
                 # Prevent duplicate 'customers' being added to database
                 if customer_query > 0:
-                    logger.warning("customer exists")
+                    pass
                 else:
                     customer_form.save()
 
-                # Retreive customer information pass to reservation model
+                # Retreive customer information to pass to reservation model
                 current_customer = Customer.objects.get(
                     email=customer_email)
                 current_customer_id = current_customer.pk
@@ -117,9 +119,10 @@ class ReservationsEnquiry(View):
                     customer_id=current_customer_id)
 
                 reservation = reservation_form.save(commit=False)
-                # Pass formatted date in to model
+                # Pass formatted date & customer in to model
                 reservation.requested_date = date_formatted
                 reservation.customer = customer
+                # Save reservation
                 reservation_form.save()
 
                 messages.add_message(
@@ -146,61 +149,64 @@ class ReservationsEnquiry(View):
 
 
 def retrieve_reservations(self, request, User):
+    """ Get any existing reservations for the customer in the
+    Reservation model. If there are no reservations then redirect
+    customer to Reservations page.
+    """
     customer_email = request.user.email
     if len(Customer.objects.filter(email=customer_email)) != 0:
+        # If customer exists in model
         current_customer = Customer.objects.get(email=customer_email)
         current_customer_id = current_customer.pk
-        # logger.warning(f"user = {customer_email}") 
 
+        # Get any reservations using the customer instance
         get_reservations = Reservation.objects.filter(
             customer=current_customer_id).values().order_by('requested_date')
-        # logger.warning(f"{get_reservations}")
 
         if len(get_reservations) == 0:
             # if no reservations
-            logger.warning("No existing reservations.")
             return None
         else:
             return get_reservations
     else:
         # if user is not present in customer model
-        logger.warning("No user in customer model")
         return None
 
 
 class ManageReservations(View):
-    # View for user to manage any existing reservations
+    """ View for user to manage any existing reservations """
     def get(self, request, User=User, *args, **kwargs):
         if request.user.is_authenticated:
             customer = get_customer_instance(request, User)
             current_reservations = retrieve_reservations(self, request, User)
 
-            # If the user has no reservations or does not exist in the 
-            # customer model
+            # If the user has no reservations or does not exist as a 'customer'
             if current_reservations is None:
                 messages.add_message(
-                    request, messages.WARNING, 
+                    request, messages.WARNING,
                     "Ooops, you've not got any existing "
                     "reservations. You can make reservations here.")
                 url = reverse('reservations')
                 return HttpResponseRedirect(url)
-          
+
             else:
                 return render(
-                    request, 'manage_reservations.html', 
+                    request, 'manage_reservations.html',
                     {'reservations': current_reservations,
-                    'customer': customer})
+                     'customer': customer})
 
         else:
+            # Prevent users not logged in from accessing this page
             messages.add_message(
                 request, messages.ERROR, "You must be logged in to "
                 "manage your reservations.")
-            
-        return render(request, 'manage_reservations.html')
+
+            url = reverse('reservations')
+            return HttpResponseRedirect(url)
 
 
 class EditReservation(View):
-    # View for user to be able to edit their existing reservations
+    """ View for user to be able to edit their existing reservations """
     def get(self, request, reservation_id, User=User, *args, **kwargs):
         # Get reservation object based on id
         reservation = get_object_or_404(
@@ -209,66 +215,63 @@ class EditReservation(View):
         date_to_string = reservation.requested_date.strftime("%d/%m/%Y")
         reservation.requested_date = date_to_string
         customer = get_customer_instance(request, User)
-        logger.warning(reservation)
-        logger.warning(customer)
 
+        # Compare names of reservation owner and user
         reservation_owner = reservation.customer
         name_of_user = customer
 
         if reservation_owner != name_of_user:
+            # If the names do not match redirect back to manage reservations
             messages.add_message(
                 request, messages.ERROR, "You are trying to edit a "
                 "reservation that is not yours.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
-        
+
         else:
             # return both forms with the existing information
             customer_form = CustomerForm(instance=customer)
             reservation_form = ReservationForm(instance=reservation)
 
-            return render(request, 'edit_reservation.html', 
-            {'customer_form': customer_form,
-            'customer': customer,
-            'reservation_form': reservation_form,
-            'reservation': reservation,
-            'reservation_id': reservation_id 
-            })
+            return render(request, 'edit_reservation.html',
+                          {'customer_form': customer_form,
+                           'customer': customer,
+                           'reservation_form': reservation_form,
+                           'reservation': reservation,
+                           'reservation_id': reservation_id})
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
+        # get reservation from database
         reservation_id = reservation_id
         reservation = get_object_or_404(
             Reservation, reservation_id=reservation_id)
-        logger.warning(f"{reservation}")
         reservation_form = ReservationForm(
             data=request.POST, instance=reservation)
         customer_form = CustomerForm(instance=customer)
 
         if reservation_form.is_valid():
-            # get the information from the form 
+            # get the post information from the form
             customer_requested_date = request.POST.get('requested_date')
             customer_requested_time = request.POST.get('requested_time')
             # Convert date into format required by django
             date_formatted = datetime.datetime.strptime(
                 customer_requested_date, "%d/%m/%Y").strftime('%Y-%m-%d')
 
-            logger.warning(date_formatted)
             # Check the amount of tables already booked at that date and time
             tables_booked = check_availabilty(
                 customer_requested_time, date_formatted)
 
-            logger.warning(tables_booked)
             # Get total number of tables in restaurant
             max_tables = get_tables_info()
 
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
-                """ if the amount of tables already booked = the max tables 
+                """ if the amount of tables already booked = the max tables
                 then reject the reservation."""
                 messages.add_message(
-                    request, messages.ERROR, 
-                    "Unfortunately we are fully booked at " 
+                    request, messages.ERROR,
+                    "Unfortunately we are fully booked at "
                     f"{customer_requested_time} on {customer_requested_date}")
 
             else:
@@ -282,9 +285,9 @@ class EditReservation(View):
                 reservation.status = 'pending'
                 reservation_form.save(commit=False)
                 reservation_form.save()
-                messages.add_message(request, messages.SUCCESS, 
-                                    f"Reservation {reservation_id} has now"
-                                    " been updated.")
+                messages.add_message(request, messages.SUCCESS,
+                                     f"Reservation {reservation_id} has now"
+                                     " been updated.")
                 # Retreive new list of reservations to display
                 current_reservations = retrieve_reservations(
                     self, request, User)
@@ -308,18 +311,18 @@ class EditReservation(View):
 
 
 class DeleteReservation(View):
-    # View for user to delete reservations
+    """ View for user to delete reservations """
     def get(self, request, reservation_id, User=User, *args, **kwargs):
         reservation = get_object_or_404(
             Reservation, reservation_id=reservation_id)
         customer = get_customer_instance(request, User)
 
-        """ compare user & reservation model to make sure
-        reservations can only be delete by the owner """
+        # Compare names of reservation owner and user
         reservation_owner = reservation.customer
         name_of_user = customer
 
         if reservation_owner != name_of_user:
+            # If the names do not match redirect back to manage reservations
             messages.add_message(request, messages.ERROR,
                                  "You are trying to cancel a "
                                  "reservation that is not yours.")
@@ -337,11 +340,11 @@ class DeleteReservation(View):
         # get reservation from database
         reservation_id = reservation_id
         reservation = Reservation.objects.get(pk=reservation_id)
-        logger.warning(f"{reservation}")
         # Delete the reservation
         reservation.delete()
         messages.add_message(request, messages.SUCCESS,
-                             f"Reservation {reservation_id} has now been cancelled.")
+                             f"Reservation {reservation_id} has now "
+                             "been cancelled.")
         # Get updated list of reservations
         current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
@@ -351,35 +354,35 @@ class DeleteReservation(View):
 
 
 class EditCustomerDetails(View):
-    # View for user to be able to edit their information
+    """ View for user to be able to edit their information """
     def get(self, request, User=User, *args, **kwargs):
         if request.user.is_authenticated:
-        # Get customer object based on user
+            # Get customer object based on user
             customer = get_customer_instance(request, User)
             if customer is None:
+                # If 'customer' does not exist return user email
                 email = request.user.email
                 customer_form = CustomerForm(initial={"email": email})
             else:
-            # return both forms with the existing information
+                # return both forms with the existing information
                 customer_form = CustomerForm(instance=customer)
 
             return render(request, 'edit_customer_details.html',
-                        {'customer_form': customer_form,
-                        'customer': customer, })
+                          {'customer_form': customer_form,
+                           'customer': customer, })
 
-        # If user not logged in redirect to reservations page
         else:
+            # If user not logged in redirect to reservations page
             messages.add_message(request, messages.ERROR,
-            "You must be logged in to update your details.")
+                                 "You must be logged in to update your "
+                                 "details.")
 
             url = reverse('reservations')
             return HttpResponseRedirect(url)
 
     def post(self, request, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
-
         customer_form = CustomerForm(data=request.POST, instance=customer)
-        logger.warning(customer)
 
         # Prevent duplicate 'customers' being added to database
         if customer_form.is_valid():
@@ -395,16 +398,19 @@ class EditCustomerDetails(View):
                     customer_phone_number = request.POST.get('phone_number')
 
                     customer_form.save(commit=False)
+                    # Update customer instance with new information
                     customer.full_name = customer_full_name
                     customer.phone_number = customer_phone_number
                     customer_form.save()
                     messages.add_message(request, messages.SUCCESS,
                                          "Your details have now been updated.")
+
                     return render(request, 'edit_customer_details.html',
                                   {'customer_form': customer_form,
                                    'customer': customer, })
 
                 else:
+                    # If no information has changed
                     messages.add_message(request, messages.WARNING,
                                          "No information has changed.")
                     return render(request, 'edit_customer_details.html',

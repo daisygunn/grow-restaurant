@@ -25,8 +25,8 @@ class TestViews(TestCase):
         response = self.client.post(self.contact_page_url)
 
         mail.send_mail('Subject here', 'Here is the message.',
-            'from@example.com', ['to@example.com'],
-            fail_silently=False)
+                       'from@example.com', ['to@example.com'],
+                       fail_silently=False)
 
         self.assertEquals(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 1)
