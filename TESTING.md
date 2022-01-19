@@ -142,13 +142,32 @@ And any larger than that it appears:
 
 ![](assets/images/js_testing_images/footer_content_laptop.jpg)
 
-I have used this function in conjuction with a `debounce` function to prevent the function being called again and again if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
+I have used this function in conjuction with a `debounce` function to prevent the function triggering if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
 
 **`datePicker`** - I opted to use a JQuery datepicker for my project and so this function applies the datepicker to any fields with the id - `"#id_requested_date"`.
 
 ![](assets/images/js_testing_images/datepicker_test.jpg)
 
-**`checkDate`** - This function validates dates being submitted as part of the reservation form, if a date in the past is selected the user is alerted and the form does not submit.
+**`checkDate`** - This function validates dates being submitted as part of the reservation form, if a date in the past is selected the user is alerted and the form does not submit:
 
 ![](assets/images/js_testing_images/date_in_past_alert.jpg)
 
+**`formError`** - This function animates the form by adding an Animate class to the form if there is an error. You can see before submitting the only class on the ul is `full-form`:
+
+![](assets/images/js_testing_images/before_submitting.jpg)
+
+And after submitting, with an error the class `"animate__animated animate__shakeX"` is added:
+
+![](assets/images/js_testing_images/after_submitting.jpg)
+
+**`disableEmail`** - This function has been used to disable the email on the 'Update Details' page as I don't want the user to update it on this page:
+
+![](assets/images/user_stories_testing/form_two.jpg)
+
+This did cause issues when submitting the form as the email field wasn't able to be read and so I have used **`removeDisableAttrOnSubmit`** to remove the disabled attribute and then submit the form. 
+
+![](assets/images/js_testing_images/update_form_subitted.jpg)
+
+**`deleteModal`** - This function opens the confirmation modal when a user is trying to cancel an existing reservation and then closes it when the user clicks 'Nope, changed my mind!` or the cross in the top corner.
+
+![](assets/images/user_stories_testing/cancel_modal.jpg)
