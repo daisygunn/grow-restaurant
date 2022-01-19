@@ -132,4 +132,23 @@ And users can also cancel them as well:
 
 ## JavaScript Tests
 
+I have written a small number of JS functions that handle some animation & event listeners to add classes and attributes to elements created dynamically.
+
+**`screenSize()`** - hides/shows the map section of the footer depending on the size of the window. If smaller than 769 it remains hidden:
+
+![](assets/images/js_testing_images/footer_content_mobile.jpg)
+
+And any larger than that it appears:
+
+![](assets/images/js_testing_images/footer_content_laptop.jpg)
+
+I have used this function in conjuction with a `debounce` function to prevent the function being called again and again if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
+
+**`datePicker`** - I opted to use a JQuery datepicker for my project and so this function applies the datepicker to any fields with the id - `"#id_requested_date"`.
+
+![](assets/images/js_testing_images/datepicker_test.jpg)
+
+**`checkDate`** - This function validates dates being submitted as part of the reservation form, if a date in the past is selected the user is alerted and the form does not submit.
+
+![](assets/images/js_testing_images/date_in_past_alert.jpg)
 
