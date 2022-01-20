@@ -144,9 +144,11 @@
                 <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground" id="opening-hours">
                     <!-- Opening hours section of footer -->
                     <h4 class="brand-text mt-2"><strong>Opening Hours</strong></h4>
-                    <p class="clock-time">Mon - Fri: 7am-8pm</p>
-                    <p>Sat - Sun: 8am - 10pm</p>
-                    <p><strong>Bank Holidays: </strong> Closed</p>
+                    <div class="center">
+                        <p>Mon - Fri: 7am-10pm <br>
+                            Sun: 8am - 8pm <br>
+                            <strong>Bank Holidays: </strong> Closed</p>
+                    </div>
                 </div>
                 <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground" id="map-section">
                     <!-- Map section of footer to be hidden on mobiles -->
@@ -158,10 +160,11 @@
                 <!-- Contact information section of footer -->
                 <div class="col-sm-8 col-lg-4 mt-4 pb-2 pink-bground" id="contact-section">
                     <h4 class="footer-heading brand-text mt-2"><strong>Stay In Touch</strong></h4>
-                    <p>Email: <a href="mailto:daisy.l.g@hotmail.co.uk" target="_blank"
-                            class="contact-link">info@growrestaurant.com</a></p>
-                    <p>Address: 12 Crouch Hill,<br> London N4 4AJ</p>
-                    <p>Phone: <span class="contact-link">02076841002</span></p>
+                    <div class="center">
+                        <p><a href="{% url 'contact_us' %}" class="contact-link">Send us a message!</a><br>
+                            12 Crouch Hill, London N4 4AJ <br>
+                            Phone: <span class="contact-link">02076841002</span></p>
+                    </div>
                     <div class="mb-2 flex-center">
                         <!-- Social media links -->
                         <!-- Facebook -->
@@ -183,6 +186,7 @@
                             <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
