@@ -12,12 +12,12 @@ This is a full-stack framework project built using Django, Python, HTML, CSS and
 ### Strategy
 Using the core UX principles I first started with Strategy, thinking about the target audience for this quiz & the features they would want.
 
-The target audience for 'Grow' are:
+The target audience for 'Grow' is:
 - 25-35 year olds
 - People that live a healthy, balanced lifestyle
 - People that enjoy eating out
 
-These user will be looking for:
+These users will be looking for:
 - Informative website, with information that is easy-to-find & concise
 - Current, up-to-date menus
 - A booking form to make reservation enquiries with the restaurant
@@ -32,14 +32,14 @@ Please find all my defined user stories & their acceptance criteria [here](https
 1. As a user I can intuitively navigate through the site so that I can view desired content.
 2. As a user I can get key information about the restaurant from the landing page so that I can spend less time having to search for information.
 3. As an admin user I can log in so that I can access the site's backend.
-4. As a admin user I can approve or reject any reservation requests so that I can manage the restaurant's bookings efficiently.
+4. As an admin user I can approve or reject any reservation requests so that I can manage the restaurant's bookings efficiently.
 5. As an admin user I can sign in to add & remove items from the current menus so that I can make sure the website is up to date and accurately reflects what is being served in the restaurant.
 6. As an admin user I can create, remove, update or delete food & drinks items from the database so that I can ensure items are accurate and able to be added to the menu on the website.
-7. As a user I can register or login so that I can manage my booking requests.
+7. As a user I can register or log in so that I can manage my booking requests.
 8. As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
 9. As a user I can am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
 10. As a user I can log in so that I can auto-populate forms with my information on the site.
-11. As a user I can view the food & drinks menu's seperately so that I can easily find the information I'm looking for.
+11. As a user I can view the food & drinks menu's separately so that I can easily find the information I'm looking for.
 12. As a user I can easily find all of the relevant information about the menu items so that I can make informed decisions.
 13. As a user I can submit a reservation request so that I can visit the restaurant.
 14. As an admin user I can prevent guests from submitting reservation requests for full slots so that I can efficiently manage customer expectations and prevent a backlog of bookings.
@@ -49,19 +49,19 @@ Please find all my defined user stories & their acceptance criteria [here](https
 18. As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
 
 ### Scope
-In order to acheive the desired user & business goals the following features will be included in this release:
+In order to achieve the desired user & business goals, the following features will be included in this release:
 
 - Responsive navbar that will navigate to the various pages throughout the site
 - Landing page with brief information about the restaurant and links to the menu and reservations page
 - Menus page, with links to food & drinks menu respectively
-- Reservations page, with booking form to enquire with the restaurant
-- Manage reservations page, where logged in users are able to edit/delete exisiting reservations they have.
+- Reservations page, with a booking form to enquire with the restaurant
+- Manage reservations page, where logged in users can edit/delete existing reservations they have.
 - Update details page, for logged in users to update their details which in turn updates the customer model. 
 - Register/login feature
 - Contact form
 
 ### Structure
-This website has been designed with simplicity in mind, each page only has key information on it so that the user is able to find what they want quickly without having to read through unnessecary things. I have seperated out each key feature to really highlight their functionality to the user.
+This website has been designed with simplicity in mind, each page only has key information on it so that the user can find what they want quickly without having to read through unnecessary things. I have separated each key feature to highlight its functionality to the user.
 
 The website is made of three apps:
 
@@ -74,16 +74,16 @@ The website is made of three apps:
 The menus and reservations app both require databases to store information so I have built 5 custom models. 
 
 #### Menus
-FoodItem & DrinksItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurants menu. Each item has a name, description, price, dietary & allergens. 
+FoodItem & DrinksItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurant's menu. Each item has a name, description, price, dietary & allergens. 
 
 #### Reservations
 There are 3 models in this app, Customer, Table & Reservation. The combination of these 3 models allow for customer details to be stored, reservation enquiries to be made & managed & also enable availability checks whilst the user is enquiring. 
 
-For each reservation there will be a customer & table assigned to it. The customer is assigned during the enquiry process and the tables are assigned in the backend by the admin user. 
+For each reservation, there will be a customer & table assigned to it. The customer is assigned during the enquiry process and the tables are assigned in the backend by the admin user. 
 
-The tables model is also used to determine what the availability of the restaurant is like and this logic prevents bookings being made if there are no tables available at the specified date and time.
+The tables model is also used to determine what the availability of the restaurant is like and this logic prevents bookings from being made if there are no tables available at the specified date and time.
 
-Entity Relationship Diagram below to see how the models relate to eachother: 
+Entity Relationship Diagram below to see how the models relate to each other: 
 
 ![Database Schemas can be found here](assets/images/database_schemas.jpg)
 
@@ -95,7 +95,7 @@ Please note the actual website differs slightly from the original wireframes.
 The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
 
 ### Surface
-Initially the colour pallete I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat and so I chose to add a pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
+Initially, the colour palette I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat and so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
 
 ![Colour Palette](assets/images/colour_palete.png)
 
@@ -105,9 +105,9 @@ I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use f
 ## Features
 
 ### Home page
-**Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to clearly indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indiciate to the user what they are about to click on. 
+**Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indicate to the user what they are about to click on. 
 
-If the user is logged in then the right side of the menu shows links for pages that only authorised users are able to visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompts the user to sign up for an account. Furthermore it makes it abundantly clear what the logged in status is to the user. 
+If the user is logged in then the right side of the menu shows links for pages that only authorised users can visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise, the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompting the user to sign up for an account. Furthermore, it makes it abundantly clear what the logged in status is to the user. 
 
 ![](assets/images/index_1.jpg)
 
@@ -115,9 +115,9 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 
 ![](assets/images/mobile_homepage.jpg)
 
-**Menus image with link**: This image and title are both clickable and will take the user to the menus page. I have added a css rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+**Menus image with link**: This image and title are both clickable and will take the user to the menus page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
 
-**Reservations image with link**: This image and title are both clickable and will take the user to the reservations page. I have added a css rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+**Reservations image with link**: This image and title are both clickable and will take the user to the reservations page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
 
 ![](assets/images/menus_res_links.jpg)
 
@@ -126,11 +126,11 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 ![](assets/images/index_2.jpg)
 
 ### Menus
-**Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two on the homepage, creating consistency is the users interaction with the elements.
+**Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two on the homepage, creating consistency in the users' interaction with the elements.
 
 ![](assets/images/menus_page.jpg)
 
-**Food & Drinks menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. The menus are controlled by the admin user, if 'on menu' is selected in the admin panel then the item will be displayed.
+**Food & Drinks menus**: Each page displays all sections of the menus separately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. The menus are controlled by the admin user, if 'on menu' is selected in the admin panel then the item will be displayed.
 
 I have chosen to display the menus on different pages so that the user is able to find the information they want as easily as possible, this seperation prevents information overload as the pages aren't full of multiple menus.
 
@@ -159,7 +159,7 @@ There are also edit & delete buttons, users are able to edit or delete any exist
 
 ![](assets/images/user_stories_testing/manage_reservations.jpg)
 
-**Update customer details**: A logged in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email  for their account.
+**Update customer details**: A logged-in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email  for their account.
 
 There are explanation statements on this page regarding the email address as the user is only able to view reservations made under the users 'primary' email. I added this statement so that users were not surprised if they weren't able to view reservations made under an old email address. 
 
@@ -172,7 +172,7 @@ If a user wants to update their email address they can navigate using the link f
 ### Contact Form
 **Contact form**: All users are able to submit a contact form from the 'Contact Us' page, this sends an email to the website owner using Google SMTP. Having a way to communicate with the website owner/restaurant manager is a helpful tool for the user and creates a platform for communication to strengthen the relationships with customers.
 
-This form also pre-populates with the customers information if they're logged in.
+This form also pre-populates with the customer's information if they're logged in.
 
 ![](assets/images/contact_form_user.jpg)
 
@@ -241,7 +241,7 @@ I have used several technologies that have enabled this design to work:
     - Used to animate main heading and forms. 
 ---
 ## Testing
-I have used a combination of manual and automated testing to ensure the websites functionality meets the desired intent.
+I have used a combination of manual and automated testing to ensure the website's functionality meets the desired intent.
 
 ### Code Validation
 All of my code has been validated using an online validator specific to the language, all code now passes with zero errors. 
@@ -268,7 +268,7 @@ In addition to this I have also used online validators to test the accessbility 
 
 ![](assets/images/wave_report.jpg)
 
-My initial wave report had multiple contrast errors and so I had to alter my design, the pink used for active/hover nav links was changed to white and I enlarged the font-size in my footer. However, one contrast error is still showing in the footer. I am unable to find the reason for this error and have chosen to leave the element as it is, the reason for this is due to the fact it is visually the same as the other elements surrounding it and they do not have a contrast error. 
+My initial wave report had multiple contrast errors and so I had to alter my design, the pink used for active/hover nav links were changed to white and I enlarged the font size in my footer. However, one contrast error is still showing in the footer. I am unable to find the reason for this error and have chosen to leave the element as it is, the reason for this is due to the fact it is visually the same as the other elements surrounding it and they do not have a contrast error. 
 
 ![](assets/images/contrast_error.jpg)
 
@@ -284,7 +284,7 @@ My initial wave report had multiple contrast errors and so I had to alter my des
 ### Automated Testing
 I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written.
 
-To generate your own coverage report from the command-line:
+To generate your own coverage report from the command line:
 
 1. Install the package using `pip3 install coverage`
 2. Run `coverage run manage.py test`
@@ -294,7 +294,7 @@ To generate your own coverage report from the command-line:
 ### Bugs and Fixes
  - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using 'cleaned-data' to retrieve the information from the post request and reformatted the date myself using `strptime`.
 
- - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we came to the conclusion that due to me linking an image within the static directory in my css file (that was also in the static directory) this is what was causing the problem. For that reason I have linked directly the cloudinary image url. 
+ - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we concluded that due to me linking an image within the static directory in my css file (that was also in the static directory) this is what was causing the problem. For that reason I have linked directly the Cloudinary image url. 
 
 
 ---
@@ -304,7 +304,7 @@ The master branch of this repository has been used for the deployed version of t
 
 ### Using Github & Gitpod
 
-To deploy my django application, I had to use the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template).
+To deploy my Django application, I had to use the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template).
 
 - Click the `Use This Template` button.
 - Add a repository name and brief description.
@@ -350,7 +350,7 @@ I followed the below steps using the Code Institute tutorial and [Django Blog ch
 You will need to set your Environment Variables - this is a key step to ensuring your application is deployed properly.
 - In the Settings tab, click on `Reveal Config Vars` and set the following variables:
     - SECRET_KEY - to be set to your chosen key
-    - CLOUDINARY_URL - to be set to your cloudinary API environment varible
+    - CLOUDINARY_URL - to be set to your Cloudinary API environment variable
 - In the resources tab you must install 'Heroku Postgres'
 
 *Heroku Deployment*
@@ -367,9 +367,9 @@ In the Deploy tab:
 ---
 ## Credits
 
-Throughout the process of building this website I have used various sources online to help me fix bugs & tackle problems. 
+Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems. 
 
-[Full width pic header](https://startbootstrap.com/template/full-width-pics)
+[Full-width pic header](https://startbootstrap.com/template/full-width-pics)
 
 [Navbar](https://getbootstrap.com/docs/5.0/components/navbar/)
 
