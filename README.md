@@ -26,7 +26,27 @@ This website will offer all of these things whilst also allowing for intuitive n
 
 Due to the age group of the users, it is assumed that most users will be viewing the site on their mobile phones and therefore creating something responsive is integral to the design, I have used Bootstrap elements & custom CSS to allow for this.
 
+## User Stories
 Please find all my defined user stories & their acceptance criteria [here](https://github.com/daisygunn/grow-restaurant/issues)
+
+1. As a user I can intuitively navigate through the site so that I can view desired content.
+2. As a user I can get key information about the restaurant from the landing page so that I can spend less time having to search for information.
+3. As an admin user I can log in so that I can access the site's backend.
+4. As a admin user I can approve or reject any reservation requests so that I can manage the restaurant's bookings efficiently.
+5. As an admin user I can sign in to add & remove items from the current menus so that I can make sure the website is up to date and accurately reflects what is being served in the restaurant.
+6. As an admin user I can create, remove, update or delete food & drinks items from the database so that I can ensure items are accurate and able to be added to the menu on the website.
+7. As a user I can register or login so that I can manage my booking requests.
+8. As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
+9. As a user I can am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+10. As a user I can log in so that I can auto-populate forms with my information on the site.
+11. As a user I can view the food & drinks menu's seperately so that I can easily find the information I'm looking for.
+12. As a user I can easily find all of the relevant information about the menu items so that I can make informed decisions.
+13. As a user I can submit a reservation request so that I can visit the restaurant.
+14. As an admin user I can prevent guests from submitting reservation requests for full slots so that I can efficiently manage customer expectations and prevent a backlog of bookings.
+15. As a user I can find a navigation bar and footer so that I can see what content there is on the website.
+16. As a user I can send a contact form to the restaurant so that I can receive additional information.
+17. As a logged in customer I can edit/delete an existing enquiry so that I can make changes if required online.
+18. As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
 
 ### Scope
 In order to acheive the desired user & business goals the following features will be included in this release:
@@ -54,10 +74,14 @@ The website is made of three apps:
 The menus and reservations app both require databases to store information so I have built 5 custom models. 
 
 #### Menus
-FoodItem & DrinksItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurants menu.
+FoodItem & DrinksItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurants menu. Each item has a name, description, price, dietary & allergens. 
 
 #### Reservations
 There are 3 models in this app, Customer, Table & Reservation. The combination of these 3 models allow for customer details to be stored, reservation enquiries to be made & managed & also enable availability checks whilst the user is enquiring. 
+
+For each reservation there will be a customer & table assigned to it. The customer is assigned during the enquiry process and the tables are assigned in the backend by the admin user. 
+
+The tables model is also used to determine what the availability of the restaurant is like and this logic prevents bookings being made if there are no tables available at the specified date and time.
 
 Entity Relationship Diagram below to see how the models relate to eachother: 
 
@@ -79,13 +103,25 @@ I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use f
 ## Features
 
 ### Home page
-- **Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. If the user is logged in then 'Logout' will appear otehrwsie the user will be given the option to 'Register' or 'Login'/ 
-- **Menus image with link**: This image is clickable and will take the user to the menus page.
+- **Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to clearly indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indiciate to the user what they are about to click on. 
+
+If the user is logged in then the right side of the menu shows links for pages that only authorised users are able to visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompts the user to sign up for an account. Furthermore it makes it abundantly clear what the logged in status is to the user. 
+
+The navigation bar is fully responsive and collapses on mobile screens to a hamburger icon, this easily allows the user to continue to use the navigation links without the need to press back on the browser. 
+
+- **Menus image with link**: This image and title are both clickable and will take the user to the menus page. I have added a css rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+
+![](assets/images/index_1.jpg)
+
 - **Reservations image with link**: This image is clickable and will take the user to the reservations page.
 - **Footer**: The footer displays some of the restaurants key information and has links to social accounts. 
 
+![](assets/images/index_2.jpg)
+
 ### Menus - Food & Drinks
-- **Seperate menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. 
+- **Seperate menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. The menus are controlled by the admin user, if 'on menu' is selected in the admin panel then the item will be displayed.
+
+
 
 ### Reservations
 - **Reservation form**: This page consists of the customer & reservation model forms, they are displayed together to appear as one. If the user is logged in then their name & email address are pre-populated.
@@ -136,6 +172,8 @@ I have used several technologies that have enabled this design to work:
     - Used to detect overflow of elements, which allowed me to quickly debug any issues.
 - [Coloors](https://coolors.co/)
     - Used to create a colour palette for the design.
+- [Cloudinary](https://cloudinary.com/)
+    - Used to store all of my static files and images.
 - [Favicon.io](https://favicon.io/)
     - Used to create favicon's for my website
 - [Color Contrast Accessibility Validator](https://color.a11y.com/)
@@ -237,7 +275,7 @@ Cloning your repository will allow you to download a local version of the reposi
 
 ### Creating an Application with Heroku
 
-I followed the below steps using the Code Institute tutorial and ![Django Blog cheatsheat](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
+I followed the below steps using the Code Institute tutorial and [Django Blog cheatsheat](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
 
 - The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being committed.
 
