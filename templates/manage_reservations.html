@@ -5,15 +5,15 @@
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8 text-center">
             <h2 class=" mt-2 mb-3">Manage your reservations at <span class="brand-text">GROW</span></h2>
-            <p class="mt-2">Showing reservations for: <strong>{{ customer.full_name}}</strong>
-            </p>
-                    <p class="mt-2">Please use the below options to make changes to your reservations.</p>
-                    <p class="mt-2 mb-4">Your booking status will change to 'pending' to make sure
-                        we can accomodate your changes.</p>
+            <p class="mt-2">Showing reservations for: <strong>{{ customer.full_name }}</strong><br>
+            (only reservations made using <strong>{{ customer.email }}</strong> are shown)</p>
+            <p class="mt-2">Please use the below options to make changes to your reservations.</p>
+            <p class="mt-2 mb-4">If you make any changes, your booking status will change to 'pending' to make sure
+                we can accomodate your changes.</p>
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mb-5">
 
         <div class="col-sm-12">
             <div class="row d-flex justify-content-center">
