@@ -65,8 +65,8 @@ class ContactPage(View):
             contact_form = ContactForm()
             messages.add_message(
                 request, messages.SUCCESS,
-                "Thank you for contacting us, one of our staff will be in"
-                "touch shortly. <br>For anything urgent please call on"
+                "Thank you for contacting us, one of our staff will be in "
+                "touch shortly. <br>For anything urgent please call on "
                 "02076841002.")
             return render(
                 request, 'contact_us.html', {'contact_form': contact_form})
