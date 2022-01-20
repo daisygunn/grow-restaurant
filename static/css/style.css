@@ -66,12 +66,13 @@ a:hover {
 /* Navbar */
 
 nav {
-    border-bottom: 3px solid #C97064;
+    border-bottom: 5px solid #C97064;
 }
 
 #nav-heading {
     font-size: 25px;
     color: white;
+    padding-left: 10px;
 }
 
 .navbar-dark .navbar-nav,
@@ -92,7 +93,6 @@ nav {
 
 header.bg-image-full {
     background: url("https://res.cloudinary.com/dm3odn3pb/image/upload/v1641287186/static/images/header-background.f094be5a1a24.jpg");
-    width: 100vw;
 }
 
 p#subheading,

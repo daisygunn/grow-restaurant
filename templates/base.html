@@ -36,9 +36,10 @@
 </head>
 
 <body>
+    <div class="container-fluid p-0">
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark green-bground" id="main-nav">
-        <div class="container-fluid">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark green-bground" id="main-nav">
+
             <a class="navbar-brand brand-text" href="{% url 'index' %}" id="nav-heading">GROW</a>
             <!-- Collapsible icon for smaller screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -107,96 +108,97 @@
                     {% endif %}
                 </ul>
             </div>
-        </div>
-    </nav>
 
-    <!-- Header -->
-    <header class="py-5 bg-image-full">
-        <div class="text-center my-5">
-            <h1 class="text-white fs-3 brand-text" id="main-heading">GROW</h1>
-            <p class="text-white mb-0 fw-bolder" id="subheading">Restaurant & Cafe</p>
-        </div>
-    </header>
+        </nav>
 
-    <!-- Messages/Alerts -->
-    <div class="container">
-        <div class="row mt-3">
-            <div class="col-md-8 offset-md-2 text-center">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert dismissable fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    </button>
-                </div>
-                {% endfor %}
+        <!-- Header -->
+        <header class="py-5 bg-image-full">
+            <div class="text-center my-5" id="main-heading">
+                <h1 class="text-white fs-3 brand-text">GROW</h1>
+                <p class="text-white mb-0 fw-bolder">Restaurant & Cafe</p>
             </div>
-        </div>
-    </div>
-    {% block content%}
+        </header>
 
-    {% endblock %}
-
-    <!-- Footer  https://mdbootstrap.com/docs/b4/jquery/navigation/footer/ -->
-    <footer class="page-footer font-small text-center green-bground" id="main-footer">
-        <!-- Footer Elements -->
+        <!-- Messages/Alerts -->
         <div class="container">
-            <div class="row d-flex justify-content-around">
-                <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground" id="opening-hours">
-                    <!-- Opening hours section of footer -->
-                    <h4 class="brand-text mt-2"><strong>Opening Hours</strong></h4>
-                    <div class="center">
-                        <p>Mon - Fri: 7am-10pm <br>
-                            Sun: 8am - 8pm <br>
-                            <strong>Bank Holidays: </strong> Closed</p>
+            <div class="row mt-3">
+                <div class="col-md-8 offset-md-2 text-center">
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert dismissable fade show" id="msg" role="alert">
+                        {{ message | safe }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        </button>
                     </div>
-                </div>
-                <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground" id="map-section">
-                    <!-- Map section of footer to be hidden on mobiles -->
-                    <h4 class="brand-text mt-2"><strong>Find us!</strong></h4>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2479.7975206891574!2d-0.12180388407318832!3d51.571945313802374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761bbdc399e54f%3A0x73cee8db4e0f4e96!2sCrouch%20Hill%2C%20London%20N4%204AJ!5e0!3m2!1sen!2suk!4v1641838016037!5m2!1sen!2suk"
-                        width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-                <!-- Contact information section of footer -->
-                <div class="col-sm-8 col-lg-4 mt-4 pb-2 pink-bground" id="contact-section">
-                    <h4 class="footer-heading brand-text mt-2"><strong>Stay In Touch</strong></h4>
-                    <div class="center">
-                        <p><a href="{% url 'contact_us' %}" class="contact-link">Send us a message!</a><br>
-                            12 Crouch Hill, London N4 4AJ <br>
-                            Phone: <span class="contact-link">02076841002</span></p>
-                    </div>
-                    <div class="mb-2 flex-center">
-                        <!-- Social media links -->
-                        <!-- Facebook -->
-                        <a class="ic" href="https://www.facebook.com/"
-                            aria-label="Take a look at our facebook, opens in a new tab" target="_blank"
-                            rel="noreferrer">
-                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                        </a>
-                        <!-- Twitter -->
-                        <a class="ic" href="https://twitter.com/?lang=en"
-                            aria-label="Take a look at our twitter, opens in a new tab" target="_blank"
-                            rel="noreferrer">
-                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                        </a>
-                        <!--Instagram-->
-                        <a class="ic" href="https://www.instagram.com/"
-                            aria-label="Take a look at our instagram, opens in a new tab" target="_blank"
-                            rel="noreferrer">
-                            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                        </a>
-                    </div>
-
+                    {% endfor %}
                 </div>
             </div>
         </div>
+        {% block content%}
 
-        <!-- Copyright -->
-        <div class="footer-copyright text-center green-bground py-3">© 2021 Copyright:
-            <h4><span class="brand-text">GROW</span></h4>
-        </div>
+        {% endblock %}
 
-    </footer>
+        <!-- Footer  https://mdbootstrap.com/docs/b4/jquery/navigation/footer/ -->
+        <footer class="page-footer font-small text-center green-bground" id="main-footer">
+            <!-- Footer Elements -->
+            <div class="container">
+                <div class="row d-flex justify-content-around">
+                    <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground" id="opening-hours">
+                        <!-- Opening hours section of footer -->
+                        <h4 class="brand-text mt-2"><strong>Opening Hours</strong></h4>
+                        <div class="center">
+                            <p>Mon - Fri: 7am-10pm <br>
+                                Sun: 8am - 8pm <br>
+                                <strong>Bank Holidays: </strong> Closed</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-6 col-lg-4 mt-4 pb-2 pink-bground" id="map-section">
+                        <!-- Map section of footer to be hidden on mobiles -->
+                        <h4 class="brand-text mt-2"><strong>Find us!</strong></h4>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2479.7975206891574!2d-0.12180388407318832!3d51.571945313802374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761bbdc399e54f%3A0x73cee8db4e0f4e96!2sCrouch%20Hill%2C%20London%20N4%204AJ!5e0!3m2!1sen!2suk!4v1641838016037!5m2!1sen!2suk"
+                            width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <!-- Contact information section of footer -->
+                    <div class="col-sm-8 col-lg-4 mt-4 pb-2 pink-bground" id="contact-section">
+                        <h4 class="footer-heading brand-text mt-2"><strong>Stay In Touch</strong></h4>
+                        <div class="center">
+                            <p><a href="{% url 'contact_us' %}" class="contact-link">Send us a message!</a><br>
+                                12 Crouch Hill, London N4 4AJ <br>
+                                Phone: <span class="contact-link">02076841002</span></p>
+                        </div>
+                        <div class="mb-2 flex-center">
+                            <!-- Social media links -->
+                            <!-- Facebook -->
+                            <a class="ic" href="https://www.facebook.com/"
+                                aria-label="Take a look at our facebook, opens in a new tab" target="_blank"
+                                rel="noreferrer">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="ic" href="https://twitter.com/?lang=en"
+                                aria-label="Take a look at our twitter, opens in a new tab" target="_blank"
+                                rel="noreferrer">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ic" href="https://www.instagram.com/"
+                                aria-label="Take a look at our instagram, opens in a new tab" target="_blank"
+                                rel="noreferrer">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center green-bground py-3">© 2021 Copyright:
+                <h4><span class="brand-text">GROW</span></h4>
+            </div>
+
+        </footer>
+    </div>
     <!-- Footer -->
 
     <!-- Font awesome -->
