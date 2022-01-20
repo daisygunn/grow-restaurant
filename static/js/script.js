@@ -60,7 +60,7 @@ function deleteModal() {
 
 // Adds and removes classes in footer depending on screen width.
 function screenSize() {
-    if (window.innerWidth < 769) {
+    if (window.innerWidth < 994) {
         $('#map-section').addClass('hidden');
         $('#contact-section').addClass('col-md-6');
     } else {
