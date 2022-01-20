@@ -97,6 +97,8 @@ The theme of simplicity follows through to the design, I've used bootstrap colum
 ### Surface
 Initially the colour pallete I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat and so I chose to add a pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
 
+![Colour Palette](assets/images/colour_palete.png)
+
 I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use for headings which is why I chose 'Lobster' and then 'Raleway' for the general content as it's easier to read for the user. 
 
 ---
@@ -137,23 +139,42 @@ I have chosen to display the menus on different pages so that the user is able t
 ### Reservations
 **Reservation form**: This page consists of the customer & reservation model forms, they are displayed together to appear as one to make it simple for the user.
 
-If the user is logged in and they exist in the customer model then their name & email address are pre-populated in an effort to improve their experience.
+If the user is logged in and they exist in the customer model then their name & email address are pre-populated, this has been done in an effort to improve their overall experience.
 
 ![](assets/images/user_stories_testing/pre_populated_form.jpg)
 
-If they are not yet in the customer model then only their email address is added. As the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
+If they are not yet in the customer model then only their email address is added. 
+
+As the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
 
 If the user is not logged in at all then the form appears blank:
 
 ![](assets/images/reservation_form.jpg)
 
+**Manage Reservations**: Logged in users are able to view the manage reservation page, on this page they are shown any reservation enquiries they have previously made.
 
-**Manage Reservations**: Logged in users are able to view, edit & delete any existing reservations they have. If the booking was confirmed before editing it will change to pending status. 
+The reservation id is displayed at the top of the reservation item so they can be easily identified, the reservation status is also given a coloured background, depending on what the status is to help the user see straight away what the status is.
 
-**Update customer details**: A logged in user can also update their phone number or full name that are stored in the customer model. 
+There are also edit & delete buttons, users are able to edit or delete any existing reservations they have. If the booking was confirmed before editing it will change to 'pending' status. 
+
+![](assets/images/user_stories_testing/manage_reservations.jpg)
+
+**Update customer details**: A logged in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email  for their account.
+
+There are explanation statements on this page regarding the email address as the user is only able to view reservations made under the users 'primary' email. I added this statement so that users were not surprised if they weren't able to view reservations made under an old email address. 
+
+![](assets/images/customer_details.jpg)
+
+If a user wants to update their email address they can navigate using the link found on 'Update Details'. They are taken to `accounts/email` and from here they can manage the emails associated with their user account. They can also switch their 'Primary' email to view reservations associated with their other email.
+
+![](assets/images/email_page.jpg)
 
 ### Contact Form
-**Contact form**: All users are able to submit a contact form, which sends an email to the website owner using Google SMTP. 
+**Contact form**: All users are able to submit a contact form from the 'Contact Us' page, this sends an email to the website owner using Google SMTP. Having a way to communicate with the website owner/restaurant manager is a helpful tool for the user and creates a platform for communication to strengthen the relationships with customers.
+
+This form also pre-populates with the customers information if they're logged in.
+
+![](assets/images/contact_form_user.jpg)
 
 ---
 ## Technologies Used
