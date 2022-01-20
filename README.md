@@ -103,33 +103,57 @@ I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use f
 ## Features
 
 ### Home page
-- **Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to clearly indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indiciate to the user what they are about to click on. 
+**Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to clearly indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indiciate to the user what they are about to click on. 
 
 If the user is logged in then the right side of the menu shows links for pages that only authorised users are able to visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompts the user to sign up for an account. Furthermore it makes it abundantly clear what the logged in status is to the user. 
 
-The navigation bar is fully responsive and collapses on mobile screens to a hamburger icon, this easily allows the user to continue to use the navigation links without the need to press back on the browser. 
-
-- **Menus image with link**: This image and title are both clickable and will take the user to the menus page. I have added a css rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
-
 ![](assets/images/index_1.jpg)
 
-- **Reservations image with link**: This image is clickable and will take the user to the reservations page.
-- **Footer**: The footer displays some of the restaurants key information and has links to social accounts. 
+The navigation bar is fully responsive and collapses on mobile screens to a hamburger icon, this easily allows the user to continue to use the navigation links without the need to press back on the browser. 
+
+![](assets/images/mobile_homepage.jpg)
+
+**Menus image with link**: This image and title are both clickable and will take the user to the menus page. I have added a css rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+
+**Reservations image with link**: This image and title are both clickable and will take the user to the reservations page. I have added a css rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+
+![](assets/images/menus_res_links.jpg)
+
+**Footer**: The footer displays some of the restaurants key information and has links to social accounts. 
 
 ![](assets/images/index_2.jpg)
 
-### Menus - Food & Drinks
-- **Seperate menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. The menus are controlled by the admin user, if 'on menu' is selected in the admin panel then the item will be displayed.
+### Menus
+**Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two on the homepage, creating consistency is the users interaction with the elements.
 
+![](assets/images/menus_page.jpg)
 
+**Food & Drinks menus**: Each page displays all sections of the menus seperately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. The menus are controlled by the admin user, if 'on menu' is selected in the admin panel then the item will be displayed.
+
+I have chosen to display the menus on different pages so that the user is able to find the information they want as easily as possible, this seperation prevents information overload as the pages aren't full of multiple menus.
+
+![](assets/images/user_stories_testing/food_menu.jpg) ![](assets/images/user_stories_testing/drinks_menu.jpg)
 
 ### Reservations
-- **Reservation form**: This page consists of the customer & reservation model forms, they are displayed together to appear as one. If the user is logged in then their name & email address are pre-populated.
-- **Manage Reservations**: Logged in users are able to view, edit & delete any existing reservations they have. If the booking was confirmed before editing it will change to pending status. 
-- **Update customer details**: A logged in user can also update their phone number or full name that are stored in the customer model. 
+**Reservation form**: This page consists of the customer & reservation model forms, they are displayed together to appear as one to make it simple for the user.
+
+If the user is logged in and they exist in the customer model then their name & email address are pre-populated in an effort to improve their experience.
+
+![](assets/images/user_stories_testing/pre_populated_form.jpg)
+
+If they are not yet in the customer model then only their email address is added. As the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
+
+If the user is not logged in at all then the form appears blank:
+
+![](assets/images/reservation_form.jpg)
+
+
+**Manage Reservations**: Logged in users are able to view, edit & delete any existing reservations they have. If the booking was confirmed before editing it will change to pending status. 
+
+**Update customer details**: A logged in user can also update their phone number or full name that are stored in the customer model. 
 
 ### Contact Form
-- **Contact form**: All users are able to submit a contact form, which sends an email to the website owner using Google SMTP. 
+**Contact form**: All users are able to submit a contact form, which sends an email to the website owner using Google SMTP. 
 
 ---
 ## Technologies Used
@@ -203,18 +227,34 @@ All of my code has been validated using an online validator specific to the lang
 
 - [W3C Markup Validation Service](https://validator.w3.org/) 
     - Used to validate all HTML code written and used in this webpage.
+
+![](assets/images/html_report.jpg)
+
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
     - Used to validate all CSS code written and used in this webpage.
+
+![](assets/images/css_validation.jpg)
+
 - [JSHint](https://jshint.com/)
     - Used to validate JS code
+
 - [Pep8](http://pep8online.com/)
     - Used to test my code for any issues or errors.
 
 In addition to this I have also used online validators to test the accessbility of my website:
 - [Wave](https://wave.webaim.org/)
     - Used to test the accessibility of the website.
+
+![](assets/images/wave_report.jpg)
+
+My initial wave report had multiple contrast errors and so I had to alter my design, the pink used for active/hover nav links was changed to white and I enlarged the font-size in my footer. However, one contrast error is still showing in the footer. I am unable to find the reason for this error and have chosen to leave the element as it is, the reason for this is due to the fact it is visually the same as the other elements surrounding it and they do not have a contrast error. 
+
+![](assets/images/contrast_error.jpg)
+
 - [Color Contrast Accessibility Validator](https://color.a11y.com/)
     - Allowed me to test the colour contrast of my webpage.
+
+![](assets/images/contrast_report.jpg)
 
 ### Manual Testing
 
@@ -234,6 +274,7 @@ To generate your own coverage report from the command-line:
  - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using 'cleaned-data' to retrieve the information from the post request and reformatted the date myself using `strptime`.
 
  - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we came to the conclusion that due to me linking an image within the static directory in my css file (that was also in the static directory) this is what was causing the problem. For that reason I have linked directly the cloudinary image url. 
+
 
 ---
 ## Deployment
