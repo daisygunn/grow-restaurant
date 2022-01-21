@@ -10,8 +10,8 @@ class TestReservationsModels(TestCase):
             customer_id=12, full_name='Test 123', email='test123@gmail.com')
         self.reservation = Reservation(
             reservation_id=32,
-            table_id=self.table,
-            customer_name=self.customer,
+            table=self.table,
+            customer=self.customer,
             no_of_guests=4, requested_date='2022-01-23',
             requested_time='12:00', status='pending')
 
@@ -27,8 +27,8 @@ class TestReservationsModels(TestCase):
 
     def test_create_reservation(self):
         self.assertEqual(self.reservation.reservation_id, 32)
-        self.assertEquals(self.reservation.table_id, self.table)
-        self.assertEquals(self.reservation.customer_name, self.customer)
+        self.assertEquals(self.reservation.table, self.table)
+        self.assertEquals(self.reservation.customer, self.customer)
         self.assertEquals(self.reservation.no_of_guests, 4)
         self.assertEquals(self.reservation.requested_date, '2022-01-23')
         self.assertEquals(self.reservation.requested_time, '12:00')

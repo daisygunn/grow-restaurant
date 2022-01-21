@@ -31,11 +31,11 @@ class TestReservationsViews(TestCase):
 
         self.reservation = Reservation.objects.create(
             reservation_id=35,
-            customer_name=self.customer,
+            customer=self.customer,
             no_of_guests=4,
             requested_date='2022-01-20',
             requested_time='12:00',
-            table_id=self.table,
+            table=self.table,
             status='pending'
         )
 
@@ -84,11 +84,11 @@ class TestReservationsViews(TestCase):
 
         reservation = Reservation.objects.create(
             reservation_id=36,
-            customer_name=customer,
+            customer=customer,
             no_of_guests=4,
             requested_date='2022-01-29',
             requested_time='12:00',
-            table_id=table,
+            table=table,
             status='pending'
         )
 
@@ -110,4 +110,4 @@ class TestReservationsViews(TestCase):
 
         reservation.save()
 
-        self.assertEquals(self.reservation.requested_date, '2022-04-11')
+        self.assertEquals(self.reservation.requested_date, '2022-04-01')
