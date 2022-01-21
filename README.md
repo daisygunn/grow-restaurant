@@ -9,8 +9,8 @@ This is a full-stack framework project built using Django, Python, HTML, CSS and
 ---
 ## UX
 
-### Strategy
-Using the core UX principles I first started with Strategy, thinking about the target audience for this quiz & the features they would want.
+## Strategy
+Using the core UX principles I first started with Strategy, thinking about the target audience for this restaurant & the features they would benefit from.
 
 The target audience for 'Grow' is:
 - 25-35 year olds
@@ -48,7 +48,7 @@ Please find all my defined user stories & their acceptance criteria [here](https
 17. As a logged in customer I can edit/delete an existing enquiry so that I can make changes if required online.
 18. As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
 
-### Scope
+## Scope
 In order to achieve the desired user & business goals, the following features will be included in this release:
 
 - Responsive navbar that will navigate to the various pages throughout the site
@@ -57,10 +57,10 @@ In order to achieve the desired user & business goals, the following features wi
 - Reservations page, with a booking form to enquire with the restaurant
 - Manage reservations page, where logged in users can edit/delete existing reservations they have.
 - Update details page, for logged in users to update their details which in turn updates the customer model. 
-- Register/login feature
-- Contact form
+- Register/login feature using Django allauth
+- Contact form that sends an email using Gmail SMTP
 
-### Structure
+## Structure
 This website has been designed with simplicity in mind, each page only has key information on it so that the user can find what they want quickly without having to read through unnecessary things. I have separated each key feature to highlight its functionality to the user.
 
 The website is made of three apps:
@@ -79,7 +79,7 @@ FoodItem & DrinksItem are the model names for the menus app, these are two stand
 #### Reservations
 There are 3 models in this app, Customer, Table & Reservation. The combination of these 3 models allow for customer details to be stored, reservation enquiries to be made & managed & also enable availability checks whilst the user is enquiring. 
 
-For each reservation, there will be a customer & table assigned to it. The customer is assigned during the enquiry process and the tables are assigned in the backend by the admin user. 
+For each reservation, there will be a customer & table assigned to it. The customer is assigned during the enquiry process and the tables are assigned in the backend by the admin user. This works for users that are logged in and also those that aren't. Logged in users will have their details associated with the user email address as this is how they are located in the customer model.
 
 The tables model is also used to determine what the availability of the restaurant is like and this logic prevents bookings from being made if there are no tables available at the specified date and time.
 
@@ -115,15 +115,17 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 
 ![](assets/images/mobile_homepage.jpg)
 
-**Menus image with link**: This image and title are both clickable and will take the user to the menus page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
-
-**Reservations image with link**: This image and title are both clickable and will take the user to the reservations page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+**Menus & Reservations images with links**: This image and title are both clickable and will take the user to the menus page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
 
 ![](assets/images/menus_res_links.jpg)
 
-**Footer**: The footer displays some of the restaurants key information and has links to social accounts. 
+**Footer**: The footer displays some of the restaurants key information and has links to social accounts. It is split in to three sections, 'Opening Times', 'Find us! & 'Keep in touch', these sections have a pink background to make them stand out against the green.
 
 ![](assets/images/index_2.jpg)
+
+ I felt that having all three sections display on a mobile made the footer too long to scroll and so I chose to hide the map on smaller screens using a JavaScript function.
+
+![](assets/images/footer_mobile.jpg)
 
 ### Menus
 **Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two on the homepage, creating consistency in the users' interaction with the elements.
@@ -143,21 +145,23 @@ If the user is logged in and they exist in the customer model then their name & 
 
 ![](assets/images/user_stories_testing/pre_populated_form.jpg)
 
-If they are not yet in the customer model then only their email address is added. 
+If they are not yet in the customer model then only their email address is added using the email from their user account.
 
-As the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
-
-If the user is not logged in at all then the form appears blank:
+If the user is not logged in at all then the form appears blank, as the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
 
 ![](assets/images/reservation_form.jpg)
 
-**Manage Reservations**: Logged in users are able to view the manage reservation page, on this page they are shown any reservation enquiries they have previously made.
+**Manage Reservations**: Logged in users are able to view the manage reservation page, on this page they are shown any reservation enquiries they have previously made using the email address associated with their user account.
 
-The reservation id is displayed at the top of the reservation item so they can be easily identified, the reservation status is also given a coloured background, depending on what the status is to help the user see straight away what the status is.
+The reservation id is displayed at the top of the reservation item so they can be easily identified, the reservation status is also given a coloured background, depending on what the status is, to give the user a visual representation of the status.
 
 There are also edit & delete buttons, users are able to edit or delete any existing reservations they have. If the booking was confirmed before editing it will change to 'pending' status. 
 
 ![](assets/images/user_stories_testing/manage_reservations.jpg)
+
+**Edit Reservation**: This page simply displays the reservation form pre-populated using the reservation instance, the user is able to change the date, time or number of guests and resubmit the form. After resubmitting the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
+
+**Delete Reservations**: This page simply displays the reservation selected with all of its information, the user presses 'Cancel Reservation' and a modal pops up for the user to confirm the cancellation, explaining that this cannot be undone. If the user chooses 'Cancel it' the reservation will be deleted from the model. After confirming the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
 
 **Update customer details**: A logged-in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email  for their account.
 
@@ -202,15 +206,13 @@ I have used several technologies that have enabled this design to work:
 - [Heroku](https://dashboard.heroku.com/apps)
     - Used to deploy my application.
 - [Lucid](https://lucid.app/documents#/dashboard)
-    - Used to create the flowchart for the project.
+    - Used to create the ERD for the project.
 - [Grammarly](https://www.grammarly.com/)
     - Used to fix the thousands of grammar errors across the project.
 - [ImageResizer](https://imageresizer.com/)
     - Used to resize images to reduce loading time.
 - [Pep8](http://pep8online.com/)
     - Used to test my code for any issues or errors.
-- [AutoPrefixer](https://autoprefixer.github.io/)
-    - Used to parse my CSS and ass vendor prefixes.
 - [Grammarly](https://www.grammarly.com/)
     - Used to fix the grammar errors across the project.
 - [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB)
@@ -239,6 +241,10 @@ I have used several technologies that have enabled this design to work:
     - Used to test the accessibility of the website.
 - [Animate](https://animate.style/)
     - Used to animate main heading and forms. 
+- [SQLite](https://www.sqlite.org/index.html)
+    - I have SQLite to run my database tests locally.
+- [PostgreSQL](https://www.postgresql.org/)
+    - I have used Heroku's PostgreSQL relational database in deployment to store the data for my models.
 ---
 ## Testing
 I have used a combination of manual and automated testing to ensure the website's functionality meets the desired intent.
@@ -279,23 +285,28 @@ My initial wave report had multiple contrast errors and so I had to alter my des
 
 ### Manual Testing
 
+I have tested this project manually myself and have also had it peer reviewed & testing by friends and family on multiple devices and screen sizes.
+
 [TESTING.md](TESTING.md)
 
 ### Automated Testing
-I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written.
+
+I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written. From running the coverage report my website has 79% of my Python code tested.
 
 To generate your own coverage report from the command line:
 
 1. Install the package using `pip3 install coverage`
 2. Run `coverage run manage.py test`
 3. Then `coverage html` to generate the report
-4. You can view the report in a browser by opening the `index.html` file from inside the `htmlcov` folder.
+4. You can view the report in a browser by using the command `python3 -m http.server` and opening the `index.html` file from inside the `htmlcov` folder.
 
 ### Bugs and Fixes
- - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using 'cleaned-data' to retrieve the information from the post request and reformatted the date myself using `strptime`.
+
+ - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using `[cleaned-data]` to retrieve the information from the post request and used `request.data.POST` instead and reformatted the date myself using `strptime`.
 
  - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we concluded that due to me linking an image within the static directory in my css file (that was also in the static directory) this is what was causing the problem. For that reason I have linked directly the Cloudinary image url. 
 
+- At various stages of my testing, upon submitting the contact form some users received a 500 error, this was due to Gmail preventing my application from logging in. I would receive an email to alert me of this login attempt and so I have had to enable these permissions a handful of times in order for it to work.
 
 ---
 ## Deployment
@@ -339,7 +350,7 @@ Cloning your repository will allow you to download a local version of the reposi
 
 I followed the below steps using the Code Institute tutorial and [Django Blog cheatsheat](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
 
-- The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being committed.
+- The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being committed. A `Procfile` is also required that specifies the commands that are executed by the app on startup. 
 
 1. Go to [Heroku.com](https://dashboard.heroku.com/apps) and log in; if you do not already have an account then you will need to create one.
 2. Click the `New` dropdown and select `Create New App`.
@@ -367,7 +378,7 @@ In the Deploy tab:
 ---
 ## Credits
 
-Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems. 
+Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems, in additions to various modules to build the functionailty of this website:
 
 [Full-width pic header](https://startbootstrap.com/template/full-width-pics)
 
@@ -376,6 +387,10 @@ Throughout the process of building this website, I have used various sources onl
 [To display multiple queryset](https://stackoverflow.com/questions/48872380/display-multiple-queryset-in-list-view)
 
 [Django phone number](https://github.com/stefanfoulis/django-phonenumber-field)
+
+[Coverage](https://coverage.readthedocs.io/en/6.2/)
+
+[Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html)
 
 [Gmail SMTP](https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e)
 
