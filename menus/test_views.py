@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
-from django.urls import reverse, resolve
-from menus.models import FoodItem, DrinkItem
+from django.urls import reverse
 
 
 class TestMenusViews(TestCase):

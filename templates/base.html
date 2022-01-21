@@ -39,7 +39,6 @@
     <div class="container-fluid p-0">
     <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark green-bground" id="main-nav">
-
             <a class="navbar-brand brand-text" href="{% url 'index' %}" id="nav-heading">GROW</a>
             <!-- Collapsible icon for smaller screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -50,6 +49,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item light-text green-bground">
+                        <!-- Display different style if link is active -->
                         <a class="nav-link {% if request.resolver_match.url_name == 'index' %}
                         green-text {% else %} text-white {% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
@@ -193,7 +193,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center green-bground py-3">© 2021 Copyright:
+            <div class="footer-copyright text-center green-bground py-3">© 2022 Copyright:
                 <h4><span class="brand-text">GROW</span></h4>
             </div>
 

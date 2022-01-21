@@ -1,7 +1,6 @@
 from django.db import models
-from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
-import datetime
+
 
 status_choices = (("pending", "pending"),
                   ("confirmed", "confirmed"),
@@ -27,9 +26,7 @@ time_choices = (
 
 # Create your models here.
 class Customer(models.Model):
-    """
-    Customer information model
-    """
+    """ Customer information model """
     customer_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=254, default="")
@@ -39,14 +36,9 @@ class Customer(models.Model):
         # return the full name as this is easier for the admin to read
         return self.full_name
 
-    # def __str__(self):
-    #     return str(self.customer_id)
-
 
 class Table(models.Model):
-    """
-    Restaurant table model
-    """
+    """ Restaurant table model """
     table_id = models.AutoField(primary_key=True)
     table_name = models.CharField(
         max_length=10, default="New table", unique=True)
@@ -57,9 +49,8 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
-    """
-    Reservation model, which uses information from Customer and Table
-    """
+    """ Reservation model, which uses information from
+    Customer and Table """
     reservation_id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="customer", null=True)

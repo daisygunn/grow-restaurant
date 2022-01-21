@@ -3,7 +3,6 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
-
         <div class="col-sm-8">
             <h2 class="text-center mt-2 mb-3">Edit your reservation at <span class="brand-text">GROW</span></h2>
             <!-- Link to edit_customer_details -->
@@ -13,15 +12,13 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-
         <div class="col-sm-6">
-
             <!-- Reservation form -->
             <form method="POST" class="mb-5 reservation-enquiry">
                 <ul class="full-form">
 
                     {% csrf_token %}
-
+                    <!-- Display reservation ID -->
                     <h5 class="text-center my-3">Reservation ID: {{ reservation.reservation_id }}</h5>
 
                     {{ reservation_form.as_ul }}

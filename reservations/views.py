@@ -6,9 +6,6 @@ from django.contrib.auth.models import User
 import datetime
 from .models import Table, Customer, Reservation
 from .forms import CustomerForm, ReservationForm
-import logging
-
-logger = logging.getLogger(__name__)
 
 
 def check_availabilty(customer_requested_time, customer_requested_date):
@@ -47,7 +44,6 @@ class ReservationsEnquiry(View):
             customer = get_customer_instance(request, User)
             if customer is None:
                 email = request.user.email
-                logger.warning(email)
                 customer_form = CustomerForm(initial={'email': email})
             else:
                 customer_form = CustomerForm(instance=customer)
@@ -336,7 +332,7 @@ class DeleteReservation(View):
                            'reservation_id': reservation_id, })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
-        customer = get_customer_instance(request, User)
+        # customer = get_customer_instance(request, User)
         # get reservation from database
         reservation_id = reservation_id
         reservation = Reservation.objects.get(pk=reservation_id)
@@ -346,7 +342,7 @@ class DeleteReservation(View):
                              f"Reservation {reservation_id} has now "
                              "been cancelled.")
         # Get updated list of reservations
-        current_reservations = retrieve_reservations(self, request, User)
+        # current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
 
         url = reverse('manage_reservations')
@@ -394,7 +390,6 @@ class EditCustomerDetails(View):
                 if customer_form.has_changed():
                     # get the information from the form
                     customer_full_name = request.POST.get('full_name')
-                    customer_email = request.POST.get('email')
                     customer_phone_number = request.POST.get('phone_number')
 
                     customer_form.save(commit=False)

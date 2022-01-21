@@ -10,7 +10,7 @@ class TestReservationsViews(TestCase):
         self.user = User.objects.create_user(
             username='project.test@test.com',
             email='project.test@test.com', password='12345')
-        login = self.client.login(
+        self.client.login(
             username='project.test@test.com',
             email='project.test@test.com', password='12345')
         self.reservations_url = reverse('reservations')
@@ -56,7 +56,7 @@ class TestReservationsViews(TestCase):
             self.assertEquals(response.status_code, 200)
             self.assertTemplateUsed(response, 'manage_reservations.html')
         else:
-            failureException
+            self.assertEquals(response.status_code, 400)
 
     def test_delete_reservation_GET(self):
         response = self.client.get(self.delete_reservations_url)
@@ -101,7 +101,7 @@ class TestReservationsViews(TestCase):
         self.assertEquals(len(Customer.objects.all()), 2)
 
     def test_edit_reservation_POST_updates_model(self):
-        customer = self.customer
+        # customer = self.customer
         reservation = self.reservation
 
         updated_date = '2022-04-01'
