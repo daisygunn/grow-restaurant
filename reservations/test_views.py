@@ -112,7 +112,7 @@ class TestReservationsViews(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit_customer_details.html')
-    
+
     def test_edit_reservation_GET_unathorised_user_redirected(self):
         self.client.logout()
         response = self.client.get(self.edit_customer_details_url)
@@ -147,7 +147,7 @@ class TestReservationsViews(TestCase):
 
     def test_reservation_POST_does_not_add_customer_that_exists(self):
         table = self.table
-        customer = self.customer 
+        customer = self.customer
         reservation = Reservation.objects.create(
             reservation_id=39,
             customer=customer,
@@ -166,7 +166,7 @@ class TestReservationsViews(TestCase):
 
     def test_edit_reservation_POST_updates_model(self):
         reservation = self.reservation1
-        
+
         reservation.requested_date = '2022-04-01'
 
         response = self.client.post(self.edit_reservation1_url)
@@ -179,5 +179,3 @@ class TestReservationsViews(TestCase):
 
         self.assertEquals(len(Reservation.objects.all()), 1)
         self.assertNotIn(self.reservation2, Reservation.objects.all())
-
-

@@ -174,7 +174,7 @@ def validate_date(self, request, reservations):
     for reservation in reservations:
         if reservation['requested_date'] < today:
             reservation['status'] = 'expired'
-        
+
         return reservations
 
 class ManageReservations(View):
