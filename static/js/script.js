@@ -71,7 +71,7 @@ function screenSize() {
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
-// 250 milliseconds. If `immediate` is passed, trigger the function on the
+// 150 milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
 function debounce(func, wait, immediate) {
     var timeout;
@@ -91,7 +91,7 @@ function debounce(func, wait, immediate) {
 
 var screenChangeEfficient = debounce(function () {
     screenSize();
-}, 250);
+}, 150);
 
 // Trigger efficient screen class function each time screen resizes
 window.addEventListener('resize', screenChangeEfficient);
