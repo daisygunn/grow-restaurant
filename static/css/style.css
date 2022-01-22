@@ -15,11 +15,6 @@ body {
     background-color: white;
 }
 
-.pink-text {
-    background-color: white;
-    color: #C97064;
-}
-
 .green-bground {
     background-color: #007842;
     color: white;
@@ -134,6 +129,7 @@ p#subheading,
     color: white;
 }
 
+/* Social media links */
 
 a.ic {
     color: #effbed;
@@ -241,6 +237,8 @@ li select,
     display: inline;
 }
 
+/* Crispy form inputs */
+
 input#id_name.textinput.textInput,
 input#id_email.emailinput,
 textarea#id_message.textarea,
@@ -263,6 +261,7 @@ input#id_phone_number.textinput.textInput {
 
 /* Manage Reservations page */
 
+/* Status colours */
 .confirmed {
     background-color: #007842;
     color: #Effbed;
