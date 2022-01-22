@@ -186,10 +186,14 @@ class ManageReservations(View):
                 return HttpResponseRedirect(url)
 
             else:
-                return render(
-                    request, 'manage_reservations.html',
-                    {'reservations': current_reservations,
-                     'customer': customer})
+                today = datetime.datetime.now().date()
+                for reservation in current_reservations:
+                    if reservation['requested_date'] < today:
+                        reservation['status'] = 'expired'
+                    return render(
+                        request, 'manage_reservations.html',
+                        {'reservations': current_reservations,
+                        'customer': customer})
 
         else:
             # Prevent users not logged in from accessing this page
@@ -207,34 +211,51 @@ class EditReservation(View):
         # Get reservation object based on id
         reservation = get_object_or_404(
             Reservation, reservation_id=reservation_id)
-        # Convert date to display in dd/mm/YYYY format
-        date_to_string = reservation.requested_date.strftime("%d/%m/%Y")
-        reservation.requested_date = date_to_string
-        customer = get_customer_instance(request, User)
-
-        # Compare names of reservation owner and user
-        reservation_owner = reservation.customer
-        name_of_user = customer
-
-        if reservation_owner != name_of_user:
-            # If the names do not match redirect back to manage reservations
+        # Prevent customers editing expired reservations
+        today = datetime.datetime.now().date()
+        if reservation.requested_date < today:
             messages.add_message(
                 request, messages.ERROR, "You are trying to edit a "
-                "reservation that is not yours.")
+                "reservation that is in the past.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
-
+        elif reservation.status == 'rejected':
+            messages.add_message(
+                request, messages.ERROR, "You are trying to edit a "
+                "reservation that has been rejected.")
+            url = reverse('manage_reservations')
+            return HttpResponseRedirect(url)
         else:
-            # return both forms with the existing information
-            customer_form = CustomerForm(instance=customer)
-            reservation_form = ReservationForm(instance=reservation)
+            # Convert date to display in dd/mm/YYYY format
+            date_to_string = reservation.requested_date.strftime("%d/%m/%Y")
+            reservation.requested_date = date_to_string
 
-            return render(request, 'edit_reservation.html',
-                          {'customer_form': customer_form,
-                           'customer': customer,
-                           'reservation_form': reservation_form,
-                           'reservation': reservation,
-                           'reservation_id': reservation_id})
+            # Get customer info
+            customer = get_customer_instance(request, User)
+
+            # Compare names of reservation owner and user
+            reservation_owner = reservation.customer
+            name_of_user = customer
+
+            if reservation_owner != name_of_user:
+                # If the names do not match redirect back to manage reservations
+                messages.add_message(
+                    request, messages.ERROR, "You are trying to edit a "
+                    "reservation that is not yours.")
+                url = reverse('manage_reservations')
+                return HttpResponseRedirect(url)
+
+            else:
+                # return both forms with the existing information
+                customer_form = CustomerForm(instance=customer)
+                reservation_form = ReservationForm(instance=reservation)
+
+                return render(request, 'edit_reservation.html',
+                            {'customer_form': customer_form,
+                            'customer': customer,
+                            'reservation_form': reservation_form,
+                            'reservation': reservation,
+                            'reservation_id': reservation_id})
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
         customer = get_customer_instance(request, User)
@@ -242,6 +263,7 @@ class EditReservation(View):
         reservation_id = reservation_id
         reservation = get_object_or_404(
             Reservation, reservation_id=reservation_id)
+        
         reservation_form = ReservationForm(
             data=request.POST, instance=reservation)
         customer_form = CustomerForm(instance=customer)
@@ -264,7 +286,7 @@ class EditReservation(View):
             # Compare number of bookings to number of tables available
             if tables_booked == max_tables:
                 """ if the amount of tables already booked = the max tables
-                then reject the reservation."""
+                then stop form from submitting."""
                 messages.add_message(
                     request, messages.ERROR,
                     "Unfortunately we are fully booked at "
@@ -312,24 +334,32 @@ class DeleteReservation(View):
         reservation = get_object_or_404(
             Reservation, reservation_id=reservation_id)
         customer = get_customer_instance(request, User)
-
-        # Compare names of reservation owner and user
-        reservation_owner = reservation.customer
-        name_of_user = customer
-
-        if reservation_owner != name_of_user:
-            # If the names do not match redirect back to manage reservations
-            messages.add_message(request, messages.ERROR,
-                                 "You are trying to cancel a "
-                                 "reservation that is not yours.")
+        # Prevent customers editing expired reservations
+        today = datetime.datetime.now().date()
+        if reservation.requested_date < today:
+            messages.add_message(
+                request, messages.ERROR, "You are trying to edit a "
+                "reservation that is in the past.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
-
         else:
-            return render(request, 'delete_reservation.html',
-                          {'customer': customer,
-                           'reservation': reservation,
-                           'reservation_id': reservation_id, })
+            # Compare names of reservation owner and user
+            reservation_owner = reservation.customer
+            name_of_user = customer
+
+            if reservation_owner != name_of_user:
+                # If the names do not match redirect back to manage reservations
+                messages.add_message(request, messages.ERROR,
+                                    "You are trying to cancel a "
+                                    "reservation that is not yours.")
+                url = reverse('manage_reservations')
+                return HttpResponseRedirect(url)
+
+            else:
+                return render(request, 'delete_reservation.html',
+                            {'customer': customer,
+                            'reservation': reservation,
+                            'reservation_id': reservation_id, })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
         # customer = get_customer_instance(request, User)
