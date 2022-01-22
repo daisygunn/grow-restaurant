@@ -265,24 +265,30 @@ input#id_phone_number.textinput.textInput {
 /* Status colours */
 .confirmed {
     background-color: #007842;
-    color: #Effbed;
+    color: white;
     padding: 2px;
 }
 
 .pending {
     background-color: rgb(216, 141, 2);
-    color: #Effbed;
+    color: white;
     padding: 2px;
 }
 
 .rejected {
     background-color: rgb(167, 8, 3);
-    color: #Effbed;
+    color: white;
+    padding: 2px;
+}
+
+.expired {
+    background-color: grey;
+    color: white;
     padding: 2px;
 }
 
 
-#reservation-list,
+.reservation-list,
 .reservation-item {
     list-style: none;
     padding-left: 0;
