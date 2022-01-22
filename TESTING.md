@@ -144,7 +144,7 @@ And any larger than that it appears:
 
 ![](assets/images/user_stories_testing/user_stories_footer.jpg)
 
-I have used this function in conjunction with a `debounce` function to prevent the function triggering if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
+I have used this function in conjunction with a `debounce` function to prevent the function triggering if being called continuously. It triggers after it has stopped being called for 150 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
 
 **`datePicker`** - I opted to use a JQuery datepicker for my project and so this function applies the datepicker to any fields with the id - `"#id_requested_date"`.
 

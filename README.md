@@ -95,7 +95,7 @@ Please note the actual website differs slightly from the original wireframes.
 The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
 
 ### Surface
-Initially, the colour palette I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
+Initially, the colour palette I chose for this website was green and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be a consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar & menus. 
 
 ![Colour Palette](assets/images/colour_palete.png)
 
@@ -160,6 +160,8 @@ There are also edit & delete buttons, users are able to edit or delete existing 
 ![](assets/images/user_stories_testing/manage_reservations.jpg)
 
 I decided that reservations with a date in the past would display with a status of 'expired' and would not be able to be edited or deleted as this could cause confusion for the user and also the admin user, therefore the edit & delete buttons do not display under these reservations. Reservations with a 'rejected' status can also not be changed for the same reasons. 
+
+The status of 'expired' doesn't get pushed to the model and is used only when displaying the reservations to the user.
 
 Defensive programme has been used to prevent users editing/deleting reservations that they aren't meant to, if a user tried (by adding the reservation id in the url) they would be redirected back to manage reservations.
 
@@ -303,7 +305,7 @@ I have tested this project manually myself and have also had it peer-reviewed & 
 
 ### Automated Testing
 
-I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written. From running the coverage report my website has 79% of my Python code tested.
+I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written. From running the coverage report my website has 64% of my Python code tested. The remaining code is covered by manual testing.
 
 To generate your own coverage report from the command line:
 
