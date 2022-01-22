@@ -45,7 +45,7 @@ Please find all my defined user stories & their acceptance criteria [here](https
 14. As an admin user I can prevent guests from submitting reservation requests for full slots so that I can efficiently manage customer expectations and prevent a backlog of bookings.
 15. As a user I can find a navigation bar and footer so that I can see what content there is on the website.
 16. As a user I can send a contact form to the restaurant so that I can receive additional information.
-17. As a logged in customer I can edit/delete an existing enquiry so that I can make changes if required online.
+17. As a logged-in customer I can edit/delete an existing enquiry so that I can make changes if required online.
 18. As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
 
 ## Scope
@@ -55,7 +55,7 @@ In order to achieve the desired user & business goals, the following features wi
 - Landing page with brief information about the restaurant and links to the menu and reservations page
 - Menus page, with links to food & drinks menu respectively
 - Reservations page, with a booking form to enquire with the restaurant
-- Manage reservations page, where logged in users can edit/delete existing reservations they have.
+- Manage reservations page, where logged-in users can edit/delete existing reservations they have.
 - Update details page, for logged in users to update their details which in turn updates the customer model. 
 - Register/login feature using Django allauth
 - Contact form that sends an email using Gmail SMTP
@@ -95,7 +95,7 @@ Please note the actual website differs slightly from the original wireframes.
 The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
 
 ### Surface
-Initially, the colour palette I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat and so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
+Initially, the colour palette I have chosen for this website are greens and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar etc. 
 
 ![Colour Palette](assets/images/colour_palete.png)
 
@@ -107,7 +107,7 @@ I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use f
 ### Home page
 **Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indicate to the user what they are about to click on. 
 
-If the user is logged in then the right side of the menu shows links for pages that only authorised users can visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise, the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompting the user to sign up for an account. Furthermore, it makes it abundantly clear what the logged in status is to the user. 
+If the user is logged in then the right side of the menu shows links for pages that only authorised users can visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise, the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompting the user to sign up for an account. Furthermore, it makes it abundantly clear what the logged-in status is to the user. 
 
 ![](assets/images/index_1.jpg)
 
@@ -119,11 +119,11 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 
 ![](assets/images/menus_res_links.jpg)
 
-**Footer**: The footer displays some of the restaurants key information and has links to social accounts. It is split in to three sections, 'Opening Times', 'Find us! & 'Keep in touch', these sections have a pink background to make them stand out against the green.
+**Footer**: The footer displays some of the restaurants key information and has links to social accounts. It is split into three sections, 'Opening Times', 'Find us! & 'Keep in touch', these sections have a pink background to make them stand out against the green.
 
 ![](assets/images/index_2.jpg)
 
- I felt that having all three sections display on a mobile made the footer too long to scroll and so I chose to hide the map on smaller screens using a JavaScript function.
+ I felt that having all three sections displayed on a mobile screen made the footer too long so I chose to hide the map using a JavaScript function.
 
 ![](assets/images/footer_mobile.jpg)
 
@@ -134,7 +134,7 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 
 **Food & Drinks menus**: Each page displays all sections of the menus separately, each menu item has the Dish/Drink name, dish/drink description, price, dietary information & any allergens. The menus are controlled by the admin user, if 'on menu' is selected in the admin panel then the item will be displayed.
 
-I have chosen to display the menus on different pages so that the user is able to find the information they want as easily as possible, this seperation prevents information overload as the pages aren't full of multiple menus.
+I have chosen to display the menus on different pages so that the user is able to find the information they want as easily as possible, this separation prevents information overload as the pages aren't full of multiple menus.
 
 ![](assets/images/user_stories_testing/food_menu.jpg) ![](assets/images/user_stories_testing/drinks_menu.jpg)
 
@@ -161,9 +161,9 @@ There are also edit & delete buttons, users are able to edit or delete any exist
 
 **Edit Reservation**: This page simply displays the reservation form pre-populated using the reservation instance, the user is able to change the date, time or number of guests and resubmit the form. After resubmitting the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
 
-**Delete Reservations**: This page simply displays the reservation selected with all of its information, the user presses 'Cancel Reservation' and a modal pops up for the user to confirm the cancellation, explaining that this cannot be undone. If the user chooses 'Cancel it' the reservation will be deleted from the model. After confirming the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
+**Delete Reservations**: This page simply displays the reservation selected with all of its information, the user presses 'Cancel Reservation' and a modal pop's up for the user to confirm the cancellation, explaining that this cannot be undone. If the user chooses 'Cancel it' the reservation will be deleted from the model. After confirming the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
 
-**Update customer details**: A logged-in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email  for their account.
+**Update customer details**: A logged-in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email for their account.
 
 There are explanation statements on this page regarding the email address as the user is only able to view reservations made under the users 'primary' email. I added this statement so that users were not surprised if they weren't able to view reservations made under an old email address. 
 
@@ -186,7 +186,7 @@ This form also pre-populates with the customer's information if they're logged i
 I have used several technologies that have enabled this design to work:
 
 - [Django](https://www.djangoproject.com/)
-    - Django is the framework that has been used to build the over project and it's apps.
+    - Django is the framework that has been used to build the over project and its apps.
 - [Python](https://www.python.org/)
     - Python is the core programming language used to write all of the code in this application to make it fully functional.
 - [Bootstrap](https://getbootstrap.com/)
@@ -268,7 +268,7 @@ All of my code has been validated using an online validator specific to the lang
 - [Pep8](http://pep8online.com/)
     - Used to test my code for any issues or errors.
 
-In addition to this I have also used online validators to test the accessbility of my website:
+In addition to this I have also used online validators to test the accessibility of my website:
 - [Wave](https://wave.webaim.org/)
     - Used to test the accessibility of the website.
 
@@ -285,7 +285,7 @@ My initial wave report had multiple contrast errors and so I had to alter my des
 
 ### Manual Testing
 
-I have tested this project manually myself and have also had it peer reviewed & testing by friends and family on multiple devices and screen sizes.
+I have tested this project manually myself and have also had it peer-reviewed & tested by friends and family on multiple devices and screen sizes.
 
 [TESTING.md](TESTING.md)
 
@@ -304,7 +304,7 @@ To generate your own coverage report from the command line:
 
  - I noticed that upon submitting the reservation form the month was always saved as January (01) no matter what date the user had selected. To fix this I stopped using `[cleaned-data]` to retrieve the information from the post request and used `request.data.POST` instead and reformatted the date myself using `strptime`.
 
- - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we concluded that due to me linking an image within the static directory in my css file (that was also in the static directory) this is what was causing the problem. For that reason I have linked directly the Cloudinary image url. 
+ - After deploying my project to Heroku I had an issue with my header, the background image wasn't loading with the file path `assets/images/header-background.jpg`, after discussing the issue with others we concluded that due to me linking an image within the static directory in my CSS file (that was also in the static directory) this is what was causing the problem. For that reason, I have linked directly the Cloudinary image URL. 
 
 - At various stages of my testing, upon submitting the contact form some users received a 500 error, this was due to Gmail preventing my application from logging in. I would receive an email to alert me of this login attempt and so I have had to enable these permissions a handful of times in order for it to work.
 
@@ -378,7 +378,7 @@ In the Deploy tab:
 ---
 ## Credits
 
-Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems, in additions to various modules to build the functionailty of this website:
+Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems, in addition to various modules to build the functionality of this website:
 
 [Full-width pic header](https://startbootstrap.com/template/full-width-pics)
 

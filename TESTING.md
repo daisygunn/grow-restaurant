@@ -4,11 +4,11 @@
 ### User Stories
 [Site Navigation](https://github.com/daisygunn/grow-restaurant/issues/1) / [Basic navbar & footer](https://github.com/daisygunn/grow-restaurant/issues/15) / [Informative Landing Page](https://github.com/daisygunn/grow-restaurant/issues/2) 
 
-The homepage instanlty provides the user with all information needed to be able to navigate through the website & to gain an understanding of 'who' the restaurant is.
+The homepage instantly provides the user with all information needed to be able to navigate through the website & to gain an understanding of 'who' the restaurant is.
 
-The navbar is self explanatory and it is also clear to the user which page they are currently on.
+The navbar is self-explanatory and it is also clear to the user which page they are currently on.
 
-The footer provides all additional key information required, opening times, location and contact information. For users viewing on a larger screen an embedded google map is included. 
+The footer provides all additional key information required, opening times, location and contact information. For users viewing on a larger screen, an embedded google map is included. 
 
 ![](assets/images/user_stories_testing/user_stories_s1.jpg)
 
@@ -16,7 +16,7 @@ The footer provides all additional key information required, opening times, loca
 
 [Contact form can be sent](https://github.com/daisygunn/grow-restaurant/issues/16)
 
-Upon submitting the contact form the user is given a postive message to confirm that is has been sent to the website owner and an email is received with the information from the form.
+Upon submitting the contact form a positive message is displayed to the user, to confirm that it has been sent. The website owner receives an email with the information from the form.
 
 ![](assets/images/user_stories_testing/contact_form.jpg)
 ![](assets/images/user_stories_testing/contact_form_sent.jpg)
@@ -49,11 +49,11 @@ Once in this admin backend, the admin user is able to access the food and drinks
 [Prompt user to register](https://github.com/daisygunn/grow-restaurant/issues/9) /
 [Forms pre-populated for users](https://github.com/daisygunn/grow-restaurant/issues/10)
 
-The navbar displays different navlinks depending on the status of the user. If they aren't logged in already the options are `Register` or `Login`.
+The navbar displays different nav links depending on the status of the user. If they aren't logged in already the options are `Register` or `Login`.
 
 ![](assets/images/user_stories_testing/display_when_logged_out.jpg)
 
-On the sign in page the user is prompted to register if they do not have an account:
+On the sign-in page the user is prompted to register if they do not have an account:
 
 ![](assets/images/user_stories_testing/sign_in.jpg)
 
@@ -65,7 +65,7 @@ Once a user logs in they are presented with a success message:
 
 ![](assets/images/user_stories_testing/display_when_logged_in.jpg)
 
-Logged in user have the benefit of forms pre-populating with their information:
+Logged in users have the benefit of forms pre-populating with their information:
 
 ![](assets/images/user_stories_testing/pre_populated_form.jpg)
 
@@ -80,7 +80,7 @@ New users will only have their email populated as they will not yet be present i
 [Food and drinks menus displayed seperately](https://github.com/daisygunn/grow-restaurant/issues/11) /
 [All items on the menu have a price, description and dietary info](https://github.com/daisygunn/grow-restaurant/issues/12) 
 
-In the navbar there is a `Menus` link which has a dropdown to display the two menu options, `Food` & `Drinks`. 
+In the navbar, there is a `Menus` link which has a dropdown to display the two menu options, `Food` & `Drinks`. 
 
 ![](assets/images/user_stories_testing/menus_nav.jpg)
 
@@ -88,9 +88,9 @@ On the `Menus` page there are links to both the Food and Drinks menu pages.
 
 ![](assets/images/user_stories_testing/menus_page_links.jpg)
 
-On each of the menu pages each menu section is seperated by a `<hr>` and has a clear heading to highlight these seperate sections, making it easier for the user to find what they're looking for. 
+On each of the menu pages, each menu section is separated by a `<hr>` and has a clear heading to highlight these separate sections, making it easier for the user to find what they're looking for. 
 
-For each item there is a name, description, dietary label, allergens list & price.
+For each item, there is a name, description, dietary label, allergens list & price.
 
 ![](assets/images/user_stories_testing/food_menu.jpg)
 
@@ -104,7 +104,7 @@ For each item there is a name, description, dietary label, allergens list & pric
 [Reservations can be edited by the user on the front end](https://github.com/daisygunn/grow-restaurant/issues/17) / 
 [Users can edit their information](https://github.com/daisygunn/grow-restaurant/issues/18)
 
-From the reservations page any user (autheticated or not) can add their details, requested time & date and submit the form, if there is availability they will get a positive message.
+From the reservations page, any user (authenticated or not) can add their details, requested time & date and submit the form, if there is availability they will get a positive message.
 
 ![](assets/images/user_stories_testing/reservation_message.jpg)
 
@@ -142,7 +142,7 @@ And any larger than that it appears:
 
 ![](assets/images/js_testing_images/footer_content_laptop.jpg)
 
-I have used this function in conjuction with a `debounce` function to prevent the function triggering if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
+I have used this function in conjunction with a `debounce` function to prevent the function triggering if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
 
 **`datePicker`** - I opted to use a JQuery datepicker for my project and so this function applies the datepicker to any fields with the id - `"#id_requested_date"`.
 
@@ -164,7 +164,7 @@ And after submitting, with an error the class `"animate__animated animate__shake
 
 ![](assets/images/user_stories_testing/form_two.jpg)
 
-This did cause issues when submitting the form as the email field wasn't able to be read and so I have used **`removeDisableAttrOnSubmit`** to remove the disabled attribute and then submit the form. 
+This did cause issues when submitting the form as the email field wasn't able to be read so I have used **`removeDisableAttrOnSubmit`** to remove the disabled attribute and then submit the form. 
 
 ![](assets/images/js_testing_images/update_form_subitted.jpg)
 
