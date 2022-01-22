@@ -173,29 +173,7 @@ a.ic::after {
 }
 
 
-/* Reservations page & contact page */
-
-.full-form {
-    list-style: none;
-}
-
-.full-form li label,
-.full-form label {
-    margin-left: 30px;
-}
-
-.full-form li {
-    padding: 5px;
-    margin-bottom: 20px;
-}
-
-li input,
-li select,
-.input-group.date {
-    width: 300px;
-    margin-right: 30px;
-    float: right;
-}
+/* Buttons */
 
 .button {
     display: block;
@@ -244,8 +222,11 @@ input#id_name.textinput.textInput,
 input#id_email.emailinput,
 textarea#id_message.textarea,
 input#id_full_name.textinput.textInput,
-input#id_phone_number.textinput.textInput {
+input#id_phone_number.textinput.textInput, 
+select#id_no_of_guests, 
+select#id_requested_time, input#id_requested_date {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 /* Date picker */
@@ -287,13 +268,11 @@ input#id_phone_number.textinput.textInput {
     padding: 2px;
 }
 
-
 .reservation-list,
 .reservation-item {
     list-style: none;
     padding-left: 0;
 }
-
 
 /* Update details */
 

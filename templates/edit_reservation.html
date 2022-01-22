@@ -1,32 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% load crispy_forms_tags %}
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
             <h2 class="text-center mt-2 mb-3">Edit your reservation at <span class="brand-text">GROW</span></h2>
-            <!-- Link to edit_customer_details -->
-            <h5 class="text-center mt-2 mb-3">Make changes to your <a class="green-text"
-                    href="{% url 'edit_customer_details' %}">accounts details</a>
         </div>
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
+            <!-- Display reservation ID -->
+            <h5 class="text-center my-3">Reservation ID: {{ reservation.reservation_id }}</h5>
             <!-- Reservation form -->
             <form method="POST" class="mb-5 reservation-enquiry">
-                <ul class="full-form">
 
                     {% csrf_token %}
-                    <!-- Display reservation ID -->
-                    <h5 class="text-center my-3">Reservation ID: {{ reservation.reservation_id }}</h5>
-
-                    {{ reservation_form.as_ul }}
+                    {{ reservation_form | crispy }}
 
                     <button type="submit" class="button mt-4 text-center submit-button">Edit
                         Reservation</button>
-
-                </ul>
             </form>
         </div>
     </div>
