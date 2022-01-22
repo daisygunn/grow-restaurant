@@ -169,6 +169,14 @@ def retrieve_reservations(self, request, User):
         return None
 
 
+def validate_date(self, request, reservations):
+    today = datetime.datetime.now().date()
+    for reservation in reservations:
+        if reservation['requested_date'] < today:
+            reservation['status'] = 'expired'
+        
+        return reservations
+
 class ManageReservations(View):
     """ View for user to manage any existing reservations """
     def get(self, request, User=User, *args, **kwargs):
@@ -186,14 +194,11 @@ class ManageReservations(View):
                 return HttpResponseRedirect(url)
 
             else:
-                today = datetime.datetime.now().date()
-                for reservation in current_reservations:
-                    if reservation['requested_date'] < today:
-                        reservation['status'] = 'expired'
-                    return render(
-                        request, 'manage_reservations.html',
-                        {'reservations': current_reservations,
-                        'customer': customer})
+                validate_date(self, request, current_reservations)
+                return render(
+                    request, 'manage_reservations.html',
+                    {'reservations': current_reservations,
+                      'customer': customer})
 
         else:
             # Prevent users not logged in from accessing this page
@@ -309,7 +314,7 @@ class EditReservation(View):
                 # Retreive new list of reservations to display
                 current_reservations = retrieve_reservations(
                     self, request, User)
-
+                validate_date(self, request, current_reservations)
                 # Return user to manage reservations page
                 return render(request, 'manage_reservations.html',
                               {'reservations': current_reservations})
@@ -362,7 +367,6 @@ class DeleteReservation(View):
                             'reservation_id': reservation_id, })
 
     def post(self, request, reservation_id, User=User, *args, **kwargs):
-        # customer = get_customer_instance(request, User)
         # get reservation from database
         reservation_id = reservation_id
         reservation = Reservation.objects.get(pk=reservation_id)
@@ -372,11 +376,11 @@ class DeleteReservation(View):
                              f"Reservation {reservation_id} has now "
                              "been cancelled.")
         # Get updated list of reservations
-        # current_reservations = retrieve_reservations(self, request, User)
+        current_reservations = retrieve_reservations(self, request, User)
         # Return user to manage reservations page
-
-        url = reverse('manage_reservations')
-        return HttpResponseRedirect(url)
+        validate_date(self, request, current_reservations)
+        return render(request, 'manage_reservations.html',
+                              {'reservations': current_reservations})
 
 
 class EditCustomerDetails(View):
