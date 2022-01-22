@@ -54,9 +54,9 @@ Once in this admin backend, the admin user is able to access the food and drinks
 ## Epic 3 - User Authentication
 ### User Stories
 
-7. [Users can login](https://github.com/daisygunn/grow-restaurant/issues/7): As a user I can register or log in so that I can manage my booking requests.
+7. [Users can login](https://github.com/daisygunn/grow-restaurant/issues/7): As a user I can register or login so that I can manage my booking requests.
 8. [Logged in status clear to user](https://github.com/daisygunn/grow-restaurant/issues/8): As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
-9. [Prompt user to register](https://github.com/daisygunn/grow-restaurant/issues/9): As a user I can am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+9. [Prompt user to register](https://github.com/daisygunn/grow-restaurant/issues/9): As a user I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
 10. [Forms pre-populated for users](https://github.com/daisygunn/grow-restaurant/issues/10): As a user I can log in so that I can auto-populate forms with my information on the site.
 
 The navbar displays different nav links depending on the status of the user. If they aren't logged in already the options are `Register` or `Login`.
@@ -144,7 +144,7 @@ Users not logged in that try to access these pages are displayed with this messa
 
 ![](assets/images/user_stories_testing/loggin_out_manage_reservations.jpg)
 
-A logged in user is able to access the 'Update Details' page where they are displayed with a form pre-filled with their information, here they are able to update their full name and phone number and are guided to the aullauth emails page if they want to change their email.
+A logged-in user is able to access the 'Update Details' page where they are displayed with a form pre-filled with their information, here they can update their full name and phone number and are guided to the aullauth emails page if they want to change their email.
 
 ![](assets/images/user_stories_testing/form_two.jpg)
 

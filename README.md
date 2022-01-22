@@ -95,7 +95,7 @@ Please note the actual website differs slightly from the original wireframes.
 The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
 
 ### Surface
-Initially, the colour palette I chose for this website was green and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be a consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar & menus. 
+Initially, the colour palette I chose for this website was green and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar & menus. 
 
 ![Colour Palette](assets/images/colour_palete.png)
 
@@ -163,7 +163,7 @@ I decided that reservations with a date in the past would display with a status 
 
 The status of 'expired' doesn't get pushed to the model and is used only when displaying the reservations to the user.
 
-Defensive programme has been used to prevent users editing/deleting reservations that they aren't meant to, if a user tried (by adding the reservation id in the url) they would be redirected back to manage reservations.
+Defensive programme has been used to prevent users editing/deleting reservations that they aren't meant to, if a user tried (by adding the reservation id in the URL) they would be redirected back to manage reservations.
 
 ![](assets/images/edit_expired.jpg)
 
