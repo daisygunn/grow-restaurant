@@ -4,7 +4,12 @@
 
 ## Epic 1 - Core website functionality
 ### User Stories
-[Site Navigation](https://github.com/daisygunn/grow-restaurant/issues/1) / [Basic navbar & footer](https://github.com/daisygunn/grow-restaurant/issues/15) / [Informative Landing Page](https://github.com/daisygunn/grow-restaurant/issues/2) 
+
+1. [Site Navigation](https://github.com/daisygunn/grow-restaurant/issues/1): As a user I can intuitively navigate through the site so that I can view desired content.
+
+2. [Informative Landing Page](https://github.com/daisygunn/grow-restaurant/issues/2): As a user I can get key information about the restaurant from the landing page so that I can spend less time having to search for information.
+
+15. [Basic navbar & footer](https://github.com/daisygunn/grow-restaurant/issues/15): As a user I can find a navigation bar and footer so that I can see what content there is on the website.
 
 The homepage instantly provides the user with all information needed to be able to navigate through the website & to gain an understanding of 'who' the restaurant is.
 
@@ -16,7 +21,7 @@ The footer provides all additional key information required, opening times, loca
 
 ![](assets/images/user_stories_testing/user_stories_footer.jpg)
 
-[Contact form can be sent](https://github.com/daisygunn/grow-restaurant/issues/16)
+16. [Contact form can be sent](https://github.com/daisygunn/grow-restaurant/issues/16): As a user I can send a contact form to the restaurant so that I can receive additional information.
 
 Upon submitting the contact form a positive message is displayed to the user, to confirm that it has been sent. The website owner receives an email with the information from the form.
 
@@ -26,8 +31,10 @@ Upon submitting the contact form a positive message is displayed to the user, to
 
 ## Epic 2 - Admin functionality
 ### User Stories
-[Admin Login](https://github.com/daisygunn/grow-restaurant/issues/3) / [Menus can be updated](https://github.com/daisygunn/grow-restaurant/issues/5) / [Food and drinks items have CRUD](https://github.com/daisygunn/grow-restaurant/issues/6) /
-[Approve/reject reservation requests](https://github.com/daisygunn/grow-restaurant/issues/4)
+3. [Admin Login](https://github.com/daisygunn/grow-restaurant/issues/3): As an admin user I can log in so that I can access the site's backend.
+4. [Approve/reject reservation requests](https://github.com/daisygunn/grow-restaurant/issues/4): As an admin user I can approve or reject any reservation requests so that I can manage the restaurant's bookings efficiently.
+5. [Menus can be updated](https://github.com/daisygunn/grow-restaurant/issues/5): As an admin user I can sign in to add & remove items from the current menus so that I can make sure the website is up to date and accurately reflects what is being served in the restaurant.
+6. [Food and drinks items have CRUD](https://github.com/daisygunn/grow-restaurant/issues/6): As an admin user I can create, remove, update or delete food & drinks items from the database so that I can ensure items are accurate and able to be added to the menu on the website.
 
 Using a specified login the site owner can access the admin backend
 
@@ -46,10 +53,11 @@ Once in this admin backend, the admin user is able to access the food and drinks
 
 ## Epic 3 - User Authentication
 ### User Stories
-[Users can login](https://github.com/daisygunn/grow-restaurant/issues/7) /
-[Logged in status clear to user](https://github.com/daisygunn/grow-restaurant/issues/8) /
-[Prompt user to register](https://github.com/daisygunn/grow-restaurant/issues/9) /
-[Forms pre-populated for users](https://github.com/daisygunn/grow-restaurant/issues/10)
+
+7. [Users can login](https://github.com/daisygunn/grow-restaurant/issues/7): As a user I can register or log in so that I can manage my booking requests.
+8. [Logged in status clear to user](https://github.com/daisygunn/grow-restaurant/issues/8): As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
+9. [Prompt user to register](https://github.com/daisygunn/grow-restaurant/issues/9): As a user I can am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+10. [Forms pre-populated for users](https://github.com/daisygunn/grow-restaurant/issues/10): As a user I can log in so that I can auto-populate forms with my information on the site.
 
 The navbar displays different nav links depending on the status of the user. If they aren't logged in already the options are `Register` or `Login`.
 
@@ -79,8 +87,8 @@ New users will only have their email populated as they will not yet be present i
 
 ## Epic 4 - Menus can be viewed
 ### User Stories
-[Food and drinks menus displayed seperately](https://github.com/daisygunn/grow-restaurant/issues/11) /
-[All items on the menu have a price, description and dietary info](https://github.com/daisygunn/grow-restaurant/issues/12) 
+11. [Food and drinks menus displayed seperately](https://github.com/daisygunn/grow-restaurant/issues/11): As a user I can view the food & drinks menu's separately so that I can easily find the information I'm looking for.
+12. [All items on the menu have a price, description and dietary info](https://github.com/daisygunn/grow-restaurant/issues/12): As a user I can easily find all of the relevant information about the menu items so that I can make informed decisions.
 
 In the navbar, there is a `Menus` link which has a dropdown to display the two menu options, `Food` & `Drinks`. 
 
@@ -101,10 +109,10 @@ For each item, there is a name, description, dietary label, allergens list & pri
 
 ## Epic 5 - Reservations Functionality
 ### User Stories
-[Users can submit a reservation enquiry](https://github.com/daisygunn/grow-restaurant/issues/13) /
-[Reservation is rejected if restaurant is fully booked](https://github.com/daisygunn/grow-restaurant/issues/14)  / 
-[Reservations can be edited by the user on the front end](https://github.com/daisygunn/grow-restaurant/issues/17) / 
-[Users can edit their information](https://github.com/daisygunn/grow-restaurant/issues/18)
+13. [Users can submit a reservation enquiry](https://github.com/daisygunn/grow-restaurant/issues/13): As a user I can submit a reservation request so that I can visit the restaurant.
+14. [Reservation is rejected if restaurant is fully booked](https://github.com/daisygunn/grow-restaurant/issues/14): As an admin user I can prevent guests from submitting reservation requests for full slots so that I can efficiently manage customer expectations and prevent a backlog of bookings.
+17. [Reservations can be edited by the user on the front end](https://github.com/daisygunn/grow-restaurant/issues/17): As a logged-in customer I can edit/delete an existing enquiry so that I can make changes if required online.
+18. [Users can edit their information](https://github.com/daisygunn/grow-restaurant/issues/18): As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
 
 From the reservations page, any user (authenticated or not) can add their details, requested time & date and submit the form, if there is availability they will get a positive message.
 
@@ -131,6 +139,18 @@ And users can also cancel them as well:
 ![](assets/images/user_stories_testing/cancel_modal.jpg)
 
 ![](assets/images/user_stories_testing/cancel_message.jpg)
+
+Users not logged in that try to access these pages are displayed with this message:
+
+![](assets/images/user_stories_testing/loggin_out_manage_reservations.jpg)
+
+A logged in user is able to access the 'Update Details' page where they are displayed with a form pre-filled with their information, here they are able to update their full name and phone number and are guided to the aullauth emails page if they want to change their email.
+
+![](assets/images/user_stories_testing/form_two.jpg)
+
+Users not logged in that try to access this page are redirected and are shown this message:
+
+![](assets/images/user_stories_testing/logged_out_update_details.jpg)
 
 ## JavaScript Tests
 
