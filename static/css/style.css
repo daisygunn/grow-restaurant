@@ -24,6 +24,7 @@ body {
     background-color: #C97064;
     color: white;
     padding: 5px;
+    border: 5px solid #C97064!important;
 }
 
 .brand-text {
