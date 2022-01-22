@@ -224,6 +224,7 @@ class EditReservation(View):
                 "reservation that is in the past.")
             url = reverse('manage_reservations')
             return HttpResponseRedirect(url)
+        # Prevent customers editing rejected reservations
         elif reservation.status == 'rejected':
             messages.add_message(
                 request, messages.ERROR, "You are trying to edit a "

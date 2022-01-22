@@ -12,14 +12,14 @@ This is a full-stack framework project built using Django, Python, HTML, CSS and
 ## Strategy
 Using the core UX principles I first started with Strategy, thinking about the target audience for this restaurant & the features they would benefit from.
 
-The target audience for 'Grow' is:
+The target audience for 'Grow' are:
 - 25-35 year olds
 - People that live a healthy, balanced lifestyle
 - People that enjoy eating out
 
 These users will be looking for:
-- Informative website, with information that is easy-to-find & concise
-- Current, up-to-date menus
+- An informative website, with information that is easy-to-find & concise
+- Current & up-to-date menus, with essential information such as price, allergens and dietary info
 - A booking form to make reservation enquiries with the restaurant
 
 This website will offer all of these things whilst also allowing for intuitive navigation and comfortability of use. 
@@ -115,20 +115,20 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 
 ![](assets/images/mobile_homepage.jpg)
 
-**Menus & Reservations images with links**: This image and title are both clickable and will take the user to the menus page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
+**Menus & Reservations images with links**: This image and title are both clickable and will take the user to the menus or reservations page. I have added a CSS rule that flips the image on hover & the title below also changes when it is hovered over, both have been implemented as a fun interaction for the user whilst giving a clear indication where they are on the page.
 
 ![](assets/images/menus_res_links.jpg)
 
 **Footer**: The footer displays some of the restaurants key information and has links to social accounts. It is split into three sections, 'Opening Times', 'Find us! & 'Keep in touch', these sections have a pink background to make them stand out against the green.
 
-![](assets/images/index_2.jpg)
+![](assets/images/user_stories_testing/user_stories_footer.jpg)
 
  I felt that having all three sections displayed on a mobile screen made the footer too long so I chose to hide the map using a JavaScript function.
 
 ![](assets/images/footer_mobile.jpg)
 
 ### Menus
-**Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two on the homepage, creating consistency in the users' interaction with the elements.
+**Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two links on the homepage, creating consistency in the users' interaction with the elements.
 
 ![](assets/images/menus_page.jpg)
 
@@ -149,19 +149,31 @@ If they are not yet in the customer model then only their email address is added
 
 If the user is not logged in at all then the form appears blank, as the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
 
-![](assets/images/reservation_form.jpg)
+![](assets/images/blank_res_form.jpg)
 
-**Manage Reservations**: Logged in users are able to view the manage reservation page, on this page they are shown any reservation enquiries they have previously made using the email address associated with their user account.
+**Manage Reservations**: Logged in users are able to view the 'manage reservations' page, on this page they are shown any reservation enquiries they have previously made using the email address associated with their user account.
 
-The reservation id is displayed at the top of the reservation item so they can be easily identified, the reservation status is also given a coloured background, depending on what the status is, to give the user a visual representation of the status.
+The reservation ID is displayed at the top of the reservation item so they can be easily identified, the reservation status is also given a coloured background, depending on what the status is, to give the user a visual representation of this status.
 
-There are also edit & delete buttons, users are able to edit or delete any existing reservations they have. If the booking was confirmed before editing it will change to 'pending' status. 
+There are also edit & delete buttons, users are able to edit or delete existing reservations they have that are either 'confirmed' or 'pending'. 
 
 ![](assets/images/user_stories_testing/manage_reservations.jpg)
 
+I decided that reservations with a date in the past would display with a status of 'expired' and would not be able to be edited or deleted as this could cause confusion for the user and also the admin user, therefore the edit & delete buttons do not display under these reservations. Reservations with a 'rejected' status can also not be changed for the same reasons. 
+
+Defensive programme has been used to prevent users editing/deleting reservations that they aren't meant to, if a user tried (by adding the reservation id in the url) they would be redirected back to manage reservations.
+
+![](assets/images/edit_expired.jpg)
+
+![](assets/images/edit_rejected.jpg)
+
 **Edit Reservation**: This page simply displays the reservation form pre-populated using the reservation instance, the user is able to change the date, time or number of guests and resubmit the form. After resubmitting the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
 
+![](assets/images/user_stories_testing/reservation_message.jpg)
+
 **Delete Reservations**: This page simply displays the reservation selected with all of its information, the user presses 'Cancel Reservation' and a modal pop's up for the user to confirm the cancellation, explaining that this cannot be undone. If the user chooses 'Cancel it' the reservation will be deleted from the model. After confirming the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
+
+![](assets/images/user_stories_testing/cancel_reservation.jpg) 
 
 **Update customer details**: A logged-in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email for their account.
 

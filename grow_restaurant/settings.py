@@ -122,6 +122,7 @@ WSGI_APPLICATION = 'grow_restaurant.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if os.environ.get("DEVELOPMENT") == "True":
+    # Testing database
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -129,6 +130,7 @@ if os.environ.get("DEVELOPMENT") == "True":
         }
     }
 else:
+    # Heroku database
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
         }

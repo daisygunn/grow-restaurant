@@ -1,5 +1,7 @@
 # Manual Testing
 
+[Back to main README](README.md)
+
 ## Epic 1 - Core website functionality
 ### User Stories
 [Site Navigation](https://github.com/daisygunn/grow-restaurant/issues/1) / [Basic navbar & footer](https://github.com/daisygunn/grow-restaurant/issues/15) / [Informative Landing Page](https://github.com/daisygunn/grow-restaurant/issues/2) 
@@ -140,7 +142,7 @@ I have written a small number of JS functions that handle some animation & event
 
 And any larger than that it appears:
 
-![](assets/images/js_testing_images/footer_content_laptop.jpg)
+![](assets/images/user_stories_testing/user_stories_footer.jpg)
 
 I have used this function in conjunction with a `debounce` function to prevent the function triggering if being called continuously. It triggers after it has stopped being called for 250 milliseconds. As explained [here](https://davidwalsh.name/javascript-debounce-function)
 
