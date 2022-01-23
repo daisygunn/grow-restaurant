@@ -177,6 +177,7 @@ def validate_date(self, request, reservations):
 
         return reservations
 
+
 class ManageReservations(View):
     """ View for user to manage any existing reservations """
     def get(self, request, User=User, *args, **kwargs):
@@ -198,7 +199,7 @@ class ManageReservations(View):
                 return render(
                     request, 'manage_reservations.html',
                     {'reservations': current_reservations,
-                      'customer': customer})
+                     'customer': customer})
 
         else:
             # Prevent users not logged in from accessing this page
@@ -234,7 +235,8 @@ class EditReservation(View):
                 return HttpResponseRedirect(url)
             else:
                 # Convert date to display in dd/mm/YYYY format
-                date_to_string = reservation.requested_date.strftime("%d/%m/%Y")
+                date_to_string = reservation.requested_date.strftime(
+                    "%d/%m/%Y")
                 reservation.requested_date = date_to_string
 
                 # Get customer info
@@ -245,7 +247,7 @@ class EditReservation(View):
                 name_of_user = customer
 
                 if reservation_owner != name_of_user:
-                    # If the names do not match redirect back to manage reservations
+                    # If the names do not match redirect to manage reservations
                     messages.add_message(
                         request, messages.ERROR, "You are trying to edit a "
                         "reservation that is not yours.")
@@ -258,11 +260,11 @@ class EditReservation(View):
                     reservation_form = ReservationForm(instance=reservation)
 
                     return render(request, 'edit_reservation.html',
-                                {'customer_form': customer_form,
-                                'customer': customer,
-                                'reservation_form': reservation_form,
-                                'reservation': reservation,
-                                'reservation_id': reservation_id})
+                                  {'customer_form': customer_form,
+                                   'customer': customer,
+                                   'reservation_form': reservation_form,
+                                   'reservation': reservation,
+                                   'reservation_id': reservation_id})
 
         else:
             # Prevent users not logged in from accessing this page
@@ -279,7 +281,7 @@ class EditReservation(View):
         reservation_id = reservation_id
         reservation = get_object_or_404(
             Reservation, reservation_id=reservation_id)
-        
+
         reservation_form = ReservationForm(
             data=request.POST, instance=reservation)
         customer_form = CustomerForm(instance=customer)
@@ -365,18 +367,18 @@ class DeleteReservation(View):
                 name_of_user = customer
 
                 if reservation_owner != name_of_user:
-                    # If the names do not match redirect back to manage reservations
+                    # If the names do not match redirect to manage reservations
                     messages.add_message(request, messages.ERROR,
-                                        "You are trying to cancel a "
-                                        "reservation that is not yours.")
+                                         "You are trying to cancel a "
+                                         "reservation that is not yours.")
                     url = reverse('manage_reservations')
                     return HttpResponseRedirect(url)
 
                 else:
                     return render(request, 'delete_reservation.html',
-                                {'customer': customer,
-                                'reservation': reservation,
-                                'reservation_id': reservation_id, })
+                                  {'customer': customer,
+                                   'reservation': reservation,
+                                   'reservation_id': reservation_id})
         else:
             # Prevent users not logged in from accessing this page
             messages.add_message(
@@ -400,7 +402,7 @@ class DeleteReservation(View):
         # Return user to manage reservations page
         validate_date(self, request, current_reservations)
         return render(request, 'manage_reservations.html',
-                              {'reservations': current_reservations})
+                      {'reservations': current_reservations})
 
 
 class EditCustomerDetails(View):
