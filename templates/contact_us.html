@@ -13,7 +13,7 @@
 
         <div class="col-sm-4 col-md-6">
             <!-- Contact form -->
-            <form method="POST" class="contact-form mb-5">
+            <form method="POST" class="contact-form full-form mb-5">
 
                 {% csrf_token %}
                 {{ contact_form | crispy }}
