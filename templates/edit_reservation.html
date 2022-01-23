@@ -15,7 +15,7 @@
             <!-- Display reservation ID -->
             <h5 class="text-center my-3">Reservation ID: {{ reservation.reservation_id }}</h5>
             <!-- Reservation form -->
-            <form method="POST" class="mb-5 reservation-enquiry">
+            <form method="POST" class="mb-5 reservation-enquiry full-form">
 
                 {% csrf_token %}
                 {{ reservation_form | crispy }}
