@@ -110,4 +110,6 @@ $(document).ready(function () {
     disableEmail();
 
     removeDisableAttrOnSubmit();
+
+    screenSize();
 });
