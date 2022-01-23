@@ -176,11 +176,11 @@ I have used this function in conjunction with a `debounce` function to prevent t
 
 **`formError`** - This function animates the form by adding an Animate class to the form if there is an error. You can see before submitting the only class on the ul is `full-form`:
 
-![](assets/images/js_testing_images/before_submitting.jpg)
+![](assets/images/js_testing_images/form_error_before.jpg)
 
 And after submitting, with an error the class `"animate__animated animate__shakeX"` is added:
 
-![](assets/images/js_testing_images/after_submitting.jpg)
+![](assets/images/js_testing_images/form_error_after.jpg)
 
 **`disableEmail`** - This function has been used to disable the email on the 'Update Details' page as I don't want the user to update it on this page:
 
