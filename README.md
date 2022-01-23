@@ -39,7 +39,7 @@ Please find all my defined user stories & their acceptance criteria [here](https
 6. As an admin user I can create, remove, update or delete food & drinks items from the database so that I can ensure items are accurate and able to be added to the menu on the website.
 7. As a user I can register or log in so that I can manage my booking requests.
 8. As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
-9. As a user I can am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+9. As a user I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
 10. As a user I can log in so that I can auto-populate forms with my information on the site.
 11. As a user I can view the food & drinks menu's separately so that I can easily find the information I'm looking for.
 12. As a user I can easily find all of the relevant information about the menu items so that I can make informed decisions.
@@ -76,7 +76,7 @@ The website is made of three apps:
 The menus and reservations app both require databases to store information so I have built 5 custom models. 
 
 #### Menus
-FoodItem & DrinksItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurant's menu. Each item has a name, description, price, dietary & allergens. 
+FoodItem & DrinkItem are the model names for the menus app, these are two standalone models that provide all of the information required to display the items as part of the restaurant's menu. Each item has a name, description, price, dietary & allergens. 
 
 #### Reservations
 There are 3 models in this app, Customer, Table & Reservation. The combination of these 3 models allow for customer details to be stored, reservation enquiries to be made & managed & also enable availability checks whilst the user is enquiring. 
@@ -94,10 +94,10 @@ Entity Relationship Diagram below to see how the models relate to each other:
 
 Please note the actual website differs slightly from the original wireframes. 
 
-The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. 
+The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages.
 
 ### Surface
-Initially, the colour palette I chose for this website was green and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar & menus. 
+Initially, the colour palette I chose for this website was green and white. I wanted a 'clean' feel and based it on greens to keep in theme with Grow, nature plays a huge role in the design of the restaurant and the menu so I wanted there to be consistency. However, whilst building the website I felt the sole use of green made it feel a little flat so I chose to add pink to the colour scheme. This change between pink and green features often, on button hover, in the navbar & footer & menu headings. 
 
 ![Colour Palette](assets/images/colour_palete.png)
 
@@ -107,7 +107,7 @@ I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use f
 ## Features
 
 ### Home page
-**Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the food or drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indicate to the user what they are about to click on. 
+**Navigation bar**: The navigation bar has links to all the active pages for the user and are clearly labelled, the menus option has a dropdown link to take the user to the Food or Drink menu. The page that the user is on has an 'active' style, the background changes to white and the text turns green to indicate to the user which page they're on. The same style change also happens when a nav link is hovered on to again clearly indicate to the user what they are about to click on. 
 
 If the user is logged in then the right side of the menu shows links for pages that only authorised users can visit & use, they are: 'Manage Reservations', 'Update Details' & 'Logout'. Otherwise, the user will be given the option to 'Register' or 'Login'. This change in the menu ensures users are directed to pages they can use, preventing any frustration and also prompting the user to sign up for an account. Furthermore, it makes it abundantly clear what the logged-in status is to the user. 
 
@@ -127,7 +127,7 @@ The navigation bar is fully responsive and collapses on mobile screens to a hamb
 
  I felt that having all three sections displayed on a mobile screen made the footer too long so I chose to hide the map using a JavaScript function.
 
-![](assets/images/footer_mobile.jpg)
+![](assets/images/js_testing_images/footer_content_mobile.jpg)
 
 ### Menus
 **Menus page**: This page explains a little more about the menus in the restaurant, it has a link to each menu: Food or Drinks. These images and links have the same 'animation' on hover as the two links on the homepage, creating consistency in the users' interaction with the elements.
@@ -151,7 +151,7 @@ If they are not yet in the customer model then only their email address is added
 
 If the user is not logged in at all then the form appears blank, as the form requires the phone number to be entered in the +44 format I have added this placeholder to the phone number input field to try and help the user.
 
-![](assets/images/blank_res_form.jpg)
+![](assets/images/user_stories_testing/blank_res_form.jpg)
 
 **Manage Reservations**: Logged in users are able to view the 'manage reservations' page, on this page they are shown any reservation enquiries they have previously made using the email address associated with their user account.
 
@@ -165,7 +165,7 @@ I decided that reservations with a date in the past would display with a status 
 
 The status of 'expired' doesn't get pushed to the model and is used only when displaying the reservations to the user.
 
-Defensive programme has been used to prevent users editing/deleting reservations that they aren't meant to, if a user tried (by adding the reservation id in the URL) they would be redirected back to manage reservations.
+Defensive programme has been used to prevent users editing/deleting reservations that they aren't meant to, if a user tried (by adding the reservation ID in the URL) they would be redirected back to manage reservations.
 
 ![](assets/images/edit_expired.jpg)
 
@@ -178,6 +178,8 @@ Defensive programme has been used to prevent users editing/deleting reservations
 **Delete Reservations**: This page simply displays the reservation selected with all of its information, the user presses 'Cancel Reservation' and a modal pop's up for the user to confirm the cancellation, explaining that this cannot be undone. If the user chooses 'Cancel it' the reservation will be deleted from the model. After confirming the user is redirected back to the 'Manage Reservations' page and a success message is displayed showing which reservation was edited. 
 
 ![](assets/images/user_stories_testing/cancel_reservation.jpg) 
+
+![](assets/images/user_stories_testing/cancel_modal.jpg)
 
 **Update customer details**: A logged-in user can also update their phone number or full name that is stored in the customer model, this can be done from the 'Update Details' link in the navbar. This page simply displays the customer form but has the email address blanked out - this is because the email is associated with the user account and so I want the user to change their email for their account.
 
@@ -307,7 +309,7 @@ I have tested this project manually myself and have also had it peer-reviewed & 
 
 ### Automated Testing
 
-I have used the Coverage library throughout testing to keep track of how much of my code was covered by the tests I had written. From running the coverage report my website has 64% of my Python code tested. The remaining code is covered by manual testing.
+I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has 64% of my code tested. The remaining code is covered by manual testing.
 
 To generate your own coverage report from the command line:
 
