@@ -21,10 +21,12 @@ These users will be looking for:
 - An informative website, with information that is easy-to-find & concise
 - Current & up-to-date menus, with essential information such as price, allergens and dietary info
 - A booking form to make reservation enquiries with the restaurant
+- A way to contact the restaurant
+- The ability to make a user account to manage their reservations
 
 This website will offer all of these things whilst also allowing for intuitive navigation and comfortability of use. 
 
-Due to the age group of the users, it is assumed that most users will be viewing the site on their mobile phones and therefore creating something responsive is integral to the design, I have used Bootstrap elements & custom CSS to allow for this.
+Due to the age group of the users, it is assumed that most users will be viewing the site on their mobile phones and therefore creating something responsive is integral to the design, I have used Bootstrap grids and elements & custom CSS to allow for this.
 
 ## User Stories
 Please find all my defined user stories & their acceptance criteria [here](https://github.com/daisygunn/grow-restaurant/issues)
@@ -99,7 +101,7 @@ Initially, the colour palette I chose for this website was green and white. I wa
 
 ![Colour Palette](assets/images/colour_palete.png)
 
-I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use for headings which is why I chose 'Lobster' and then 'Raleway' for the general content as it's easier to read for the user. 
+I chose the fonts 'Lobster' & 'Raleway', I wanted a bold/statement font to use for headings which is why I chose 'Lobster' and then 'Raleway' for the general content as it's easier to read for the user. I have used a class called `brand-text` for most instances of the word Grow and also for the menu and footer headings.
 
 ---
 ## Features
@@ -404,6 +406,8 @@ Throughout the process of building this website, I have used various sources onl
 
 [Coverage](https://coverage.readthedocs.io/en/6.2/)
 
+[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+
 [Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html)
 
 [Gmail SMTP](https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e)
@@ -423,6 +427,6 @@ Throughout the process of building this website, I have used various sources onl
 ---
 ## Acknowledgements
 
-I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my peers Harry Dhillon, Deanna Carina and Jack Crosbie for their support & feedback.
+I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my peers Harry Dhillon, Emma Charles-Wislon, Jo Gorska and Jack Crosbie for their support & feedback.
 
 ---

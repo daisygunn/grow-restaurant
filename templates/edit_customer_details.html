@@ -8,25 +8,23 @@
         <div class="col-sm-8 text-center">
             <h2 class="text-center mt-2 mb-3">Edit your details at <span class="brand-text">GROW</span></h2>
             <!-- Link to manage User email -->
-            <p>Please note as your email is associated with your user account this must be changed <a href="{% url 'account_email' %}">here</a>.</p>
-            <p>If you change your accounts email address you will only be able to view reservations made with your 'Primary' email address.</p>
+            <p>Please note as your email is associated with your user account this must be changed <a
+                    href="{% url 'account_email' %}">here</a>.</p>
+            <p>If you change your accounts email address you will only be able to view reservations made with your
+                'Primary' email address.</p>
         </div>
     </div>
 
     <div class="row d-flex justify-content-center">
         <div class="col-xs-10 col-sm-5">
+            <!-- Customer form -->
             <form method="POST" class="mb-5" id="customer-details-form">
-                <ul class="full-form">
-
                     {% csrf_token %}
 
-                    <!-- Customer form -->
                     {{ customer_form | crispy }}
 
                     <button type="submit" class="button mt-4 text-center submit-button">Edit
                         Details</button>
-
-                </ul>
             </form>
         </div>
     </div>

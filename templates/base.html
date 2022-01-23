@@ -35,7 +35,7 @@
 
 <body>
     <div class="container-fluid p-0">
-    <!-- Navbar -->
+        <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark green-bground" id="main-nav">
             <a class="navbar-brand brand-text" href="{% url 'index' %}" id="nav-heading">GROW</a>
             <!-- Collapsible icon for smaller screens -->
@@ -57,6 +57,7 @@
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Menus
                         </a>
+                        <!-- Dropdown for the different menus options -->
                         <ul class="dropdown-menu green-bground" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item {% if request.resolver_match.url_name == 'food_menu' %}
                                 green-text {% else %} text-white {% endif %}" href="{% url 'food_menu' %}">Food</a>

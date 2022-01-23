@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="container">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8">
             <h2 class="text-center mt-2 mb-3">Reservations at <span class="brand-text">GROW</span></h2>
@@ -18,16 +18,16 @@
             <!-- Display both forms together -->
             <form method="POST" class="mb-5 reservation-enquiry">
 
-                    {% csrf_token %}
+                {% csrf_token %}
 
-                    <!-- Customer form -->
-                    {{ customer_form | crispy }}
+                <!-- Customer form -->
+                {{ customer_form | crispy }}
 
-                    <!-- Reservation form -->
-                    {{ reservation_form | crispy }}
+                <!-- Reservation form -->
+                {{ reservation_form | crispy }}
 
-                    <button type="submit" class="button mt-4 text-center submit-button">Send
-                        enquiry</button>
+                <button type="submit" class="button mt-4 text-center submit-button">Send
+                    enquiry</button>
 
             </form>
         </div>

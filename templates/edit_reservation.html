@@ -17,11 +17,11 @@
             <!-- Reservation form -->
             <form method="POST" class="mb-5 reservation-enquiry">
 
-                    {% csrf_token %}
-                    {{ reservation_form | crispy }}
+                {% csrf_token %}
+                {{ reservation_form | crispy }}
 
-                    <button type="submit" class="button mt-4 text-center submit-button">Edit
-                        Reservation</button>
+                <button type="submit" class="button mt-4 text-center submit-button">Edit
+                    Reservation</button>
             </form>
         </div>
     </div>
