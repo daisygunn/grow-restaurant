@@ -27,6 +27,9 @@ body {
     border: 5px solid #FDA59A !important;
 }
 
+.pink-text {
+    color: #FDA59A;
+}
 .brand-text {
     font-family: 'Lobster Two', cursive;
     letter-spacing: 3px;
@@ -172,8 +175,9 @@ a.ic::after {
 .principles-list {
     width: 400px;
     margin: auto;
-    text-align: center;
-    list-style: none;
+    text-align: left!important;
+    padding-left: 2rem;
+    /* list-style: none; */
 }
 
 .opening-time {
