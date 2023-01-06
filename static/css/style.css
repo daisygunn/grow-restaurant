@@ -21,10 +21,10 @@ body {
 }
 
 .pink-bground {
-    background-color: #C97064;
+    background-color: #FDA59A;
     color: white;
     padding: 5px;
-    border: 5px solid #C97064 !important;
+    border: 5px solid #FDA59A !important;
 }
 
 .brand-text {
@@ -47,7 +47,7 @@ body {
 }
 
 .page-links:hover {
-    background-color: #C97064;
+    background-color: #FDA59A;
     text-decoration: none;
     color: white;
 }
@@ -66,7 +66,7 @@ a:hover {
 /* Navbar */
 
 nav {
-    border-bottom: 5px solid #C97064;
+    border-bottom: 5px solid #FDA59A;
 }
 
 #nav-heading {
@@ -216,8 +216,8 @@ a.ic::after {
 .submit-button:hover,
 .cancel-button:hover {
     color: #fff;
-    background-color: #C97064;
-    border-color: #C97064;
+    background-color: #FDA59A;
+    border-color: #FDA59A;
 }
 
 .cancel-button {
