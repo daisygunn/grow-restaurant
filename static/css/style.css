@@ -21,7 +21,8 @@ body {
 }
 
 .pink-bground {
-    background-color: #FDA59A;
+    /* background-color: #FDA59A; */
+    background-color: rgba(253,165,154,0.7);
     color: white;
     padding: 5px;
     border: 5px solid #FDA59A !important;
@@ -47,6 +48,11 @@ body {
     position: relative;
     display: block;
     font-size: 2em;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: bolder;
 }
 
 .page-links:hover {
@@ -106,8 +112,10 @@ header.bg-image-full {
 p#subheading,
 #main-heading {
     /* background-color: rgba(201, 112, 100, 0.8); */
-    /* width: 200px; */
-    margin-top: 7.5rem;
+    width: 40%!important;
+    position: absolute;
+    left: 30%;
+    top: 10.5rem;
 }
 
 /* Footer */
