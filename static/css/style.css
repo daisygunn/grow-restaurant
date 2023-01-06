@@ -33,6 +33,10 @@ body {
     font-weight: 700;
 }
 
+#header-image {
+    height: 400px;
+}
+
 .page-links {
     text-decoration: none !important;
     color: #007842;
@@ -93,24 +97,25 @@ nav {
 
 header.bg-image-full {
     background: url("https://res.cloudinary.com/dm3odn3pb/image/upload/v1641287186/static/images/header-background.f094be5a1a24.jpg");
+    height: 400px;
 }
 
 p#subheading,
 #main-heading {
-    background-color: rgba(201, 112, 100, 0.8);
-    width: 200px;
+    /* background-color: rgba(201, 112, 100, 0.8); */
+    /* width: 200px; */
     margin: auto;
 }
 
 /* Footer */
 
 #main-footer {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 
 .center {
-    height: 200px;
+    height: 150px;
     position: relative;
 }
 
@@ -174,6 +179,12 @@ a.ic::after {
 .opening-time {
     text-decoration: none;
     list-style: none;
+}
+
+.home-text {
+    width: 50%;
+    margin: auto;
+    font-weight: bolder;
 }
 
 
@@ -593,6 +604,7 @@ input#id_requested_date {
         display: block;
         margin-bottom: 10px;
     }
+    
 }
 
 /* for iphones */
