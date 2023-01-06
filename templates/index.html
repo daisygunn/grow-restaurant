@@ -7,18 +7,19 @@
 <div class="container-fluid text-center">
     <div class="row content mt-1 d-flex justify-content-center">
         <!-- Homepage content -->
-        <div class="col-12 col-sm-8 col-lg-10">
+        <div class="col-sm-12 col-lg-6 text-center">
             <!-- Animated heading to look like it's 'growing' using Animate CSS library -->
             <!-- <h1 class="animate__animated animate__zoomIn">Welcome to <span class="brand-text">GROW</span></h1> -->
             <br>
             <!-- 'About us' section -->
-            <p>Here at GROW we have three main principles:</p>
+            <div class="green-bground">
+            <p class="pt-2">Our three main principles:</p>
             <ul class="principles-list green-bground p-3 mb-3">
                 <li class="text-center">Eating well should never mean boring food </li>
                 <li class="text-center">Seasonal produce is <strong>ALWAYS</strong> best</li>
                 <li class="text-center">Plants make everything better</li>
             </ul>
-
+        </div>
             <p class="home-text">This is why we endeavour to change our menu every week, with a variety of dishes inspired by our travels
                 around the world.We are located in the heart of North London, a short walk from Finsbury Park or Crouch Hill station.
             All produce used within the restaurant is sourced locally and we only eat foods currently in season in the UK or that have a really low carbon footprint! <br>
@@ -27,9 +28,9 @@
             <em>Founded in 2017 by two friends who absolutely adore food.</em></p>
 
         </div>
-        <hr>
+        <!-- <hr> -->
         <!-- Menus & Reservation images and page links -->
-        <div class="row content mb-5 d-flex justify-content-center">
+        <div class="row content mt-5 mb-5 d-flex justify-content-center">
             <div class="col-sm-6 col-lg-4 col-xl-3 text-center">
                 <div>
                     <a href="{% url 'menus' %}">
