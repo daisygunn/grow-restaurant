@@ -36,6 +36,10 @@ else:
     DEBUG = False
 
 ALLOWED_HOSTS = ['grow-restaurant.herokuapp.com', 'localhost']
+ # Add Render.com URL to allowed hosts
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+   ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -133,7 +137,7 @@ if os.environ.get("DEVELOPMENT") == "True":
         }
     }
 else:
-    # Heroku database
+    # ElephantSQL database
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
         }
